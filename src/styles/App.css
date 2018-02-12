@@ -1,0 +1,107 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.App-header {
+  flex: 1;
+  background-color: #222;
+  padding: 20px;
+  color: white;
+}
+.App-logo {
+  height: 60px;
+  vertical-align: middle;
+  margin: 0 20px 0 0;
+}
+.App-title {
+  font-size: 1.5em;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.App-intro {
+  flex: 6;
+  font-size: 14px;
+  padding-bottom: 50px;
+}
+.App-search {
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 15px auto;
+  vertical-align: middle;
+  width: 300px;
+  max-width: 70%;
+}
+.App-search-button {
+  display: inline-block;
+  padding: 7px 15px 8px;
+  font-size: 14px;
+  vertical-align: middle;
+  color: #fff;
+  background: #f4425c;
+  border: none;
+  cursor: pointer;
+}
+.App-search-button:hover {
+  background: #f94a8b;
+}
+.App-info {
+  display: flex;
+  flex-direction: row;
+}
+.App-info_details {
+  flex: 1;
+  padding: 15px;
+}
+.App-info_bio {
+  flex: 5;
+  text-align: left;
+  padding-right: 15px;
+}
+.App-bio_link {
+  color: #3399ff;
+  cursor: pointer;
+  margin-top: 5px;
+  display: block;
+}
+.App-similar_act {
+  text-decoration: none;
+  color: #3399ff;
+  display: inline-block;
+  margin: 0 0 0 6px;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  cursor: pointer;
+}
+.App-similar_act:hover {
+  border: 1px solid #3399ff;
+}
+
+.App-trending {
+  flex: 2;
+  background: #333;
+  color: #fff;
+  padding: 15px 0;
+}
+.App-results {
+  list-style: none;
+  padding: 0;
+}
+.App-result {
+  color: #aaa;
+  padding: 5px;
+  margin: 0 3px 6px;
+  display: inline-block;
+  border: 1px solid #555;
+  font-size: 12px;
+}
+.App-result:hover {
+  color: #fff;
+  cursor: pointer;
+  background: #3399ff;
+  border: 1px solid #3399ff;
+}
