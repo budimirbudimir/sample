@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import logo from '../images/lastfm_logo.png'
 

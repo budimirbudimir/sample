@@ -2,9 +2,11 @@
 
 import React from 'react'
 
+import type { SimilarArtist } from '../models'
+
 type SimilarTypes = {
   // similar is array of objects containing similar artist data
-  similar: Array<*>,
+  similar: SimilarArtist[],
   // fetchArtist is function to get artist data by artist name
   fetchArtist: (string) => void,
 }

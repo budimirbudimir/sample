@@ -1,8 +1,9 @@
+// @flow
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchTrending, setArtist, toggleBio } from '../actions'
-import { rapid, lastfmKey } from '../utils'
 import '../styles/App.css'
 
 import Header from './Header'
@@ -10,15 +11,17 @@ import Similar from './Similar'
 import Tags from './Tags'
 import Trending from './Trending'
 
+import type { Artist, TopArtist } from '../models'
+
 type PropsFromState = {
   // expanded points to current target artists bio state (show more/less)
   expanded: boolean,
   // topArtists is array containing all artists from Trending chart
   // with their relevant data
-  topArtists: Array<any>,
+  topArtists: TopArtist[],
   // target is object containing all relevant target artist' data
   //TODO: Map type for target artist as well
-  target: Object,
+  target: Artist,
   // targetImage is string representing target artist image URL
   targetImage: string,
 }
@@ -28,14 +31,22 @@ type PropsFromDispatch = {
   // together with their relevant data
   fetchTrending: () => void,
   // setArtist is action for fetching artist by current search query
-  setArtist: () => void,
+  setArtist: (string) => void,
   // toggleBio is action for toggling current/target artist bio (show more/less)
   toggleBio: () => void,
 }
 
+type OwnState = {
+  // query is current search query string entered in the input field
+  query: string,
+}
+
 type Props = PropsFromState & PropsFromDispatch;
 
-class App extends Component<Props, null> {
+class App extends Component<Props, OwnState> {
+  state = {
+    query: '',
+  }
 
   componentDidMount() {
     const { fetchTrending } = this.props;
@@ -43,14 +54,16 @@ class App extends Component<Props, null> {
     fetchTrending(); // Get trending artists
   }
 
-  fetchArtist = (name) => {
+  fetchArtist = (name: string) => {
     const { setArtist } = this.props;
 
     setArtist(name); // Find and set target artist
   }
 
   findArtist = () => {
-    this.fetchArtist(this.query.value)
+    const { query } = this.state;
+
+    this.fetchArtist(query)
   }
 
   render() {
@@ -71,7 +84,10 @@ class App extends Component<Props, null> {
             className='App-search'
             type='text'
             placeholder='Enter search query'
-            ref={(input) => { this.query = input }}
+            onChange={(ev) => {
+              // Sync the current query locally
+              this.setState({ query: ev.target.value })
+            }}
           />
           <button className='App-search-button' onClick={this.findArtist}>
             Search
