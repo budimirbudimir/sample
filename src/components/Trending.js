@@ -5,36 +5,32 @@ import React from 'react'
 import type { TopArtist } from '../models'
 
 type TrendingTypes = {
-  // artists is array of objects containing artist data
-  artists: TopArtist[],
-  // fetchArtist is function to get artist data by artist name
-  fetchArtist: (string) => void,
+	// artists is array of objects containing artist data
+	artists: TopArtist[],
+	// fetchArtist is function to get artist data by artist name
+	fetchArtist: string => void,
 }
 
 const Trending = ({ artists, fetchArtist }: TrendingTypes) => (
-  <div>
-    {
-      artists.length > 0 && (
-        <div className='App-trending'>
-          <p>Trending Artists:</p>
+	<div>
+		{artists.length > 0 && (
+			<div className="App-trending">
+				<p>Trending Artists:</p>
 
-          <ul className='App-results'>
-            {
-              artists.map((item, index) => (
-                <li
-                  className='App-result'
-                  key={index}
-                  onClick={() => fetchArtist(item.name)}
-                >
-                  {item.name}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      )
-    }
-  </div>
+				<ul className="App-results">
+					{artists.map((item, index) => (
+						<li
+							className="App-result"
+							key={index}
+							onClick={() => fetchArtist(item.name)}
+						>
+							{item.name}
+						</li>
+					))}
+				</ul>
+			</div>
+		)}
+	</div>
 )
 
 export default Trending
