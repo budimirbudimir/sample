@@ -21,8 +21,9 @@ _Keep in mind that Prettier, ESLint and Flow are interconnected._
 
 ##### TODO list:
 
-1. Add Router and routes (needed for auth)
-2. Add auth and DB functionality (via Firebase/FireStore)
+1. **WIP: Connect Firebase actions to Redux and add starring logic**
+   _(user can favorite artists and see list later)_
+2. Fix and organize styles
 3. Add tests where applicable
 4. Add NodeJS server and MongoDB _(optional)_
 5. Add GraphQL/Apollo _(optional)_

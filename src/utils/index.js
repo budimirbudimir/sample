@@ -1,10 +1,29 @@
-import RapidAPI from 'rapidapi-connect'
+import { ref, firebaseAuth } from '../config'
 
-export const rapid = new RapidAPI(
-	'default-application_5a7ddde9e4b06ec3937ac281',
-	'c10f94d5-2232-45b5-8954-743ddcec17a0',
-)
+export function auth(email, pw) {
+	return firebaseAuth()
+		.createUserWithEmailAndPassword(email, pw)
+		.then(saveUser)
+}
 
-export const lastfmKey = '6a1df7cb8c230be8d4ac930b554279aa'
+export function logout() {
+	return firebaseAuth().signOut()
+}
 
-export const API_URL = `http://ws.audioscrobbler.com/2.0/?format=json&api_key=${lastfmKey}`
+export function login(email, pw) {
+	return firebaseAuth().signInWithEmailAndPassword(email, pw)
+}
+
+export function resetPassword(email) {
+	return firebaseAuth().sendPasswordResetEmail(email)
+}
+
+export function saveUser(user) {
+	return ref
+		.child(`users/${user.uid}/info`)
+		.set({
+			email: user.email,
+			uid: user.uid,
+		})
+		.then(() => user)
+}
