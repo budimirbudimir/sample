@@ -12,11 +12,3 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root')
 )
-
-// TODO:
-// 1. Solve type checking/marking
-// 2. Try to add linting (eslint)
-// 3. Add tests where applicable
-// 4. Add Router and routes (needed for auth)
-// 5. Add auth functionality (via Firebase?)
-// 6. Add GraphQL server and queries
