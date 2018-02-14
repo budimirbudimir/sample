@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
-import { auth } from '../utils'
+import { connect } from 'react-redux'
 
-function setErrorMsg(error) {
-	return {
-		registerError: error.message,
-	}
-}
+import { auth } from '../actions'
 
-export default class Register extends Component {
-	state = { registerError: null }
+class Register extends Component {
 	handleSubmit = e => {
 		e.preventDefault()
-		auth(this.email.value, this.pw.value).catch(e =>
-			this.setState(setErrorMsg(e)),
-		)
+		const { auth } = this.props
+
+		auth(this.email.value, this.pw.value)
 	}
+
 	render() {
 		return (
 			<div className="Register">
@@ -23,6 +19,7 @@ export default class Register extends Component {
 					<div className="Register-email_container">
 						<input ref={email => (this.email = email)} placeholder="Email" />
 					</div>
+
 					<div className="Register-password_container">
 						<input
 							type="password"
@@ -30,10 +27,20 @@ export default class Register extends Component {
 							ref={pw => (this.pw = pw)}
 						/>
 					</div>
-					{this.state.registerError && <p>{this.state.registerError}</p>}
+
+					{/* {this.state.registerError && <p>{this.state.registerError}</p>} */}
+
 					<button type="submit">Register</button>
 				</form>
 			</div>
 		)
 	}
 }
+
+const mapDispatchToProps = dispatch => {
+	return {
+		auth: (email, pw) => dispatch(auth(email, pw)),
+	}
+}
+
+export default connect(null, mapDispatchToProps)(Register)

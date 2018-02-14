@@ -22,6 +22,19 @@
 	vertical-align: middle;
 	margin: 0;
 	padding: 0;
+	color: #fff;
+}
+.App-title:hover {
+	color: #3399ff;
+	text-decoration: none;
+}
+.Header-menu .navbar-brand {
+	font-size: 16px;
+	color: #fff;
+	cursor: pointer;
+}
+.Header-menu .navbar-brand:hover {
+	color: #3399ff;
 }
 
 .App-content {
@@ -30,23 +43,32 @@
 	max-width: 1140px;
 	margin: 0 auto;
 }
+.App-search_container {
+	max-height: 40px;
+	position: relative;
+	width: 430px;
+	margin: 15px auto 0;
+	flex-direction: row;
+}
 .App-search {
-	padding: 5px 10px;
+	padding: 6px 10px;
 	font-size: 16px;
-	margin: 15px auto;
 	vertical-align: middle;
-	width: 300px;
-	max-width: 70%;
+	flex: 3;
+	min-width: 300px;
+	border: 1px solid #ccc;
+	border-right: none;
 }
 .App-search-button {
 	display: inline-block;
-	padding: 7px 15px 8px;
+	padding: 8px 15px 9px;
 	font-size: 14px;
 	vertical-align: middle;
 	color: #fff;
 	background: #f4425c;
 	border: none;
 	cursor: pointer;
+	flex: 1;
 }
 .App-search-button:hover {
 	background: #f94a8b;
@@ -54,6 +76,7 @@
 .App-info {
 	display: flex;
 	padding-top: 50px;
+	padding-bottom: 50px;
 	flex-direction: row;
 }
 .App-info_details {
@@ -120,4 +143,38 @@
 .Register,
 .Home {
 	text-align: center;
+}
+
+/* SEARCH */
+.Search-results {
+	/* flex: 1; */
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 35;
+	max-height: 200px;
+	max-width: 380px;
+	margin: 0 auto 15px;
+	overflow-y: auto;
+	padding: 0;
+	border: 1px solid #eee;
+	box-shadow: 0 5px 7px rgba(0, 0, 0, 0.5);
+	background: #fff;
+	z-index: 1;
+}
+
+.Search-result {
+	padding: 5px;
+	text-align: left;
+	cursor: pointer;
+}
+.Search-result:nth-child(even) {
+	background-color: #eee;
+}
+.Search-result:hover {
+	background-color: #3399ff;
+}
+
+.Search-result img {
+	margin-right: 15px;
 }

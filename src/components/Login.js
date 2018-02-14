@@ -1,30 +1,21 @@
 import React, { Component } from 'react'
-import { login, resetPassword } from '../utils'
+import { connect } from 'react-redux'
 
-function setErrorMsg(error) {
-	return {
-		loginMessage: error,
-	}
-}
+// import { login, resetPassword } from '../utils'
+import { login, resetPassword } from '../actions'
 
 class Login extends Component {
-	state = { loginMessage: null }
-
 	handleSubmit = e => {
 		e.preventDefault()
-		login(this.email.value, this.pw.value).catch(error => {
-			this.setState(setErrorMsg('Invalid username/password.'))
-		})
+		const { login } = this.props
+
+		login(this.email.value, this.pw.value)
 	}
 
 	resetPassword = () => {
+		const { resetPassword } = this.props
+
 		resetPassword(this.email.value)
-			.then(() =>
-				this.setState(
-					setErrorMsg(`Password reset email sent to ${this.email.value}.`),
-				),
-			)
-			.catch(error => this.setState(setErrorMsg('Email address not found.')))
 	}
 
 	render() {
@@ -45,16 +36,14 @@ class Login extends Component {
 						/>
 					</div>
 
-					{this.state.loginMessage && (
-						<div>
-							<p>{this.state.loginMessage}</p>
-							<p>
-								<a href="#" onClick={this.resetPassword}>
-									Forgot Password?
-								</a>
-							</p>
-						</div>
-					)}
+					{/* {this.state.loginMessage && ( */}
+					{/* <div> */}
+					{/* <p>{this.state.loginMessage}</p> */}
+					<p>
+						<a onClick={this.resetPassword}>Forgot Password?</a>
+					</p>
+					{/* </div> */}
+					{/* )} */}
 
 					<button type="submit">Login</button>
 				</form>
@@ -63,4 +52,13 @@ class Login extends Component {
 	}
 }
 
-export default Login
+// export default Login
+
+const mapDispatchToProps = dispatch => {
+	return {
+		login: (email, pw) => dispatch(login(email, pw)),
+		resetPassword: email => dispatch(resetPassword(email)),
+	}
+}
+
+export default connect(null, mapDispatchToProps)(Login)
