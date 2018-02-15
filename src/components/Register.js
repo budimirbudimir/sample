@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { auth } from '../actions'
+import '../styles/Register.css'
 
 class Register extends Component {
 	handleSubmit = e => {
@@ -14,7 +15,8 @@ class Register extends Component {
 	render() {
 		return (
 			<div className="Register">
-				<h1>Register</h1>
+				<h3>Register</h3>
+
 				<form onSubmit={this.handleSubmit}>
 					<div className="Register-email_container">
 						<input ref={email => (this.email = email)} placeholder="Email" />

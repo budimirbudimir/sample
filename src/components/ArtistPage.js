@@ -71,6 +71,7 @@ const ArtistPage = ({
 					<div className="App-info_bio">
 						<h2>
 							<a
+								className="App-bio_title"
 								href={target.bio.links.link.href}
 								target="blank"
 								rel="noreferrer noopener"

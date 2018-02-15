@@ -1,0 +1,39 @@
+.Register {
+	padding: 15px 0;
+}
+
+.Register h3 {
+	margin: 35px auto;
+	font-weight: 700;
+}
+
+.Register-email_container {
+	margin: 0 auto 15px;
+}
+
+.Register-password_container {
+	margin: 0 auto 15px;
+}
+
+.Register input,
+.Register button {
+	padding: 5px 15px;
+	min-width: 300px;
+	max-width: 100%;
+	border-radius: 4px;
+}
+.Register input {
+	border: 1px solid #ccc;
+}
+.Register button {
+	width: 300px;
+	background: #f4425c;
+	color: #fff;
+	border: none;
+	letter-spacing: 1px;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.Register button:hover {
+	opacity: 0.5;
+}

@@ -23,18 +23,23 @@
 	margin: 0;
 	padding: 0;
 	color: #fff;
+	transition: all 0.3s;
 }
 .App-title:hover {
-	color: #3399ff;
+	color: #f4425c;
 	text-decoration: none;
 }
 .Header-menu .navbar-brand {
 	font-size: 16px;
 	color: #fff;
 	cursor: pointer;
+	transition: all 0.3s;
+}
+.Header-menu button.navbar-brand {
+	color: #aaa;
 }
 .Header-menu .navbar-brand:hover {
-	color: #3399ff;
+	color: #f4425c;
 }
 
 .App-content {
@@ -58,6 +63,7 @@
 	min-width: 300px;
 	border: 1px solid #ccc;
 	border-right: none;
+	border-radius: 4px 0 0 4px;
 }
 .App-search-button {
 	display: inline-block;
@@ -67,11 +73,13 @@
 	color: #fff;
 	background: #f4425c;
 	border: none;
+	border-radius: 0 6px 6px 0;
 	cursor: pointer;
 	flex: 1;
+	transition: all 0.3s;
 }
 .App-search-button:hover {
-	background: #f94a8b;
+	opacity: 0.5;
 }
 .App-info {
 	display: flex;
@@ -83,29 +91,46 @@
 	flex: 1;
 	padding: 0 15px;
 }
+.App-info_details img {
+	border-radius: 10px;
+}
 .App-info_bio {
 	flex: 5;
 	text-align: left;
 	padding-right: 15px;
 }
+.App-bio_title {
+	color: #f4425c;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.App-bio_title:hover {
+	opacity: 0.5;
+	color: #f4425c;
+	text-decoration: none;
+}
 .App-bio_link {
-	color: #3399ff;
+	color: #f4425c;
 	cursor: pointer;
 	margin-top: 5px;
 	display: block;
 }
 .App-similar_act {
 	text-decoration: none;
-	color: #3399ff;
+	color: #f4425c;
 	display: inline-block;
 	margin: 0 0 0 6px;
 	padding: 2px 4px;
-	border: 1px solid #ccc;
+	border: 1px solid #f4425c;
 	font-size: 12px;
 	cursor: pointer;
+	transition: all 0.3s;
 }
 .App-similar_act:hover {
-	border: 1px solid #3399ff;
+	color: #fff;
+	background: #f4425c;
+	border: 1px solid #f4425c;
+	text-decoration: none;
 }
 
 .App-trending {
@@ -120,17 +145,19 @@
 }
 .App-result {
 	color: #aaa;
-	padding: 5px;
+	padding: 3px 6px;
 	margin: 0 3px 6px;
 	display: inline-block;
 	border: 1px solid #555;
+	border-radius: 3px;
 	font-size: 12px;
+	transition: all 0.3s;
 }
 .App-result:hover {
-	color: #fff;
+	color: #333;
 	cursor: pointer;
-	background: #3399ff;
-	border: 1px solid #3399ff;
+	background: #f4425c;
+	border: 1px solid #f4425c;
 }
 
 /* TODO: Change these to drop bootstrap! */
@@ -147,7 +174,6 @@
 
 /* SEARCH */
 .Search-results {
-	/* flex: 1; */
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -172,7 +198,8 @@
 	background-color: #eee;
 }
 .Search-result:hover {
-	background-color: #3399ff;
+	background-color: #f4425c;
+	color: #fff;
 }
 
 .Search-result img {

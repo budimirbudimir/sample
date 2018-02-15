@@ -23,7 +23,9 @@ type PropsFromDispatch = {
 	setArtist: string => void,
 }
 
-class Home extends Component {
+type Props = PropsFromState & PropsFromDispatch
+
+class Home extends Component<Props, null> {
 	componentDidMount() {
 		const { fetchTrending } = this.props
 

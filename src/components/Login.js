@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-// import { login, resetPassword } from '../utils'
 import { login, resetPassword } from '../actions'
+import '../styles/Login.css'
 
 class Login extends Component {
 	handleSubmit = e => {
@@ -12,7 +12,8 @@ class Login extends Component {
 		login(this.email.value, this.pw.value)
 	}
 
-	resetPassword = () => {
+	handleResetPassword = e => {
+		e.preventDefault
 		const { resetPassword } = this.props
 
 		resetPassword(this.email.value)
@@ -21,7 +22,7 @@ class Login extends Component {
 	render() {
 		return (
 			<div className="Login">
-				<h1>Login</h1>
+				<h3>Login</h3>
 
 				<form onSubmit={this.handleSubmit}>
 					<div className="Login-email_container">
@@ -36,14 +37,11 @@ class Login extends Component {
 						/>
 					</div>
 
-					{/* {this.state.loginMessage && ( */}
-					{/* <div> */}
-					{/* <p>{this.state.loginMessage}</p> */}
 					<p>
-						<a onClick={this.resetPassword}>Forgot Password?</a>
+						<a className="resetPassword" onClick={this.handleResetPassword}>
+							Forgot Password?
+						</a>
 					</p>
-					{/* </div> */}
-					{/* )} */}
 
 					<button type="submit">Login</button>
 				</form>
@@ -51,8 +49,6 @@ class Login extends Component {
 		)
 	}
 }
-
-// export default Login
 
 const mapDispatchToProps = dispatch => {
 	return {

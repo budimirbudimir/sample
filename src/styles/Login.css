@@ -1,0 +1,48 @@
+.Login {
+	padding: 15px 0;
+}
+
+.Login h3 {
+	margin: 35px auto;
+	font-weight: 700;
+}
+
+.Login-email_container {
+	margin: 0 auto 15px;
+}
+
+.Login-password_container {
+	margin: 0 auto 15px;
+}
+
+.Login input,
+.Login button {
+	padding: 5px 15px;
+	min-width: 300px;
+	max-width: 100%;
+	border-radius: 4px;
+}
+.Login input {
+	border: 1px solid #ccc;
+}
+.Login button {
+	width: 300px;
+	background: #f4425c;
+	color: #fff;
+	border: none;
+	letter-spacing: 1px;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.Login button:hover {
+	opacity: 0.5;
+}
+.Login a.resetPassword {
+	color: #f4425c;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.Login a.resetPassword:hover {
+	color: #f4425c;
+	text-decoration: underline;
+}
