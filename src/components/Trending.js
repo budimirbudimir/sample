@@ -3,6 +3,7 @@
 import React from 'react'
 
 import type { TopArtist } from '../models'
+import '../styles/Footer.css'
 
 type TrendingTypes = {
 	// artists is array of objects containing artist data

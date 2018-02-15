@@ -1,0 +1,42 @@
+.App-header {
+	flex: 1;
+	background-color: #222;
+	padding: 0 20px;
+	color: white;
+	max-height: 90px;
+}
+.App-logo {
+	height: 60px;
+	vertical-align: middle;
+	margin: 0 20px 0 0;
+}
+.App-title {
+	font-size: 1.5em;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	transition: all 0.3s;
+}
+.App-title:hover {
+	color: #f4425c;
+	text-decoration: none;
+}
+.Header-menu .navbar-brand {
+	font-size: 16px;
+	color: #fff;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.Header-menu button.navbar-brand {
+	color: #aaa;
+}
+.Header-menu .navbar-brand:hover {
+	color: #f4425c;
+}
+
+/* TODO: Change these to drop bootstrap! */
+.nav.navbar-nav {
+	flex: 1 1 2;
+	flex-direction: row;
+}

@@ -1,10 +1,21 @@
+// @flow
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { login, resetPassword } from '../actions'
 import '../styles/Login.css'
 
-class Login extends Component {
+type PropsFromDispatch = {
+	// login is action to log user in, by using entered email and password
+	login: string => void,
+	// resetPassword is action to reset user's password by using stored email
+	resetPassword: string => void,
+}
+
+type Props = PropsFromDispatch
+
+class Login extends Component<Props, null> {
 	handleSubmit = e => {
 		e.preventDefault()
 		const { login } = this.props
@@ -13,7 +24,7 @@ class Login extends Component {
 	}
 
 	handleResetPassword = e => {
-		e.preventDefault
+		e.preventDefault()
 		const { resetPassword } = this.props
 
 		resetPassword(this.email.value)

@@ -7,11 +7,24 @@ import { connect } from 'react-redux'
 import logo from '../images/lastfm_logo.png'
 
 import { logout } from '../actions'
-// import { logout } from '../utils'
+import '../styles/Header.css'
 
-class Header extends Component {
+type PropsFromState = {
+	// authed is boolean defining if user is authenticated and if user has
+	// access to session-locked content/pages
+	authed: boolean,
+}
+
+type PropsFromDispatch = {
+	// logout is action which logs out currently active user
+	logout: () => void,
+}
+
+type Props = PropsFromState & PropsFromDispatch
+
+class Header extends Component<Props, null> {
 	render() {
-		const { authed } = this.props
+		const { authed, logout }: Props = this.props
 
 		return (
 			<header className="App-header">
@@ -31,22 +44,26 @@ class Header extends Component {
 									Home
 								</Link>
 							</li>
-							<li>
-								<Link to="/dashboard" className="navbar-brand">
-									Dashboard
-								</Link>
-							</li>
-							<li>
-								<Link to="/favorites" className="navbar-brand">
-									Favorites
-								</Link>
-							</li>
+							{authed && (
+								<li>
+									<Link to="/navigator" className="navbar-brand">
+										Navigator
+									</Link>
+								</li>
+							)}
+							{authed && (
+								<li>
+									<Link to="/favorites" className="navbar-brand">
+										Favorites
+									</Link>
+								</li>
+							)}
 							<li>
 								{authed ? (
 									<button
 										style={{ border: 'none', background: 'transparent' }}
 										onClick={() => {
-											this.props.logout()
+											logout()
 										}}
 										className="navbar-brand"
 									>

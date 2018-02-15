@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
-import navigator from './navigator'
+import user from './user'
+import artists from './artists'
 
-const rootReducer = combineReducers({
-	navigator,
-})
+const reducers = {
+	user,
+	artists,
+}
 
-export default rootReducer
+export default combineReducers(reducers)

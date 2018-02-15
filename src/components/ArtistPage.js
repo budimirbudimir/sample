@@ -1,19 +1,44 @@
+// @flow
+
 import React from 'react'
 
 import starEmpty from '../images/star_0.png'
 import starFilled from '../images/star_1.png'
 
-import type { Artist } from '../models'
+import type { Artist, TopArtist } from '../models'
 import Similar from './Similar'
 import Tags from './Tags'
 
-type ArtistProps = {
+type PropsFromState = {
+	// target is object containing all relevant target artist' data
 	target: Artist,
+	// targetImage is string representing target artist image URL
 	targetImage: string,
-	toggleBio: () => void,
-	fetchArtist: string => void,
+	// expanded points to current target artists bio state (show more/less)
 	expanded: boolean,
+	// authedUserFavs is array indicating which artists current user favorited
+	authedUserFavs: Array<any>,
+	// query is current search query string entered in the input field
+	query: string,
+	// showDropdown is boolean indicating if search dropdown is visible
+	showDropdown: boolean,
+	// results is array containing current search query results
+	results: TopArtist[],
 }
+
+type PropsFromDispatch = {
+	fetchArtist: string => void,
+	// toggleBio is action for toggling current/target artist bio (show more/less)
+	toggleBio: () => void,
+	// addFavorite is action to add current target artist (in detail view)
+	// in current user's favorites in DB
+	addFavorite: (string, Artist) => void,
+	// removeFavorite is action to remove current target artist (in detail view)
+	// from current user's favorites in DB
+	removeFavorite: (string, Artist) => void,
+}
+
+type Props = PropsFromState & PropsFromDispatch
 
 const ArtistPage = ({
 	target,
@@ -27,17 +52,19 @@ const ArtistPage = ({
 	query,
 	showDropdown,
 	results,
-}: ArtistProps) => {
+}: Props) => {
 	const handleAddFavorite = () => {
-		const authedUserID = localStorage.getItem('currentUser')
+		const userID = localStorage.getItem('currentUser')
 
-		if (authedUserID) addFavorite(authedUserID, target)
+		if (userID) addFavorite(userID, target)
 	}
 
 	const handleRemoveFavorite = () => {
-		const authedUserID = localStorage.getItem('currentUser')
+		console.warn(this)
+		const { removeFavorite, target } = this.props
+		const userID = localStorage.getItem('currentUser')
 
-		if (authedUserID) removeFavorite(authedUserID, target)
+		if (userID) removeFavorite(userID, target.mbid)
 	}
 
 	return (
@@ -85,6 +112,7 @@ const ArtistPage = ({
 									if (fav.id === target.mbid)
 										return (
 											<img
+												key={fav.id}
 												src={starFilled}
 												alt="Remove as favorite"
 												style={{
@@ -108,8 +136,8 @@ const ArtistPage = ({
 							/>
 						</h2>
 						<p>
-							Listeners: {target.stats.listeners} / Total plays:{' '}
-							{target.stats.playcount}
+							Listeners: <strong>{target.stats.listeners}</strong> / Total
+							plays: <strong>{target.stats.playcount}</strong>
 						</p>
 
 						{expanded ? (

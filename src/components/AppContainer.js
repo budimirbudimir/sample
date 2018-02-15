@@ -1,15 +1,34 @@
+// @flow
+
 import React, { Component } from 'react'
-import 'bootstrap/dist/css/bootstrap.css'
 import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.css'
+
+import { firebaseAuth } from '../config'
 import Header from './Header'
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
 import Favorites from './Favorites'
 import App from './App'
-import { firebaseAuth } from '../config'
 
-const PrivateRoute = ({ component: Component, authed, ...rest }) => (
+type RouteProps = {
+	// component is React component to be parsed in the route
+	component: Component,
+	// authed is boolean defining if user is authenticated and if user has
+	// access to session-locked content/pages
+	authed: boolean,
+	// TODO: Check and fill
+	// location?: string,
+
+	// May contain more props as per rest operator
+}
+
+const PrivateRoute = ({
+	component: Component,
+	authed,
+	...rest
+}: RouteProps) => (
 	<Route
 		{...rest}
 		render={props =>
@@ -24,11 +43,11 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => (
 	/>
 )
 
-const PublicRoute = ({ component: Component, authed, ...rest }) => (
+const PublicRoute = ({ component: Component, authed, ...rest }: RouteProps) => (
 	<Route
 		{...rest}
 		render={props =>
-			authed === false ? <Component {...props} /> : <Redirect to="/dashboard" />
+			authed === false ? <Component {...props} /> : <Redirect to="/navigator" />
 		}
 	/>
 )
@@ -38,6 +57,7 @@ class AppContainer extends Component {
 		authed: false,
 		loading: true,
 	}
+
 	componentDidMount() {
 		this.removeListener = firebaseAuth().onAuthStateChanged(user => {
 			if (user) {
@@ -53,9 +73,11 @@ class AppContainer extends Component {
 			}
 		})
 	}
+
 	componentWillUnmount() {
 		this.removeListener()
 	}
+
 	render() {
 		return this.state.loading === true ? (
 			<h1>Loading</h1>
@@ -82,7 +104,7 @@ class AppContainer extends Component {
 
 							<PrivateRoute
 								authed={this.state.authed}
-								path="/dashboard"
+								path="/navigator"
 								component={App}
 							/>
 

@@ -49,11 +49,12 @@ class Home extends Component<Props, null> {
 				<div style={{ flex: 6 }}>
 					<h3>Public Home page.</h3>
 					<p>
-						Some content, such as most popular and latest songs/albums charts.
+						Show some content, such as most popular and latest songs/albums
+						charts.
 					</p>
 				</div>
 
-				<Trending artists={topArtists} fetchArtist={this.fetchArtist} />
+				<Trending artists={topArtists} fetchArtist={() => null} />
 			</div>
 		)
 	}
@@ -61,7 +62,7 @@ class Home extends Component<Props, null> {
 
 const mapStateToProps = state => {
 	return {
-		topArtists: state.navigator.topArtists,
+		topArtists: state.artists.topArtists,
 	}
 }
 

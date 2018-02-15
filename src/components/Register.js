@@ -1,10 +1,22 @@
+// @flow
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { auth } from '../actions'
 import '../styles/Register.css'
 
-class Register extends Component {
+type PropsFromDispatch = {
+	// auth is action to register new user via firebaseAuth, using email/password
+	auth: string => void,
+}
+
+type Props = PropsFromDispatch
+
+class Register extends Component<Props, null> {
+	email: ?HTMLInputElement
+	pw: ?HTMLInputElement
+
 	handleSubmit = e => {
 		e.preventDefault()
 		const { auth } = this.props

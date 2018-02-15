@@ -13,6 +13,7 @@ import {
 	getFavorites,
 } from '../actions'
 import '../styles/App.css'
+import '../styles/Search.css'
 
 import ArtistPage from './ArtistPage'
 import Trending from './Trending'
@@ -26,10 +27,13 @@ type PropsFromState = {
 	// with their relevant data
 	topArtists: TopArtist[],
 	// target is object containing all relevant target artist' data
-	//TODO: Map type for target artist as well
 	target: Artist,
 	// targetImage is string representing target artist image URL
 	targetImage: string,
+	// authedUserFavs is array indicating which artists current user favorited
+	authedUserFavs: Array<any>,
+	// results is array containing current search query results
+	results: TopArtist[],
 }
 
 type PropsFromDispatch = {
@@ -37,14 +41,26 @@ type PropsFromDispatch = {
 	// together with their relevant data
 	fetchTrending: () => void,
 	// setArtist is action for fetching artist by current search query
-	setArtist: string => void,
+	searchArtist: string => void,
 	// toggleBio is action for toggling current/target artist bio (show more/less)
 	toggleBio: () => void,
+	// setArtist is action to set current target artist data into details view
+	setArtist: string => void,
+	// getFavorites is action to fetch current user's favorites from DB
+	getFavorites: string => void,
+	// addFavorite is action to add current target artist (in detail view)
+	// in current user's favorites in DB
+	addFavorite: (string, Artist) => void,
+	// removeFavorite is action to remove current target artist (in detail view)
+	// from current user's favorites in DB
+	removeFavorite: (string, string) => void,
 }
 
 type OwnState = {
 	// query is current search query string entered in the input field
 	query: string,
+	// showDropdown is boolean indicating if search dropdown is visible
+	showDropdown: boolean,
 }
 
 type Props = PropsFromState & PropsFromDispatch
@@ -58,28 +74,33 @@ class App extends Component<Props, OwnState> {
 	componentDidMount() {
 		const { fetchTrending, getFavorites } = this.props
 		const userID = localStorage.getItem('currentUser')
-		console.log('componentDidMount userID', userID)
 
-		fetchTrending() // Get trending artists
-		if (userID) getFavorites(userID) // Get favorite artists by user
+		// Get trending artists
+		fetchTrending()
+
+		// Get favorite artists by user
+		if (userID) getFavorites(userID)
 	}
 
 	fetchArtist = (name: string) => {
 		const { setArtist } = this.props
 
-		setArtist(name) // Find and set target artist
+		// Find and set target artist
+		setArtist(name)
 	}
 
 	searchArtist = () => {
 		const { searchArtist } = this.props
 		const { query } = this.state
 
-		searchArtist(query) // Find and set target artist
+		// Find and set target artist
+		searchArtist(query)
 	}
 
 	findArtist = () => {
 		const { query } = this.state
 
+		// Fetch artist data
 		this.fetchArtist(query)
 	}
 
@@ -122,7 +143,7 @@ class App extends Component<Props, OwnState> {
 							onBlur={() => {
 								setTimeout(() => {
 									this.setState({ showDropdown: false })
-								}, 100)
+								}, 300)
 							}}
 						/>
 						<button className="App-search-button" onClick={this.findArtist}>
@@ -153,12 +174,12 @@ class App extends Component<Props, OwnState> {
 
 const mapStateToProps = state => {
 	return {
-		target: state.navigator.target,
-		targetImage: state.navigator.targetImage,
-		expanded: state.navigator.expanded,
-		topArtists: state.navigator.topArtists,
-		authedUserFavs: state.navigator.authedUserFavs,
-		results: state.navigator.results,
+		target: state.artists.target,
+		targetImage: state.artists.targetImage,
+		expanded: state.artists.expanded,
+		topArtists: state.artists.topArtists,
+		authedUserFavs: state.user.authedUserFavs,
+		results: state.artists.results,
 	}
 }
 
@@ -169,8 +190,8 @@ const mapDispatchToProps = dispatch => {
 		setArtist: name => dispatch(setArtist(name)),
 		searchArtist: name => dispatch(searchArtist(name)),
 		addFavorite: (userID, artist) => dispatch(addFavorite(userID, artist)),
-		removeFavorite: (userID, artist) =>
-			dispatch(removeFavorite(userID, artist)),
+		removeFavorite: (userID, artistID) =>
+			dispatch(removeFavorite(userID, artistID)),
 		getFavorites: userID => dispatch(getFavorites(userID)),
 	}
 }
