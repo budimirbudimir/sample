@@ -2,7 +2,7 @@ import firebase from 'firebase'
 
 export const lastfmKey = '6a1df7cb8c230be8d4ac930b554279aa'
 
-export const API_URL = `http://ws.audioscrobbler.com/2.0/?format=json&api_key=${lastfmKey}`
+export const API_URL = `https://ws.audioscrobbler.com/2.0/?format=json&api_key=${lastfmKey}`
 
 const config = {
 	apiKey: 'AIzaSyCHdscz9_M3G8vlLlU_Qj9xaRUL9UTH3p8',
