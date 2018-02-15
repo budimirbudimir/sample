@@ -1,7 +1,5 @@
 ## Last.fm navigator [work in progress]
 
----
-
 Last.fm navigator sample. <BR />
 It is but a simple artist navigator, build with React/Redux. <BR />
 Backend should use Firebase for auth and its FireStore for saving user-specific data. <BR />

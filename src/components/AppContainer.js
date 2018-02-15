@@ -5,6 +5,7 @@ import Header from './Header'
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
+import Favorites from './Favorites'
 import App from './App'
 import { firebaseAuth } from '../config'
 
@@ -83,6 +84,12 @@ class AppContainer extends Component {
 								authed={this.state.authed}
 								path="/dashboard"
 								component={App}
+							/>
+
+							<PrivateRoute
+								authed={this.state.authed}
+								path="/favorites"
+								component={Favorites}
 							/>
 
 							<Route render={() => <h3>No Match</h3>} />

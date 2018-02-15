@@ -37,6 +37,11 @@ class Header extends Component {
 								</Link>
 							</li>
 							<li>
+								<Link to="/favorites" className="navbar-brand">
+									Favorites
+								</Link>
+							</li>
+							<li>
 								{authed ? (
 									<button
 										style={{ border: 'none', background: 'transparent' }}
