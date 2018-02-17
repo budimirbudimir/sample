@@ -60,8 +60,6 @@ const ArtistPage = ({
 	}
 
 	const handleRemoveFavorite = () => {
-		console.warn(this)
-		const { removeFavorite, target } = this.props
 		const userID = localStorage.getItem('currentUser')
 
 		if (userID) removeFavorite(userID, target.mbid)
@@ -123,6 +121,7 @@ const ArtistPage = ({
 												onClick={handleRemoveFavorite}
 											/>
 										)
+									return false
 								})}
 							<img
 								src={starEmpty}

@@ -1,4 +1,24 @@
-import initialState from '../store/stateMock'
+const initialTarget = {
+	name: '',
+	link: '',
+	stats: {},
+	bio: '',
+	summary: '',
+	image: '',
+	similar: [],
+	tags: [],
+}
+
+export const initialState = {
+	topArtists: [],
+	fetchingTrending: false,
+	fetchedTrending: false,
+	target: initialTarget,
+	fetchingTarget: false,
+	fetchedTarget: false,
+	expanded: false,
+	results: [],
+}
 
 const artists = (state = initialState, action) => {
 	switch (action.type) {

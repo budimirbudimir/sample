@@ -2,10 +2,11 @@
 
 Last.fm navigator sample. <BR />
 It is but a simple artist navigator, build with React/Redux. <BR />
-Backend should use Firebase for auth and its FireStore for saving user-specific data. <BR />
+Backend should use Firebase for auth and its RealtimeDB for saving user-specific data. <BR />
+Also, Firebase Functions will be used as API/GraphQL server. <BR />
 It's been bootstrapped using `create-react-app`.
 
-**Optionally**, local server, DB and CI support might be added later (Node, Mongo, GraphQL/Apollo, CircleCI).
+**Optionally**, local server, DB and CI support might be added later (GraphQL/Apollo, Firebase (Functions), CircleCI).
 
 ---
 
@@ -15,6 +16,8 @@ Clone project to your local drive, navigate to project folder and run `yarn` or 
 To start project locally, run `yarn start` or `npm run start`.<BR />
 To run ESLint check, run `yarn lint` or `npm run lint`.<BR />
 To run Flow type checking, run `yarn flow` or `npm run flow`.<BR />
+
+For GraphQL implementation using Firebase Functions (just bootstrapped, still WIP), see docs/GraphiQL: https://us-central1-budimir-sample.cloudfunctions.net/api/graphiql
 
 _Keep in mind that Prettier, ESLint and Flow are interconnected._
 
@@ -30,10 +33,9 @@ _Keep in mind that Prettier, ESLint and Flow are interconnected._
 
 ##### TODO list:
 
-1. **WIP: Add Firebase actions error handling and starring logic**
+1. **[WIP] Add Firebase actions error handling and starring logic**
    _(user can favorite artists and see list later)_
-2. Fix and organize styles
-3. Add tests where applicable
-4. Add NodeJS server and MongoDB _(optional)_
-5. Add GraphQL/Apollo _(optional)_
-6. Add CircleCI _(optional)_
+2. **[WIP]** Add GraphQL/Apollo
+3. Fix and organize styles
+4. Add tests where applicable
+5. Add CircleCI _(optional)_

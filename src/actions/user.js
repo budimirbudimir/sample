@@ -63,12 +63,21 @@ export const addFavorite = (userID, artist) => ({
 })
 
 // Saves current artist into current user's favorites
+// FIXME: Doesn't dispatch action properly? But removes item from DB
 export const removeFavorite = (userID, artistID) => ({
 	type: 'REMOVE_FAVORITE',
 	payload: ref
 		.child(`users/${userID}/favs/${artistID}`)
-		.remove()
-		.then(() => ({ id: artistID })),
+		.remove(() => {
+			console.log('remove response', artistID)
+			return artistID
+		})
+		.then(remFav(artistID)),
+})
+
+export const remFav = artistID => ({
+	type: 'REM_FAV',
+	payload: artistID,
 })
 
 // HELPERS:
