@@ -8,8 +8,6 @@ import {
 	setArtist,
 	searchArtist,
 	toggleBio,
-	addFavorite,
-	removeFavorite,
 	getFavorites,
 } from '../actions'
 import '../styles/App.css'
@@ -30,8 +28,6 @@ type PropsFromState = {
 	target: Artist,
 	// targetImage is string representing target artist image URL
 	targetImage: string,
-	// authedUserFavs is array indicating which artists current user favorited
-	authedUserFavs: Array<any>,
 	// results is array containing current search query results
 	results: TopArtist[],
 }
@@ -48,12 +44,6 @@ type PropsFromDispatch = {
 	setArtist: string => void,
 	// getFavorites is action to fetch current user's favorites from DB
 	getFavorites: string => void,
-	// addFavorite is action to add current target artist (in detail view)
-	// in current user's favorites in DB
-	addFavorite: (string, Artist) => void,
-	// removeFavorite is action to remove current target artist (in detail view)
-	// from current user's favorites in DB
-	removeFavorite: (string, string) => void,
 }
 
 type OwnState = {
@@ -111,8 +101,6 @@ class App extends Component<Props, OwnState> {
 			topArtists,
 			expanded,
 			toggleBio,
-			addFavorite,
-			authedUserFavs,
 			results,
 		} = this.props
 		const { query, showDropdown } = this.state
@@ -157,9 +145,6 @@ class App extends Component<Props, OwnState> {
 						toggleBio={toggleBio}
 						fetchArtist={this.fetchArtist}
 						expanded={expanded}
-						addFavorite={addFavorite}
-						removeFavorite={removeFavorite}
-						authedUserFavs={authedUserFavs}
 						results={results}
 						showDropdown={showDropdown}
 						query={query}
@@ -178,7 +163,6 @@ const mapStateToProps = state => {
 		targetImage: state.artists.targetImage,
 		expanded: state.artists.expanded,
 		topArtists: state.artists.topArtists,
-		authedUserFavs: state.user.authedUserFavs,
 		results: state.artists.results,
 	}
 }
@@ -189,9 +173,6 @@ const mapDispatchToProps = dispatch => {
 		toggleBio: () => dispatch(toggleBio()),
 		setArtist: name => dispatch(setArtist(name)),
 		searchArtist: name => dispatch(searchArtist(name)),
-		addFavorite: (userID, artist) => dispatch(addFavorite(userID, artist)),
-		removeFavorite: (userID, artistID) =>
-			dispatch(removeFavorite(userID, artistID)),
 		getFavorites: userID => dispatch(getFavorites(userID)),
 	}
 }

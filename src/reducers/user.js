@@ -45,26 +45,15 @@ const user = (state = initialState, action) => {
 			},
 		}
 
-	case 'REMOVE_FAVORITE':
-		console.log('REMOVE_FAVORITE running from reducer')
-		return state
-	case 'REMOVE_FAVORITE_PENDING':
-		console.log('REMOVE_FAVORITE_PENDING running from reducer')
-		return state
 	case 'REMOVE_FAVORITE_FULFILLED':
-		console.log(
-			state,
-			state.authedUserFavs.filter(fav => fav.id !== action.payload),
-		)
-		// return {
-		// 	...state,
-		// 	...{
-		// 		authedUserFavs: state.authedUserFavs.filter(
-		// 			fav => fav.id !== action.payload,
-		// 		),
-		// 	},
-		// }
-		return state
+		return {
+			...state,
+			...{
+				authedUserFavs: state.authedUserFavs.filter(
+					fav => fav.id !== action.payload,
+				),
+			},
+		}
 
 	case 'GET_FAVORITES_FULFILLED':
 		return {

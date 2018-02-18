@@ -3,24 +3,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchTrending, getFavorites, removeFavorite } from '../actions'
+import { getFavorites, removeFavorite } from '../actions'
 import '../styles/Favorites.css'
-import Trending from './Trending'
 
-import type { TopArtist, Artist } from '../models'
+import type { Artist } from '../models'
 
 type PropsFromState = {
 	// target is object containing all relevant target artist' data
 	target: Artist,
-	// topArtists is array containing all artists from Trending chart
-	// with their relevant data
-	topArtists: TopArtist[],
+	//
+	authedUserFavs: Array<any>,
 }
 
 type PropsFromDispatch = {
-	// fetchTrending is action for fetching all Trending chart artists
-	// together with their relevant data
-	fetchTrending: () => void,
 	//
 	getFavorites: string => void,
 	//
@@ -31,29 +26,23 @@ type Props = PropsFromState & PropsFromDispatch
 
 class Favorites extends Component<Props, null> {
 	componentDidMount() {
-		const { fetchTrending, getFavorites } = this.props
+		const { getFavorites } = this.props
 		const userID = localStorage.getItem('currentUser')
-
-		// Get trending artists
-		fetchTrending()
 
 		// Get favorite artists by user
 		if (userID) getFavorites(userID)
 	}
 
-	handleRemoveFavorite = e => {
-		e.preventDefault()
-		const { removeFavorite, target } = this.props
+	handleRemoveFavorite = (artistID: string) => {
+		const { removeFavorite } = this.props
 		const userID = localStorage.getItem('currentUser')
 
-		console.log(userID, target.mbid)
-
 		// Get favorite artists by user
-		if (userID) removeFavorite(userID, target.mbid)
+		if (userID) removeFavorite(userID, artistID)
 	}
 
 	render() {
-		const { topArtists, authedUserFavs } = this.props
+		const { authedUserFavs } = this.props
 
 		return (
 			<div
@@ -69,14 +58,12 @@ class Favorites extends Component<Props, null> {
 								<div className="Favorites-item" key={index}>
 									<img src={item.image} alt={item.name} />
 									<p>{item.name}</p>
-									<a onClick={this.handleRemoveFavorite}>x</a>
+									<a onClick={() => this.handleRemoveFavorite(item.id)}>x</a>
 								</div>
 							))}
 						</div>
 					)}
 				</div>
-
-				<Trending artists={topArtists} fetchArtist={() => null} />
 			</div>
 		)
 	}
@@ -85,14 +72,12 @@ class Favorites extends Component<Props, null> {
 const mapStateToProps = state => {
 	return {
 		target: state.artists.target,
-		topArtists: state.artists.topArtists,
 		authedUserFavs: state.user.authedUserFavs,
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchTrending: () => dispatch(fetchTrending()),
 		getFavorites: userID => dispatch(getFavorites(userID)),
 		removeFavorite: (userID, artistID) =>
 			dispatch(removeFavorite(userID, artistID)),

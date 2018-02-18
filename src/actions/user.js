@@ -68,16 +68,8 @@ export const removeFavorite = (userID, artistID) => ({
 	type: 'REMOVE_FAVORITE',
 	payload: ref
 		.child(`users/${userID}/favs/${artistID}`)
-		.remove(() => {
-			console.log('remove response', artistID)
-			return artistID
-		})
-		.then(remFav(artistID)),
-})
-
-export const remFav = artistID => ({
-	type: 'REM_FAV',
-	payload: artistID,
+		.remove()
+		.then(() => artistID),
 })
 
 // HELPERS:

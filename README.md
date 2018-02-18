@@ -33,9 +33,9 @@ _Keep in mind that Prettier, ESLint and Flow are interconnected._
 
 ##### TODO list:
 
-1. **[WIP] Add Firebase actions error handling and starring logic**
-   _(user can favorite artists and see list later)_
-2. **[WIP]** Add GraphQL/Apollo
+1. **[WIP]** Add Firebase actions error handling
+2. Fix Flow types and ESLint
 3. Fix and organize styles
 4. Add tests where applicable
-5. Add CircleCI _(optional)_
+5. Implement GraphQL/Apollo _(optional)_
+6. Add CircleCI _(optional)_
