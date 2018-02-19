@@ -1,5 +1,7 @@
 ## Last.fm navigator [work in progress]
 
+Deployed App URL: https://budimir-sample.firebaseapp.com
+
 Last.fm navigator sample. <BR />
 It is but a simple artist navigator, build with React/Redux. <BR />
 Backend should use Firebase for auth and its RealtimeDB for saving user-specific data. <BR />
@@ -34,8 +36,7 @@ _Keep in mind that Prettier, ESLint and Flow are interconnected._
 ##### TODO list:
 
 1. **[WIP]** Add Firebase actions error handling
-2. Fix Flow types and ESLint
-3. Fix and organize styles
-4. Add tests where applicable
-5. Implement GraphQL/Apollo _(optional)_
-6. Add CircleCI _(optional)_
+2. Fix and organize styles
+3. Add tests where applicable
+4. Implement GraphQL/Apollo _(optional)_
+5. Add CircleCI _(optional)_
