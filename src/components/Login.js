@@ -3,12 +3,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { login, resetPassword } from '../actions'
+import { login, resetPassword } from '../actions/user'
 import '../styles/Login.css'
 
 type PropsFromDispatch = {
 	// login is action to log user in, by using entered email and password
-	login: string => void,
+	login: (string, string) => void,
 	// resetPassword is action to reset user's password by using stored email
 	resetPassword: string => void,
 }
@@ -16,18 +16,21 @@ type PropsFromDispatch = {
 type Props = PropsFromDispatch
 
 class Login extends Component<Props, null> {
+	email: ?HTMLInputElement
+	pw: ?HTMLInputElement
+
 	handleSubmit = e => {
 		e.preventDefault()
 		const { login } = this.props
 
-		login(this.email.value, this.pw.value)
+		if (this.email && this.pw) login(this.email.value, this.pw.value)
 	}
 
 	handleResetPassword = e => {
 		e.preventDefault()
 		const { resetPassword } = this.props
 
-		resetPassword(this.email.value)
+		if (this.email) resetPassword(this.email.value)
 	}
 
 	render() {

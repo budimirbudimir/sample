@@ -3,12 +3,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { auth } from '../actions'
+import { auth } from '../actions/user'
 import '../styles/Register.css'
 
 type PropsFromDispatch = {
 	// auth is action to register new user via firebaseAuth, using email/password
-	auth: string => void,
+	auth: (string, string) => void,
 }
 
 type Props = PropsFromDispatch
@@ -21,7 +21,7 @@ class Register extends Component<Props, null> {
 		e.preventDefault()
 		const { auth } = this.props
 
-		auth(this.email.value, this.pw.value)
+		if (this.email && this.pw) auth(this.email.value, this.pw.value)
 	}
 
 	render() {

@@ -1,8 +1,13 @@
 [ignore]
 
+.*/node_modules/protobuf/*
+.*/node_modules/iterall/*
+
+
 [include]
 
 [libs]
+./flow-typed
 
 [lints]
 

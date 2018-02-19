@@ -1,3 +1,24 @@
+import { Component } from 'react'
+
+export type LocationProps = {
+	hash: string,
+	key: string,
+	pathname: string,
+	search: string,
+}
+
+export type RouteProps = {
+	// component is React component to be parsed in the route
+	component: Component,
+	// authed is boolean defining if user is authenticated and if user has
+	// access to session-locked content/pages
+	authed: boolean,
+	// location is (optional) object containing route location data
+	location?: LocationProps,
+
+	// May contain more props as per rest operator
+}
+
 export type Artist = {
 	bio: Bio,
 	image: string[],
@@ -48,4 +69,9 @@ export type Link = {
 export type Stats = {
 	listeners: number,
 	playcount: number,
+}
+
+export type User = {
+	email: string,
+	uid: string,
 }

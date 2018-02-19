@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getFavorites, removeFavorite } from '../actions'
+import { getFavorites, removeFavorite } from '../actions/user'
 import '../styles/Favorites.css'
 
 import type { Artist } from '../models'

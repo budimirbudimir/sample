@@ -8,8 +8,7 @@ import {
 	setArtist,
 	searchArtist,
 	toggleBio,
-	getFavorites,
-} from '../actions'
+} from '../actions/artists'
 import '../styles/App.css'
 import '../styles/Search.css'
 
@@ -62,14 +61,10 @@ class App extends Component<Props, OwnState> {
 	}
 
 	componentDidMount() {
-		const { fetchTrending, getFavorites } = this.props
-		const userID = localStorage.getItem('currentUser')
+		const { fetchTrending } = this.props
 
 		// Get trending artists
 		fetchTrending()
-
-		// Get favorite artists by user
-		if (userID) getFavorites(userID)
 	}
 
 	fetchArtist = (name: string) => {
@@ -83,8 +78,8 @@ class App extends Component<Props, OwnState> {
 		const { searchArtist } = this.props
 		const { query } = this.state
 
-		// Find and set target artist
-		searchArtist(query)
+		// Find and set target artist (if 3+ chars entered)
+		if (query.length > 2) searchArtist(query)
 	}
 
 	findArtist = () => {
@@ -173,7 +168,6 @@ const mapDispatchToProps = dispatch => {
 		toggleBio: () => dispatch(toggleBio()),
 		setArtist: name => dispatch(setArtist(name)),
 		searchArtist: name => dispatch(searchArtist(name)),
-		getFavorites: userID => dispatch(getFavorites(userID)),
 	}
 }
 

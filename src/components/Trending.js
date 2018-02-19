@@ -9,7 +9,7 @@ type TrendingTypes = {
 	// artists is array of objects containing artist data
 	artists: TopArtist[],
 	// fetchArtist is function to get artist data by artist name
-	fetchArtist: string => void,
+	fetchArtist?: null | (string => void),
 }
 
 const Trending = ({ artists, fetchArtist }: TrendingTypes) => (
@@ -23,7 +23,7 @@ const Trending = ({ artists, fetchArtist }: TrendingTypes) => (
 						<li
 							className="App-result"
 							key={index}
-							onClick={() => fetchArtist(item.name)}
+							onClick={() => fetchArtist && fetchArtist(item.name)}
 						>
 							{item.name}
 						</li>

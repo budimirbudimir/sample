@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import logo from '../images/lastfm_logo.png'
 
-import { logout } from '../actions'
+import { logout } from '../actions/user'
 import '../styles/Header.css'
 
 type PropsFromState = {

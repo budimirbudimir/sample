@@ -1,8 +1,20 @@
+// @flow
+
+import type { Action } from 'redux'
+
+type InitialStateData = {
+	// authedUserFavs is array of user's favorite artists, pulled from DB
+	authedUserFavs: Array<any>,
+}
+
 export const initialState = {
 	authedUserFavs: [],
 }
 
-const user = (state = initialState, action) => {
+const user = (
+	state: InitialStateData = initialState,
+	action: Action,
+): InitialStateData => {
 	switch (action.type) {
 	// USER actions
 	case 'AUTH_FULFILLED':

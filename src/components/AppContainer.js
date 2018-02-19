@@ -5,24 +5,14 @@ import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import { firebaseAuth } from '../config'
+import type { RouteProps } from '../models'
+
 import Header from './Header'
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
 import Favorites from './Favorites'
 import App from './App'
-
-type RouteProps = {
-	// component is React component to be parsed in the route
-	component: Component,
-	// authed is boolean defining if user is authenticated and if user has
-	// access to session-locked content/pages
-	authed: boolean,
-	// TODO: Check and fill
-	// location?: string,
-
-	// May contain more props as per rest operator
-}
 
 const PrivateRoute = ({
 	component: Component,
@@ -52,7 +42,14 @@ const PublicRoute = ({ component: Component, authed, ...rest }: RouteProps) => (
 	/>
 )
 
-class AppContainer extends Component {
+type OwnState = {
+	authed: boolean,
+	loading: boolean,
+}
+
+class AppContainer extends Component<null, OwnState> {
+	removeListener: () => void
+
 	state = {
 		authed: false,
 		loading: true,
@@ -60,17 +57,7 @@ class AppContainer extends Component {
 
 	componentDidMount() {
 		this.removeListener = firebaseAuth().onAuthStateChanged(user => {
-			if (user) {
-				this.setState({
-					authed: true,
-					loading: false,
-				})
-			} else {
-				this.setState({
-					authed: false,
-					loading: false,
-				})
-			}
+			this.setState({ authed: !!user, loading: false })
 		})
 	}
 
@@ -79,37 +66,31 @@ class AppContainer extends Component {
 	}
 
 	render() {
-		return this.state.loading === true ? (
+		const { loading, authed } = this.state
+
+		return loading === true ? (
 			<h1>Loading</h1>
 		) : (
 			<BrowserRouter>
 				<div className="App">
-					<Header authed={this.state.authed} />
+					<Header authed={authed} />
 
 					<div style={{ flex: 6 }}>
 						<Switch>
 							<Route path="/" exact component={Home} />
 
-							<PublicRoute
-								authed={this.state.authed}
-								path="/login"
-								component={Login}
-							/>
+							<PublicRoute authed={authed} path="/login" component={Login} />
 
 							<PublicRoute
-								authed={this.state.authed}
+								authed={authed}
 								path="/register"
 								component={Register}
 							/>
 
-							<PrivateRoute
-								authed={this.state.authed}
-								path="/navigator"
-								component={App}
-							/>
+							<PrivateRoute authed={authed} path="/navigator" component={App} />
 
 							<PrivateRoute
-								authed={this.state.authed}
+								authed={authed}
 								path="/favorites"
 								component={Favorites}
 							/>

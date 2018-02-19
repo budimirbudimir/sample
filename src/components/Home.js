@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchTrending, setArtist } from '../actions'
+import { fetchTrending, setArtist } from '../actions/artists'
 import '../styles/Home.css'
 import Trending from './Trending'
 
@@ -54,7 +54,7 @@ class Home extends Component<Props, null> {
 					</p>
 				</div>
 
-				<Trending artists={topArtists} fetchArtist={() => null} />
+				<Trending artists={topArtists} fetchArtist={null} />
 			</div>
 		)
 	}

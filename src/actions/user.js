@@ -1,7 +1,11 @@
+// @flow
+
 import { ref, firebaseAuth } from '../config'
 
+import type { Artist, User } from '../models'
+
 // Registers new user, then runs action to save it in DB
-export const auth = (email, pw) => ({
+export const auth = (email: string, pw: string) => ({
 	type: 'AUTH',
 	payload: firebaseAuth()
 		.createUserWithEmailAndPassword(email, pw)
@@ -9,7 +13,7 @@ export const auth = (email, pw) => ({
 })
 
 // Log user in order to see session-locked pages
-export const login = (email, pw) => ({
+export const login = (email: string, pw: string) => ({
 	type: 'LOGIN',
 	payload: firebaseAuth()
 		.signInWithEmailAndPassword(email, pw)
@@ -23,13 +27,13 @@ export const logout = () => ({
 })
 
 // Reset password for existing user by e-mail
-export const resetPassword = email => ({
+export const resetPassword = (email: string) => ({
 	type: 'RESET_PASSWORD',
 	payload: firebaseAuth().sendPasswordResetEmail(email),
 })
 
 // Saves newly registered user's data in DB
-export const saveUser = user => ({
+export const saveUser = (user: User) => ({
 	type: 'SAVE_USER',
 	payload: ref
 		.child(`users/${user.uid}/info`)
@@ -41,7 +45,7 @@ export const saveUser = user => ({
 })
 
 // Gets current user's favorite artists list
-export const getFavorites = userID => ({
+export const getFavorites = (userID: string) => ({
 	type: 'GET_FAVORITES',
 	payload: ref
 		.child(`users/${userID}/favs`)
@@ -50,7 +54,7 @@ export const getFavorites = userID => ({
 })
 
 // Saves current artist into current user's favorites
-export const addFavorite = (userID, artist) => ({
+export const addFavorite = (userID: string, artist: Artist) => ({
 	type: 'ADD_FAVORITE',
 	payload: ref
 		.child(`users/${userID}/favs/${artist.mbid}`)
@@ -63,8 +67,7 @@ export const addFavorite = (userID, artist) => ({
 })
 
 // Saves current artist into current user's favorites
-// FIXME: Doesn't dispatch action properly? But removes item from DB
-export const removeFavorite = (userID, artistID) => ({
+export const removeFavorite = (userID: string, artistID: string) => ({
 	type: 'REMOVE_FAVORITE',
 	payload: ref
 		.child(`users/${userID}/favs/${artistID}`)
@@ -75,6 +78,6 @@ export const removeFavorite = (userID, artistID) => ({
 // HELPERS:
 
 // Saves current user ID in localStorage for persistent use
-const saveLocal = user => {
+const saveLocal = (user: User) => {
 	localStorage.setItem('currentUser', user.uid)
 }

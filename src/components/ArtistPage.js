@@ -3,10 +3,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import starEmpty from '../images/star_0.png'
+import starEmpty from '../../src/images/star_0.png'
 import starFilled from '../images/star_1.png'
 
-import { addFavorite, removeFavorite, getFavorites } from '../actions'
+import { addFavorite, removeFavorite, getFavorites } from '../actions/user'
 import type { Artist, TopArtist } from '../models'
 import Similar from './Similar'
 import Tags from './Tags'
