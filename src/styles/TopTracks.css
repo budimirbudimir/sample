@@ -1,0 +1,24 @@
+.TopTracks {
+	list-style: none;
+	padding: 0 15px;
+}
+
+.TopTracks-track {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	padding: 5px;
+	align-items: center;
+}
+
+.TopTracks li:first-child {
+	color: #999;
+}
+
+.TopTracks li:nth-child(even) {
+	background: #eee;
+}
+
+.TopTracks-track img {
+	vertical-align: middle;
+}

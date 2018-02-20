@@ -19,6 +19,52 @@ export type RouteProps = {
 	// May contain more props as per rest operator
 }
 
+export type TopTrackArtist = {
+	name: string,
+	mbid?: string,
+	url?: string,
+}
+
+export type TopTrack = {
+	name: string,
+	playcount: string,
+	listeners: string,
+	image?: Object[],
+	mbid?: string,
+	url?: string,
+	streamable?: string,
+	artist: TopTrackArtist,
+}
+
+export type SimilarArtist = {
+	image: string[],
+	name: string,
+	url: string,
+}
+
+export type Link = {
+	text: string,
+	href: string,
+	rel: string,
+}
+
+export type Bio = {
+	content: string,
+	links: { link: Link },
+	published: string,
+	summary: string,
+}
+
+export type Stats = {
+	listeners: number,
+	playcount: number,
+}
+
+export type Tag = {
+	name: string,
+	url: string,
+}
+
 export type Artist = {
 	bio: Bio,
 	image: string[],
@@ -29,12 +75,6 @@ export type Artist = {
 	stats: Stats,
 	streamable: number,
 	tags: Tag[],
-	url: string,
-}
-
-export type SimilarArtist = {
-	image: string[],
-	name: string,
 	url: string,
 }
 
@@ -52,29 +92,6 @@ export type FavoriteArtist = {
 	id: string,
 	image: string,
 	name: string,
-}
-
-export type Tag = {
-	name: string,
-	url: string,
-}
-
-export type Bio = {
-	content: string,
-	links: { link: Link },
-	published: string,
-	summary: string,
-}
-
-export type Link = {
-	text: string,
-	href: string,
-	rel: string,
-}
-
-export type Stats = {
-	listeners: number,
-	playcount: number,
 }
 
 export type User = {

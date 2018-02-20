@@ -81,7 +81,7 @@ class App extends Component<Props, OwnState> {
 		const { query } = this.state
 
 		// Find and set target artist (if 3+ chars entered)
-		if (query.length > 2) searchArtist(query)
+		if (query.length >= 2) searchArtist(query)
 	}
 
 	findArtist = () => {

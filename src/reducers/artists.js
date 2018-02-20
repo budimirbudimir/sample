@@ -29,21 +29,14 @@ type InitialTargetData = {
 }
 
 type InitialStateData = {
+	// topTracks is array containing all tracks from Trending chart
+	// with their relevant data
+	topTracks: Array<any>,
 	// topArtists is array containing all artists from Trending chart
 	// with their relevant data
 	topArtists: Array<any>,
-	//fetchingTrending is boolean indicating if request is being run to obtain
-	// current trending artists
-	fetchingTrending: boolean,
-	//fetchedTrending is boolean indicating if request has been successful to
-	// obtain current trending artists
-	fetchedTrending: boolean,
 	// target is object containing currently viewed artist's data
 	target: InitialTargetData,
-	//
-	fetchingTarget: boolean,
-	//
-	fetchedTarget: boolean,
 	// expanded points to current target artists bio state (show more/less)
 	expanded: boolean,
 	// results is array containing results returned from artists search query
@@ -65,6 +58,7 @@ const initialTarget: InitialTargetData = {
 }
 
 export const initialState: InitialStateData = {
+	topTracks: [],
 	topArtists: [],
 	fetchingTrending: false,
 	fetchedTrending: false,
@@ -81,36 +75,28 @@ const artists = (
 ): InitialStateData => {
 	switch (action.type) {
 	// Trending section actions
-	case 'FETCH_TRENDING_PENDING':
-		return {
-			...state,
-			...{ fetchingTrending: true },
-		}
 	case 'FETCH_TRENDING_REJECTED':
 		return {
 			...state,
-			...{ fetchingTrending: false, error: action.payload },
+			...{ ferror: action.payload },
 		}
 	case 'FETCH_TRENDING_FULFILLED':
 		return {
 			...state,
-			...{
-				topArtists: action.payload.data.artists.artist,
-				fetchingTrending: false,
-				fetchedTrending: true,
-			},
+			...{ topArtists: action.payload.data.artists.artist },
+		}
+
+	case 'FETCH_TOP_TRACKS_FULFILLED':
+		return {
+			...state,
+			...{ topTracks: action.payload.data.tracks.track },
 		}
 
 		// Current artist section actions
-	case 'SET_ARTIST_PENDING':
-		return {
-			...state,
-			...{ fetchingTarget: true },
-		}
 	case 'SET_ARTIST_REJECTED':
 		return {
 			...state,
-			...{ fetchingTarget: false, error: action.payload },
+			...{ error: action.payload },
 		}
 	case 'SET_ARTIST_FULFILLED':
 		return {
@@ -118,8 +104,6 @@ const artists = (
 			...{
 				target: action.payload.data.artist,
 				targetImage: action.payload.data.artist.image['3']['#text'],
-				fetchingTarget: false,
-				fetchedTarget: true,
 			},
 		}
 
@@ -127,9 +111,7 @@ const artists = (
 	case 'SEARCH_ARTIST_FULFILLED':
 		return {
 			...state,
-			...{
-				results: action.payload.data.results.artistmatches.artist,
-			},
+			...{ results: action.payload.data.results.artistmatches.artist },
 		}
 
 		// UI actions

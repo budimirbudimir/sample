@@ -3,9 +3,10 @@
 import axios from 'axios'
 
 import { API_URL } from '../config'
-import type { Artist, TopArtist } from '../models'
+import type { Artist, TopArtist, TopTrack } from '../models'
 
 type fetchTrendingAction = { type: 'FETCH_TRENDING', payload: TopArtist[] }
+type fetchTopTracksAction = { type: 'FETCH_TOP_TRACKS', payload: TopTrack[] }
 type setArtistAction = { type: 'SET_ARTIST', payload: Artist }
 type searchArtistAction = { type: 'SEARCH_ARTIST', payload: TopArtist[] }
 type toggleBioAction = { type: 'TOGGLE_BIO' }
@@ -14,6 +15,11 @@ type toggleBioAction = { type: 'TOGGLE_BIO' }
 export const fetchTrending = (): fetchTrendingAction => ({
 	type: 'FETCH_TRENDING',
 	payload: axios.get(`${API_URL}&method=chart.getTopArtists`),
+})
+
+export const fetchTopTracks = (): fetchTopTracksAction => ({
+	type: 'FETCH_TOP_TRACKS',
+	payload: axios.get(`${API_URL}&method=chart.getTopTracks`),
 })
 
 export const setArtist = (name: string): setArtistAction => ({
