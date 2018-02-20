@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { login, resetPassword } from '../actions/user'
-import '../styles/Login.css'
+import '../styles/Auth.css'
 
 type PropsFromDispatch = {
 	// login is action to log user in, by using entered email and password
@@ -35,15 +35,15 @@ class Login extends Component<Props, null> {
 
 	render() {
 		return (
-			<div className="Login">
+			<div className="Auth">
 				<h3>Login</h3>
 
 				<form onSubmit={this.handleSubmit}>
-					<div className="Login-email_container">
+					<div className="Auth-email_container">
 						<input ref={email => (this.email = email)} placeholder="Email" />
 					</div>
 
-					<div className="Login-password_container">
+					<div className="Auth-password_container">
 						<input
 							type="password"
 							placeholder="Password"

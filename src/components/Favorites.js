@@ -6,19 +6,20 @@ import { connect } from 'react-redux'
 import { getFavorites, removeFavorite } from '../actions/user'
 import '../styles/Favorites.css'
 
-import type { Artist } from '../models'
+import type { Artist, FavoriteArtist } from '../models'
 
 type PropsFromState = {
 	// target is object containing all relevant target artist' data
 	target: Artist,
-	//
-	authedUserFavs: Array<any>,
+	// authedUserFavs is array indicating which artists current user favorited
+	authedUserFavs: FavoriteArtist[],
 }
 
 type PropsFromDispatch = {
-	//
+	// getFavorites is action to fetch current user's favorites from DB
 	getFavorites: string => void,
-	//
+	// removeFavorite is action to remove current target artist (in detail view)
+	// from current user's favorites in DB
 	removeFavorite: (string, Artist) => void,
 }
 
@@ -45,11 +46,8 @@ class Favorites extends Component<Props, null> {
 		const { authedUserFavs } = this.props
 
 		return (
-			<div
-				className="Favorites"
-				style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-			>
-				<div style={{ flex: 6, padding: '30px 0' }}>
+			<div className="Favorites">
+				<div className="Favorites-inner">
 					<h3>Your favorite artists</h3>
 
 					{authedUserFavs && (

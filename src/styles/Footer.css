@@ -1,3 +1,10 @@
+.App-trending {
+	flex: 2;
+	background: #333;
+	color: #fff;
+	padding: 15px 0;
+}
+
 .App-results {
 	list-style: none;
 	padding: 0;
@@ -17,11 +24,4 @@
 	cursor: pointer;
 	background: #f4425c;
 	border: 1px solid #f4425c;
-}
-
-.App-trending {
-	flex: 2;
-	background: #333;
-	color: #fff;
-	padding: 15px 0;
 }

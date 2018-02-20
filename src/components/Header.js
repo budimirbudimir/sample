@@ -28,32 +28,31 @@ class Header extends Component<Props, null> {
 
 		return (
 			<header className="App-header">
-				<nav className="navbar navbar-default navbar-static-top">
-					<div className="container">
-						<div className="navbar-header">
-							<Link to="/" className="navbar-brand">
-								<h1 className="App-title">
-									<img className="App-logo" src={logo} alt="" />
-									Last.fm Navigator
-								</h1>
-							</Link>
-						</div>
-						<ul className="Header-menu nav navbar-nav pull-right">
+				<nav className="Menu-bar">
+					<div className="Menu-bar_container">
+						<Link to="/" className="Menu-bar_item">
+							<h1 className="App-title">
+								<img className="App-logo" src={logo} alt="" />
+								Last.fm Navigator
+							</h1>
+						</Link>
+
+						<ul className="Header-menu">
 							<li>
-								<Link to="/" className="navbar-brand">
+								<Link to="/" className="Menu-bar_item">
 									Home
 								</Link>
 							</li>
 							{authed && (
 								<li>
-									<Link to="/navigator" className="navbar-brand">
+									<Link to="/navigator" className="Menu-bar_item">
 										Navigator
 									</Link>
 								</li>
 							)}
 							{authed && (
 								<li>
-									<Link to="/favorites" className="navbar-brand">
+									<Link to="/favorites" className="Menu-bar_item">
 										Favorites
 									</Link>
 								</li>
@@ -61,20 +60,17 @@ class Header extends Component<Props, null> {
 							<li>
 								{authed ? (
 									<button
-										style={{ border: 'none', background: 'transparent' }}
-										onClick={() => {
-											logout()
-										}}
-										className="navbar-brand"
+										onClick={() => logout()}
+										className="Menu-bar_item Header-menu_button"
 									>
 										Logout
 									</button>
 								) : (
 									<span>
-										<Link to="/login" className="navbar-brand">
+										<Link to="/login" className="Menu-bar_item">
 											Login
 										</Link>
-										<Link to="/register" className="navbar-brand">
+										<Link to="/register" className="Menu-bar_item">
 											Register
 										</Link>
 									</span>

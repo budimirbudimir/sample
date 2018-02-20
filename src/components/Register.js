@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { auth } from '../actions/user'
-import '../styles/Register.css'
+import '../styles/Auth.css'
 
 type PropsFromDispatch = {
 	// auth is action to register new user via firebaseAuth, using email/password
@@ -26,15 +26,15 @@ class Register extends Component<Props, null> {
 
 	render() {
 		return (
-			<div className="Register">
+			<div className="Auth">
 				<h3>Register</h3>
 
 				<form onSubmit={this.handleSubmit}>
-					<div className="Register-email_container">
+					<div className="Auth-email_container">
 						<input ref={email => (this.email = email)} placeholder="Email" />
 					</div>
 
-					<div className="Register-password_container">
+					<div className="Auth-password_container">
 						<input
 							type="password"
 							placeholder="Password"

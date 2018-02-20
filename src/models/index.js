@@ -48,6 +48,12 @@ export type TopArtist = {
 	url: string,
 }
 
+export type FavoriteArtist = {
+	id: string,
+	image: string,
+	name: string,
+}
+
 export type Tag = {
 	name: string,
 	url: string,

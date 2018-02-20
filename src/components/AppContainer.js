@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'
 import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.css'
 
 import { firebaseAuth } from '../config'
 import type { RouteProps } from '../models'
@@ -13,7 +12,9 @@ import Register from './Register'
 import Home from './Home'
 import Favorites from './Favorites'
 import App from './App'
+import PageNotFound from './404'
 
+// Define private route logic (inheritance and redirection)
 const PrivateRoute = ({
 	component: Component,
 	authed,
@@ -33,6 +34,7 @@ const PrivateRoute = ({
 	/>
 )
 
+// Define public route (inheritance)
 const PublicRoute = ({ component: Component, authed, ...rest }: RouteProps) => (
 	<Route
 		{...rest}
@@ -43,7 +45,9 @@ const PublicRoute = ({ component: Component, authed, ...rest }: RouteProps) => (
 )
 
 type OwnState = {
+	// authed is boolean indicating if user is logged in
 	authed: boolean,
+	// loading is boolean indicating if logging process is currently ongoing
 	loading: boolean,
 }
 
@@ -75,7 +79,7 @@ class AppContainer extends Component<null, OwnState> {
 				<div className="App">
 					<Header authed={authed} />
 
-					<div style={{ flex: 6 }}>
+					<div className="App-route_container">
 						<Switch>
 							<Route path="/" exact component={Home} />
 
@@ -95,7 +99,8 @@ class AppContainer extends Component<null, OwnState> {
 								component={Favorites}
 							/>
 
-							<Route render={() => <h3>No Match</h3>} />
+							{/* If no mathching route found: */}
+							<Route render={() => <PageNotFound />} />
 						</Switch>
 					</div>
 				</div>

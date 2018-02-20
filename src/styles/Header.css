@@ -17,26 +17,82 @@
 	padding: 0;
 	color: #fff;
 	transition: all 0.3s;
+	text-decoration: none;
 }
 .App-title:hover {
 	color: #f4425c;
 	text-decoration: none;
 }
-.Header-menu .navbar-brand {
+.Header-menu {
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	list-style: none;
+	flex: 1 1 2;
+	flex-direction: row;
+}
+.App-header .Menu-bar_item {
 	font-size: 16px;
 	color: #fff;
 	cursor: pointer;
 	transition: all 0.3s;
+	text-decoration: none;
 }
-.Header-menu button.navbar-brand {
+.Header-menu button.Menu-bar_item {
 	color: #aaa;
 }
-.Header-menu .navbar-brand:hover {
+.Header-menu .Menu-bar_item:hover {
 	color: #f4425c;
 }
+.Header-menu_button {
+	border: none;
+	background: transparent;
+}
 
-/* TODO: Change these to drop bootstrap! */
-.nav.navbar-nav {
-	flex: 1 1 2;
-	flex-direction: row;
+.Menu-bar {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 1rem;
+}
+.Menu-bar_container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 1140px;
+}
+.Menu-bar_item {
+	display: inline-block;
+	padding-top: 0.3125rem;
+	padding-bottom: 0.3125rem;
+	margin-right: 1rem;
+	font-size: 1.25rem;
+	line-height: inherit;
+	white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+	.App-header {
+		max-height: none;
+	}
+	.Header-menu {
+		display: block;
+		width: 100%;
+	}
+	.Header-menu li {
+		display: inline-block;
+	}
+	.Header-menu li a {
+		margin: 0 5px;
+	}
 }

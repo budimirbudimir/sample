@@ -52,6 +52,7 @@
 	padding: 5px;
 	text-align: left;
 	cursor: pointer;
+	vertical-align: middle;
 }
 .Search-result:nth-child(even) {
 	background-color: #eee;
@@ -63,4 +64,5 @@
 
 .Search-result img {
 	margin-right: 15px;
+	vertical-align: middle;
 }

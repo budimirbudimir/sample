@@ -42,11 +42,8 @@ class Home extends Component<Props, null> {
 		const { topArtists } = this.props
 
 		return (
-			<div
-				className="Home"
-				style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-			>
-				<div style={{ flex: 6 }}>
+			<div className="Home">
+				<div className="Home-inner">
 					<h3>Public Home page.</h3>
 					<p>
 						Show some content, such as most popular and latest songs/albums

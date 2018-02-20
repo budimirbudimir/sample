@@ -7,7 +7,7 @@ import starEmpty from '../../src/images/star_0.png'
 import starFilled from '../images/star_1.png'
 
 import { addFavorite, removeFavorite, getFavorites } from '../actions/user'
-import type { Artist, TopArtist } from '../models'
+import type { Artist, TopArtist, FavoriteArtist } from '../models'
 import Similar from './Similar'
 import Tags from './Tags'
 
@@ -19,7 +19,7 @@ type PropsFromState = {
 	// expanded points to current target artists bio state (show more/less)
 	expanded: boolean,
 	// authedUserFavs is array indicating which artists current user favorited
-	authedUserFavs: Array<any>,
+	authedUserFavs: FavoriteArtist[],
 	// query is current search query string entered in the input field
 	query: string,
 	// showDropdown is boolean indicating if search dropdown is visible
@@ -45,7 +45,8 @@ type PropsFromDispatch = {
 type Props = PropsFromState & PropsFromDispatch
 
 type OwnState = {
-	//
+	// isCurrentFavorite is boolean indicating if current artist have been added
+	// to current user's favorites in DB
 	isCurrentFavorite: boolean,
 }
 
@@ -97,8 +98,6 @@ class ArtistPage extends Component<Props, OwnState> {
 
 		return (
 			<div className="ArtistPage">
-				{/* Render currently active artist */}
-
 				{showDropdown &&
 					query !== '' &&
 					query.length > 2 && (
@@ -137,43 +136,42 @@ class ArtistPage extends Component<Props, OwnState> {
 								{this.state.isCurrentFavorite ? (
 									<img
 										src={starFilled}
-										alt="Remove as favorite"
-										style={{
-											maxWidth: 24,
-											cursor: 'pointer',
-											padding: '0 0 5px 5px',
-										}}
+										alt=""
+										className="App-fav_star"
 										onClick={() => this.handleRemoveFavorite(target.mbid)}
 									/>
 								) : (
 									<img
 										src={starEmpty}
-										alt="Add as favorite"
-										style={{
-											maxWidth: 24,
-											cursor: 'pointer',
-											padding: '0 0 5px 5px',
-										}}
+										alt=""
+										className="App-fav_star"
 										onClick={this.handleAddFavorite}
 									/>
 								)}
 							</h2>
 
 							<p>
-								Listeners: <strong>{target.stats.listeners}</strong> / Total
-								plays: <strong>{target.stats.playcount}</strong>
+								Listeners: <strong>{target.stats.listeners}</strong>
+								<br />
+								Total plays: <strong>{target.stats.playcount}</strong>
 							</p>
 
 							{expanded ? (
-								<p>
-									{target.bio.content} <br />
+								<p className="App-bio_text">
+									<span
+										dangerouslySetInnerHTML={{ __html: target.bio.content }}
+									/>
+									<br />
 									<a className="App-bio_link" onClick={toggleBio}>
 										View Less
 									</a>
 								</p>
 							) : (
-								<p>
-									{target.bio.summary} <br />
+								<p className="App-bio_text">
+									<span
+										dangerouslySetInnerHTML={{ __html: target.bio.summary }}
+									/>
+									<br />
 									<a className="App-bio_link" onClick={toggleBio}>
 										View More
 									</a>

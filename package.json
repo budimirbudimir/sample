@@ -5,11 +5,9 @@
 	"dependencies": {
 		"axios": "^0.17.1",
 		"babel-eslint": "^8.2.1",
-		"bootstrap": "^4.0.0",
 		"firebase": "^4.9.1",
 		"history": "^4.7.2",
 		"prop-types": "^15.6.0",
-		"rapidapi-connect": "0.0.6",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
 		"react-redux": "^5.0.6",

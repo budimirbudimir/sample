@@ -54,6 +54,8 @@ type OwnState = {
 
 type Props = PropsFromState & PropsFromDispatch
 
+const DROPDOWN_TIMEOUT = 300
+
 class App extends Component<Props, OwnState> {
 	state = {
 		query: '',
@@ -101,7 +103,7 @@ class App extends Component<Props, OwnState> {
 		const { query, showDropdown } = this.state
 
 		return (
-			<div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+			<div className="App-content_container">
 				<div className="App-content">
 					<div className="App-search_container">
 						<input
@@ -126,7 +128,7 @@ class App extends Component<Props, OwnState> {
 							onBlur={() => {
 								setTimeout(() => {
 									this.setState({ showDropdown: false })
-								}, 300)
+								}, DROPDOWN_TIMEOUT)
 							}}
 						/>
 						<button className="App-search-button" onClick={this.findArtist}>
