@@ -64,6 +64,7 @@ class ArtistPage extends Component<Props, OwnState> {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		if (!nextProps.authedUserFavs) return false
 		const currentFavs = nextProps.authedUserFavs.map(fav => fav.id)
 		const isCurrentFavorite = currentFavs.indexOf(nextProps.target.mbid) !== -1
 
