@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<p>
+  <span
+    className="Tags-title"
+  >
+    Tags:
+  </span>
+  <a
+    className="App-similar_act"
+    href="http://budimirx2.com/rock"
+  >
+    rock
+  </a>
+</p>
+`;
