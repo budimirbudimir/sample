@@ -35,8 +35,7 @@ _Keep in mind that Prettier, ESLint and Flow are interconnected._
 
 ##### TODO list:
 
-1. **[WIP]** Add Firebase actions error handling
-2. Finish mobile/tablet styles
-3. Add tests where applicable
-4. Implement GraphQL/Apollo _(optional)_
-5. Add CircleCI _(optional)_
+1. Add Firebase actions error handling
+2. Add tests where applicable
+3. Implement GraphQL/Apollo _(optional)_
+4. Add CircleCI _(optional)_

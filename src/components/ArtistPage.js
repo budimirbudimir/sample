@@ -72,10 +72,15 @@ class ArtistPage extends Component<Props, OwnState> {
 	}
 
 	handleAddFavorite = () => {
-		const { target, addFavorite } = this.props
+		const { target, addFavorite, authedUserFavs, getFavorites } = this.props
 		const userID = localStorage.getItem('currentUser')
 
-		if (userID) addFavorite(userID, target)
+		if (userID)
+			addFavorite(userID, target).then(() => {
+				// If user had no favorites prior to adding this,
+				// pull new list when done with adding
+				if (!authedUserFavs) getFavorites(userID)
+			})
 	}
 
 	handleRemoveFavorite = (artistID: string) => {

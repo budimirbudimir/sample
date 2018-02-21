@@ -22,3 +22,18 @@
 .TopTracks-track img {
 	vertical-align: middle;
 }
+
+@media (max-width: 767px) {
+	.TopTracks {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 479px) {
+	.TopTracks li:first-child {
+		display: none;
+	}
+	.TopTracks-hidden_mobile {
+		display: none;
+	}
+}

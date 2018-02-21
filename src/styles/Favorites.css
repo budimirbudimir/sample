@@ -54,3 +54,21 @@
 .Favorites-item:hover a {
 	display: inline-block;
 }
+
+@media (max-width: 767px) {
+	.Favorites-item a {
+		display: block;
+		right: 0;
+		padding: 0 7px;
+		text-align: center;
+		background: rgba(0, 0, 0, 0.65);
+	}
+	.Favorites-item p {
+		position: relative;
+		background: none;
+		color: #000;
+		display: block;
+		margin: -5px auto 5px;
+		font-size: 13px;
+	}
+}

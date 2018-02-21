@@ -92,7 +92,12 @@ const artists = (
 			...{ topTracks: action.payload.data.tracks.track },
 		}
 
-		// Current artist section actions
+		// Current artist actions
+	case 'SEARCH_ARTIST_FULFILLED':
+		return {
+			...state,
+			...{ results: action.payload.data.results.artistmatches.artist },
+		}
 	case 'SET_ARTIST_REJECTED':
 		return {
 			...state,
@@ -106,15 +111,6 @@ const artists = (
 				targetImage: action.payload.data.artist.image['3']['#text'],
 			},
 		}
-
-		// Search!
-	case 'SEARCH_ARTIST_FULFILLED':
-		return {
-			...state,
-			...{ results: action.payload.data.results.artistmatches.artist },
-		}
-
-		// UI actions
 	case 'TOGGLE_BIO':
 		return {
 			...state,

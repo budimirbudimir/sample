@@ -86,7 +86,7 @@ body {
 	text-decoration: none;
 	color: #f4425c;
 	display: inline-block;
-	margin: 0 0 0 6px;
+	margin: 3px 0 3px 6px;
 	padding: 2px 4px;
 	border: 1px solid #f4425c;
 	font-size: 12px;
@@ -120,5 +120,15 @@ body {
 	}
 	.App-info_bio h2 {
 		margin: 15px auto 15px;
+	}
+	.ArtistPage {
+		margin-bottom: 15px;
+	}
+}
+
+@media (max-width: 479px) {
+	.Similar-title,
+	.Tags-title {
+		display: block;
 	}
 }

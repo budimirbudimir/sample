@@ -13,7 +13,7 @@ type SimilarTypes = {
 
 const Similar = ({ similar, fetchArtist }: SimilarTypes) => (
 	<p>
-		Similar acts:
+		<span className="Similar-title">Similar acts:</span>
 		{similar.map((act, index) => (
 			<span
 				key={index}

@@ -4,6 +4,8 @@ import { ref, firebaseAuth } from '../config'
 
 import type { Artist, User } from '../models'
 
+// AUTH ACTIONS
+
 // Registers new user, then runs action to save it in DB
 export const auth = (email: string, pw: string) => ({
 	type: 'AUTH',
@@ -44,6 +46,8 @@ export const saveUser = (user: User) => ({
 		.then(() => user),
 })
 
+// FAVORITES ACTIONS
+
 // Gets current user's favorite artists list
 export const getFavorites = (userID: string) => ({
 	type: 'GET_FAVORITES',
@@ -61,7 +65,7 @@ export const addFavorite = (userID: string, artist: Artist) => ({
 		.set({
 			id: artist.mbid,
 			name: artist.name,
-			image: artist.image['3']['#text'],
+			image: artist.image['2']['#text'],
 		})
 		.then(() => artist),
 })

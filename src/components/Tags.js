@@ -11,7 +11,7 @@ type TagsTypes = {
 
 const Tags = ({ tags }: TagsTypes) => (
 	<p>
-		Tags:
+		<span className="Tags-title">Tags:</span>
 		{tags.map((tag: Tag, index) => (
 			<a key={index} className="App-similar_act" href={tag.url}>
 				{tag.name}

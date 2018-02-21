@@ -49,6 +49,7 @@
 .Header-menu_button {
 	border: none;
 	background: transparent;
+	margin: 0 5px;
 }
 
 .Menu-bar {
@@ -57,7 +58,7 @@
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 0;
 }
 .Menu-bar_container {
 	display: flex;
@@ -85,6 +86,9 @@
 	.App-header {
 		max-height: none;
 	}
+	.App-logo {
+		margin-right: 10px;
+	}
 	.Header-menu {
 		display: block;
 		width: 100%;
@@ -94,5 +98,14 @@
 	}
 	.Header-menu li a {
 		margin: 0 5px;
+	}
+	.Header-menu_button {
+		margin: 0 5px;
+	}
+	.Menu-bar_container {
+		justify-content: center;
+	}
+	.Menu-bar_container > a {
+		margin-right: 0;
 	}
 }

@@ -28,8 +28,12 @@ const TopTracks = ({ tracks }: TopTrack) => {
 						</div>
 						<div style={{ flex: 4 }}>{track.name}</div>
 						<div style={{ flex: 4 }}>{track.artist.name}</div>
-						<div style={{ flex: 2 }}>{track.listeners}</div>
-						<div style={{ flex: 2 }}>{track.playcount}</div>
+						<div style={{ flex: 2 }} className="TopTracks-hidden_mobile">
+							{track.listeners}
+						</div>
+						<div style={{ flex: 2 }} className="TopTracks-hidden_mobile">
+							{track.playcount}
+						</div>
 					</div>
 				</li>
 			))}

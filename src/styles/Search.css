@@ -66,3 +66,19 @@
 	margin-right: 15px;
 	vertical-align: middle;
 }
+
+@media (max-width: 767px) {
+	.App-search_container {
+		width: auto;
+		padding: 0 15px;
+	}
+	.App-search {
+		min-width: auto;
+	}
+}
+
+@media (max-width: 479px) {
+	.Search-results {
+		max-width: 90%;
+	}
+}
