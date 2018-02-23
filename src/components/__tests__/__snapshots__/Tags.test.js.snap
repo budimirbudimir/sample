@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`Renders without crashing 1`] = `
 <p>
   <span
     className="Tags-title"
@@ -9,9 +9,33 @@ exports[`renders correctly 1`] = `
   </span>
   <a
     className="App-similar_act"
-    href="http://budimirx2.com/rock"
+    href="https://www.last.fm/tag/rock"
   >
     rock
+  </a>
+  <a
+    className="App-similar_act"
+    href="https://www.last.fm/tag/pop"
+  >
+    pop
+  </a>
+  <a
+    className="App-similar_act"
+    href="https://www.last.fm/tag/metal"
+  >
+    metal
+  </a>
+  <a
+    className="App-similar_act"
+    href="https://www.last.fm/tag/disco"
+  >
+    disco
+  </a>
+  <a
+    className="App-similar_act"
+    href="https://www.last.fm/tag/reggae"
+  >
+    reggae
   </a>
 </p>
 `;
