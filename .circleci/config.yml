@@ -34,9 +34,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run:
-          name: Run ESLint checks
-          command: yarn lint
+      # - run:
+      #     name: Run ESLint checks
+      #     command: yarn lint
       - run:
           name: Run Flow type checking
           command: yarn flow
