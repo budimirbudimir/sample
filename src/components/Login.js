@@ -6,6 +6,11 @@ import { connect } from 'react-redux'
 import { login, resetPassword } from '../actions/user'
 import '../styles/Auth.css'
 
+type PropsFromState = {
+	// loginError is string containing error message for login form
+	loginError?: string,
+}
+
 type PropsFromDispatch = {
 	// login is action to log user in, by using entered email and password
 	login: (string, string) => void,
@@ -13,7 +18,7 @@ type PropsFromDispatch = {
 	resetPassword: string => void,
 }
 
-type Props = PropsFromDispatch
+type Props = PropsFromState & PropsFromDispatch
 
 class Login extends Component<Props, null> {
 	email: ?HTMLInputElement

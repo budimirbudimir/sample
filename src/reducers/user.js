@@ -5,6 +5,9 @@ import type { Action } from 'redux'
 type InitialStateData = {
 	// authedUserFavs is array of user's favorite artists, pulled from DB
 	authedUserFavs: Array<any>,
+	loginError: string | null,
+	registrationError: string | null,
+	favoriteError: string | null,
 }
 
 export const initialState = {

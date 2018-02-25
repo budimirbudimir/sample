@@ -6,12 +6,17 @@ import { connect } from 'react-redux'
 import { auth } from '../actions/user'
 import '../styles/Auth.css'
 
+type PropsFromState = {
+	// registrationError is string containing error message for registration form
+	registrationError?: string,
+}
+
 type PropsFromDispatch = {
 	// auth is action to register new user via firebaseAuth, using email/password
 	auth: (string, string) => void,
 }
 
-type Props = PropsFromDispatch
+type Props = PropsFromState & PropsFromDispatch
 
 class Register extends Component<Props, null> {
 	email: ?HTMLInputElement

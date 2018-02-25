@@ -11,21 +11,26 @@ import type { Artist, TopArtist, FavoriteArtist } from '../models'
 import Similar from './Similar'
 import Tags from './Tags'
 
-type PropsFromState = {
+type OwnProps = {
 	// target is object containing all relevant target artist' data
 	target: Artist,
 	// targetImage is string representing target artist image URL
 	targetImage: string,
 	// expanded points to current target artists bio state (show more/less)
 	expanded: boolean,
-	// authedUserFavs is array indicating which artists current user favorited
-	authedUserFavs: FavoriteArtist[],
 	// query is current search query string entered in the input field
 	query: string,
 	// showDropdown is boolean indicating if search dropdown is visible
 	showDropdown: boolean,
 	// results is array containing current search query results
 	results: TopArtist[],
+}
+
+type PropsFromState = {
+	// favoriteError is string containing error message for favorite action
+	favoriteError?: string,
+	// authedUserFavs is array indicating which artists current user favorited
+	authedUserFavs: FavoriteArtist[],
 }
 
 type PropsFromDispatch = {
@@ -42,7 +47,7 @@ type PropsFromDispatch = {
 	getFavorites: string => void,
 }
 
-type Props = PropsFromState & PropsFromDispatch
+type Props = OwnProps & PropsFromState & PropsFromDispatch
 
 type OwnState = {
 	// isCurrentFavorite is boolean indicating if current artist have been added
@@ -76,6 +81,7 @@ class ArtistPage extends Component<Props, OwnState> {
 		const userID = localStorage.getItem('currentUser')
 
 		if (userID)
+			// $FlowFixMe
 			addFavorite(userID, target).then(() => {
 				// If user had no favorites prior to adding this,
 				// pull new list when done with adding
