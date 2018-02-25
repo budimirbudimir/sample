@@ -9,6 +9,9 @@ type InitialStateData = {
 
 export const initialState = {
 	authedUserFavs: [],
+	loginError: null,
+	registrationError: null,
+	favoriteError: null,
 }
 
 const user = (
@@ -18,26 +21,44 @@ const user = (
 	switch (action.type) {
 	// USER actions
 	case 'AUTH_FULFILLED':
-		// TODO: Handle logic.
-		return state
+		return {
+			...state,
+			...{ registrationError: null },
+		}
 	case 'AUTH_REJECTED':
-		// TODO: Handle error.
-		return state
+		return {
+			...state,
+			...{ registrationError: action.payload.message },
+		}
 
 	case 'LOGIN_FULFILLED':
-		// Save current user to the state
-		return state
+		return {
+			...state,
+			...{ loginError: null },
+		}
 	case 'LOGIN_REJECTED':
-		// Remove current user from the state, TODO: Handle error.
-		return state
+		return {
+			...state,
+			...{ loginError: action.payload.message },
+		}
 
 	case 'LOGOUT_FULFILLED':
-		// Remove current user from the state, TODO: Handle error.
-		return state
+		// Remove current user from the state
+		return {
+			...state,
+			...{ authedUserFavs: [] },
+		}
 
 	case 'RESET_PASSWORD_FULFILLED':
-		// TODO: Handle logic.
-		return state
+		return {
+			...state,
+			...{ loginError: null },
+		}
+	case 'RESET_PASSWORD_REJECTED':
+		return {
+			...state,
+			...{ loginError: action.payload.message },
+		}
 
 	case 'SAVE_USER':
 		// TODO: Handle logic.
@@ -47,6 +68,7 @@ const user = (
 		return {
 			...state,
 			...{
+				favoriteError: null,
 				authedUserFavs:
 						state.authedUserFavs &&
 						state.authedUserFavs.concat({
@@ -56,15 +78,26 @@ const user = (
 						}),
 			},
 		}
+	case 'ADD_FAVORITE_REJECTED':
+		return {
+			...state,
+			...{ favoriteError: action.payload.message },
+		}
 
 	case 'REMOVE_FAVORITE_FULFILLED':
 		return {
 			...state,
 			...{
+				favoriteError: null,
 				authedUserFavs: state.authedUserFavs.filter(
 					fav => fav.id !== action.payload,
 				),
 			},
+		}
+	case 'REMOVE_FAVORITE_REJECTED':
+		return {
+			...state,
+			...{ favoriteError: action.payload.message },
 		}
 
 	case 'GET_FAVORITES_FULFILLED':

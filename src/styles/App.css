@@ -106,6 +106,24 @@ body {
 	text-align: center;
 }
 
+.App-alert {
+	max-width: 90%;
+	width: 960px;
+	border-radius: 4px;
+	margin: 0 auto;
+	padding: 10px;
+}
+.App-error {
+	color: #d8000c;
+	background: #ffd2d2;
+	border: 1px solid #d8000c;
+}
+.App-success {
+	color: #4f8a10;
+	background-color: #dff2bf;
+	color: #4f8a10;
+}
+
 @media (max-width: 1023px) {
 	.App-content {
 		max-width: 100%;

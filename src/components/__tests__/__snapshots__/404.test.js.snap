@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders without crashing 1`] = `
+<div
+  className="PageNotFound"
+>
+  <h1
+    style={
+      Object {
+        "color": "#f4425c",
+      }
+    }
+  >
+    Error 404
+  </h1>
+  <h3>
+    Requested page could not be found!
+  </h3>
+  <a
+    href="/"
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "#f4425c",
+        "fontWeight": "700",
+        "textDecoration": "none",
+      }
+    }
+  >
+    Go back to Home page
+  </a>
+</div>
+`;

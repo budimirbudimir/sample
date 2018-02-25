@@ -1,48 +1,18 @@
 // @flow
 
 import React, { Component } from 'react'
-import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom'
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
 
 import { firebaseAuth } from '../config'
-import type { RouteProps } from '../models'
+import { PrivateRoute, PublicRoute } from '../routes'
 
 import Header from './Header'
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
 import Favorites from './Favorites'
-import App from './App'
+import Navigator from './Navigator'
 import PageNotFound from './404'
-
-// Define private route logic (inheritance and redirection)
-const PrivateRoute = ({
-	component: Component,
-	authed,
-	...rest
-}: RouteProps) => (
-	<Route
-		{...rest}
-		render={props =>
-			authed === true ? (
-				<Component {...props} />
-			) : (
-				<Redirect
-					to={{ pathname: '/login', state: { from: props.location } }}
-				/>
-			)
-		}
-	/>
-)
-
-// Define public route (inheritance)
-const PublicRoute = ({ component: Component, authed, ...rest }: RouteProps) => (
-	<Route
-		{...rest}
-		render={props =>
-			authed === false ? <Component {...props} /> : <Redirect to="/navigator" />
-		}
-	/>
-)
 
 type OwnState = {
 	// authed is boolean indicating if user is logged in
@@ -51,7 +21,7 @@ type OwnState = {
 	loading: boolean,
 }
 
-class AppContainer extends Component<null, OwnState> {
+class AppRouter extends Component<null, OwnState> {
 	removeListener: () => void
 
 	state = {
@@ -91,7 +61,11 @@ class AppContainer extends Component<null, OwnState> {
 								component={Register}
 							/>
 
-							<PrivateRoute authed={authed} path="/navigator" component={App} />
+							<PrivateRoute
+								authed={authed}
+								path="/navigator"
+								component={Navigator}
+							/>
 
 							<PrivateRoute
 								authed={authed}
@@ -109,4 +83,4 @@ class AppContainer extends Component<null, OwnState> {
 	}
 }
 
-export default AppContainer
+export default AppRouter

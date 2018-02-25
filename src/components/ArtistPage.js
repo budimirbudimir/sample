@@ -100,6 +100,7 @@ class ArtistPage extends Component<Props, OwnState> {
 			query,
 			showDropdown,
 			results,
+			favoriteError,
 		} = this.props
 
 		return (
@@ -156,6 +157,10 @@ class ArtistPage extends Component<Props, OwnState> {
 								)}
 							</h2>
 
+							{favoriteError && (
+								<p style={{ color: '#d8000c' }}>{favoriteError}</p>
+							)}
+
 							<p>
 								Listeners: <strong>{target.stats.listeners}</strong>
 								<br />
@@ -199,6 +204,7 @@ class ArtistPage extends Component<Props, OwnState> {
 
 const mapStateToProps = state => {
 	return {
+		favoriteError: state.user.favoriteError,
 		authedUserFavs: state.user.authedUserFavs,
 	}
 }

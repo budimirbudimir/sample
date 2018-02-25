@@ -56,7 +56,7 @@ type Props = PropsFromState & PropsFromDispatch
 
 const DROPDOWN_TIMEOUT = 300
 
-class App extends Component<Props, OwnState> {
+class Navigator extends Component<Props, OwnState> {
 	state = {
 		query: '',
 		showDropdown: false,
@@ -173,4 +173,4 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(Navigator)

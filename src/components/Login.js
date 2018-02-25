@@ -34,8 +34,12 @@ class Login extends Component<Props, null> {
 	}
 
 	render() {
+		const { loginError } = this.props
+
 		return (
 			<div className="Auth">
+				{loginError && <p className="App-alert App-error">{loginError}</p>}
+
 				<h3>Login</h3>
 
 				<form onSubmit={this.handleSubmit}>
@@ -64,6 +68,12 @@ class Login extends Component<Props, null> {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		loginError: state.user.loginError,
+	}
+}
+
 const mapDispatchToProps = dispatch => {
 	return {
 		login: (email, pw) => dispatch(login(email, pw)),
@@ -71,4 +81,4 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

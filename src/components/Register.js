@@ -25,8 +25,14 @@ class Register extends Component<Props, null> {
 	}
 
 	render() {
+		const { registrationError } = this.props
+
 		return (
 			<div className="Auth">
+				{registrationError && (
+					<p className="App-alert App-error">{registrationError}</p>
+				)}
+
 				<h3>Register</h3>
 
 				<form onSubmit={this.handleSubmit}>
@@ -51,10 +57,16 @@ class Register extends Component<Props, null> {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		registrationError: state.user.registrationError,
+	}
+}
+
 const mapDispatchToProps = dispatch => {
 	return {
 		auth: (email, pw) => dispatch(auth(email, pw)),
 	}
 }
 
-export default connect(null, mapDispatchToProps)(Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 import { store } from './store'
-import AppContainer from './components/AppContainer'
+import AppRouter from './components/AppRouter'
 
 ReactDOM.render(
 	<Provider store={store}>
-		<AppContainer />
+		<AppRouter />
 	</Provider>,
 	document.getElementById('root'),
 )

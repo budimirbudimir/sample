@@ -4,22 +4,31 @@ Deployed App URL: https://budimir-sample.firebaseapp.com
 
 Last.fm navigator sample. <BR />
 It is but a simple artist navigator, build with React/Redux. <BR />
-Backend should use Firebase for auth and its RealtimeDB for saving user-specific data. <BR />
-Also, Firebase Functions will be used as API/GraphQL server. <BR />
+Backend uses Firebase for auth and its RealtimeDB for saving user-specific data. <BR />
+Also, Firebase Functions are used as API/GraphQL server. <BR />
 It's been bootstrapped using `create-react-app`.
 
-**Optionally**, local server, DB and CI support might be added later (GraphQL/Apollo, Firebase (Functions), CircleCI).
+**Optionally**, local server (NodeJS) & DB (MongoDB) might be added later.
 
 ---
 
 #### Usage
 
-Clone project to your local drive, navigate to project folder and run `yarn` or `npm install` to install dependencies.<BR />
-To start project locally, run `yarn start` or `npm run start`.<BR />
-To run ESLint check, run `yarn lint` or `npm run lint`.<BR />
-To run Flow type checking, run `yarn flow` or `npm run flow`.<BR />
+<BR />_Commands:_
 
-For GraphQL implementation using Firebase Functions (just bootstrapped, still WIP), see docs/GraphiQL: https://us-central1-budimir-sample.cloudfunctions.net/api/graphiql
+* `yarn` or `npm install` to install dependencies
+* `yarn start` or `npm run start` to start project locally
+* `yarn lint` or `npm run lint` to run ESLint check
+* `yarn flow` or `npm run flow` to run Flow type checking
+* `yarn test` or `npm run test` to run Jest unit tests
+* `yarn test:coverage` or `npm run test:coverage` to check for test coverage on project
+* `yarn storybook` or `npm run storybook` to run Storybook dev environment
+* `yarn build` or `npm run build` to build production version
+* `firebase deploy` to deploy project fully on Firebase (functions & hosting)
+* `firebase deploy --only functions` to deploy Firebase Functions
+* `firebase deploy --only hosting` to deploy build folder to Firebase hosting
+
+For GraphQL implementation using Firebase Functions **[still WIP]**, see docs/GraphiQL: https://us-central1-budimir-sample.cloudfunctions.net/api/graphiql
 
 _Keep in mind that Prettier, ESLint and Flow are interconnected._
 
@@ -28,14 +37,11 @@ _Keep in mind that Prettier, ESLint and Flow are interconnected._
 ##### Notes:
 
 * Project can be modified to use external module, such as `react-redux-firebase` if codebase will grow.
-* Redux files might be bulky at the moment, but will be split eventually.
-* Linting rules are quite basic, there's plenty of space to improve them if there's time left.
+* ESLint rules are quite basic, there's plenty of space to improve them if there's time left.
 
 ---
 
 ##### TODO list:
 
-1. Add Firebase actions error handling
-2. Add tests where applicable
-3. Implement GraphQL/Apollo _(optional)_
-4. Add CircleCI _(optional)_
+1. Add proper typechecking/test/storybook coverage **[in progress]**
+2. Finish CircleCI implementation properly _(optional)_
