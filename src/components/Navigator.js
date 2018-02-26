@@ -12,7 +12,7 @@ import {
 import '../styles/App.css'
 import '../styles/Search.css'
 
-import ArtistPage from './ArtistPage'
+import ArtistContainer from '../containers/ArtistContainer'
 import Trending from './Trending'
 
 import type { Artist, TopArtist } from '../models'
@@ -136,7 +136,7 @@ class Navigator extends Component<Props, OwnState> {
 						</button>
 					</div>
 
-					<ArtistPage
+					<ArtistContainer
 						target={target}
 						targetImage={targetImage}
 						toggleBio={toggleBio}

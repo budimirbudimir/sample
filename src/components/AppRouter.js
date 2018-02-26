@@ -6,11 +6,11 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import { firebaseAuth } from '../config'
 import { PrivateRoute, PublicRoute } from '../routes'
 
+import FavoritesContainer from '../containers/FavoritesContainer'
 import Header from './Header'
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
-import Favorites from './Favorites'
 import Navigator from './Navigator'
 import PageNotFound from './404'
 
@@ -70,7 +70,7 @@ class AppRouter extends Component<null, OwnState> {
 							<PrivateRoute
 								authed={authed}
 								path="/favorites"
-								component={Favorites}
+								component={FavoritesContainer}
 							/>
 
 							{/* If no mathching route found: */}

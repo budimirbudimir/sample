@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders without crashing 1`] = `
+<p>
+  <span
+    className="Similar-title"
+  >
+    Similar acts:
+  </span>
+  <span
+    className="App-similar_act"
+    href="https://www.last.fm/music/Lou+Reed"
+    onClick={[Function]}
+  >
+    Lou Reed
+  </span>
+  <span
+    className="App-similar_act"
+    href="https://www.last.fm/music/Iggy+Pop"
+    onClick={[Function]}
+  >
+    Iggy Pop
+  </span>
+  <span
+    className="App-similar_act"
+    href="https://www.last.fm/music/Tin+Machine"
+    onClick={[Function]}
+  >
+    Tin Machine
+  </span>
+  <span
+    className="App-similar_act"
+    href="https://www.last.fm/music/T.+Rex"
+    onClick={[Function]}
+  >
+    T. Rex
+  </span>
+  <span
+    className="App-similar_act"
+    href="https://www.last.fm/music/Roxy+Music"
+    onClick={[Function]}
+  >
+    Roxy Music
+  </span>
+</p>
+`;

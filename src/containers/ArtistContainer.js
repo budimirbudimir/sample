@@ -3,30 +3,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import starEmpty from '../../src/images/star_0.png'
-import starFilled from '../images/star_1.png'
-
+import { toggleBio } from '../actions/artists'
 import { addFavorite, removeFavorite, getFavorites } from '../actions/user'
 import type { Artist, TopArtist, FavoriteArtist } from '../models'
-import Similar from './Similar'
-import Tags from './Tags'
+
+import ArtistPage from '../components/Artist'
 
 type OwnProps = {
+	// fetchArtist is function to get current artist data
+	fetchArtist: string => void,
+	// query is current search query string entered in the input field
+	query: string,
+	// showDropdown is boolean indicating if search dropdown is visible
+	showDropdown: boolean,
+}
+
+type PropsFromState = {
 	// target is object containing all relevant target artist' data
 	target: Artist,
 	// targetImage is string representing target artist image URL
 	targetImage: string,
 	// expanded points to current target artists bio state (show more/less)
 	expanded: boolean,
-	// query is current search query string entered in the input field
-	query: string,
-	// showDropdown is boolean indicating if search dropdown is visible
-	showDropdown: boolean,
 	// results is array containing current search query results
 	results: TopArtist[],
-}
-
-type PropsFromState = {
 	// favoriteError is string containing error message for favorite action
 	favoriteError?: string,
 	// authedUserFavs is array indicating which artists current user favorited
@@ -34,7 +34,6 @@ type PropsFromState = {
 }
 
 type PropsFromDispatch = {
-	fetchArtist: string => void,
 	// toggleBio is action for toggling current/target artist bio (show more/less)
 	toggleBio: () => void,
 	// addFavorite is action to add current target artist (in detail view)
@@ -55,7 +54,7 @@ type OwnState = {
 	isCurrentFavorite: boolean,
 }
 
-class ArtistPage extends Component<Props, OwnState> {
+class ArtistContainer extends Component<Props, OwnState> {
 	state = {
 		isCurrentFavorite: false,
 	}
@@ -97,121 +96,27 @@ class ArtistPage extends Component<Props, OwnState> {
 	}
 
 	render() {
-		const {
-			target,
-			targetImage,
-			toggleBio,
-			fetchArtist,
-			expanded,
-			query,
-			showDropdown,
-			results,
-			favoriteError,
-		} = this.props
+		const { isCurrentFavorite } = this.state
 
 		return (
-			<div className="ArtistPage">
-				{showDropdown &&
-					query !== '' &&
-					query.length > 2 && (
-						<ul className="Search-results">
-							{results &&
-								results.map((value, index) => (
-									<li
-										key={index}
-										className="Search-result"
-										onClick={() => fetchArtist(value.name)}
-									>
-										<img src={value.image['0']['#text']} alt="" />
-										{value.name}
-									</li>
-								))}
-						</ul>
-					)}
-
-				{target.name !== '' && (
-					<div className="App-info">
-						<div className="App-info_details">
-							<img src={targetImage} alt="" />
-						</div>
-
-						<div className="App-info_bio">
-							<h2>
-								<a
-									className="App-bio_title"
-									href={target.bio.links.link.href}
-									target="blank"
-									rel="noreferrer noopener"
-								>
-									{target.name}
-								</a>
-
-								{this.state.isCurrentFavorite ? (
-									<img
-										src={starFilled}
-										alt=""
-										className="App-fav_star"
-										onClick={() => this.handleRemoveFavorite(target.mbid)}
-									/>
-								) : (
-									<img
-										src={starEmpty}
-										alt=""
-										className="App-fav_star"
-										onClick={this.handleAddFavorite}
-									/>
-								)}
-							</h2>
-
-							{favoriteError && (
-								<p style={{ color: '#d8000c' }}>{favoriteError}</p>
-							)}
-
-							<p>
-								Listeners: <strong>{target.stats.listeners}</strong>
-								<br />
-								Total plays: <strong>{target.stats.playcount}</strong>
-							</p>
-
-							{expanded ? (
-								<p className="App-bio_text">
-									<span
-										dangerouslySetInnerHTML={{ __html: target.bio.content }}
-									/>
-									<br />
-									<a className="App-bio_link" onClick={toggleBio}>
-										View Less
-									</a>
-								</p>
-							) : (
-								<p className="App-bio_text">
-									<span
-										dangerouslySetInnerHTML={{ __html: target.bio.summary }}
-									/>
-									<br />
-									<a className="App-bio_link" onClick={toggleBio}>
-										View More
-									</a>
-								</p>
-							)}
-
-							<Similar
-								similar={target.similar.artist}
-								fetchArtist={fetchArtist}
-							/>
-							<Tags tags={target.tags.tag} />
-						</div>
-					</div>
-				)}
-			</div>
+			<ArtistPage
+				{...this.props}
+				isCurrentFavorite={isCurrentFavorite}
+				handleAddFavorite={this.handleAddFavorite}
+				handleRemoveFavorite={this.handleRemoveFavorite}
+			/>
 		)
 	}
 }
 
 const mapStateToProps = state => {
 	return {
+		target: state.artists.target,
+		targetImage: state.artists.targetImage,
+		expanded: state.artists.expanded,
 		favoriteError: state.user.favoriteError,
 		authedUserFavs: state.user.authedUserFavs,
+		results: state.artists.results,
 	}
 }
 
@@ -221,7 +126,8 @@ const mapDispatchToProps = dispatch => {
 		removeFavorite: (userID, artistID) =>
 			dispatch(removeFavorite(userID, artistID)),
 		getFavorites: userID => dispatch(getFavorites(userID)),
+		toggleBio: () => dispatch(toggleBio()),
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArtistPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ArtistContainer)
