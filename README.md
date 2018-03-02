@@ -24,9 +24,9 @@ It's been bootstrapped using `create-react-app`.
 * `yarn test:coverage` or `npm run test:coverage` to check for test coverage on project
 * `yarn storybook` or `npm run storybook` to run Storybook dev environment
 * `yarn build` or `npm run build` to build production version
-* `firebase deploy` to deploy project fully on Firebase (functions & hosting)
-* `firebase deploy --only functions` to deploy Firebase Functions
-* `firebase deploy --only hosting` to deploy build folder to Firebase hosting
+* `yarn deploy` or `npm run deploy` to deploy project fully on Firebase (functions & hosting)
+* `yarn deploy:func` or `npm run deploy:func` to deploy Firebase Functions
+* `yarn deploy:host` or `npm run deploy:host` to deploy build folder to Firebase hosting
 
 For GraphQL implementation using Firebase Functions **[still WIP]**, see docs/GraphiQL: https://us-central1-budimir-sample.cloudfunctions.net/api/graphiql
 
