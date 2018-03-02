@@ -1,89 +1,59 @@
 // @flow
 
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 
-import { login, resetPassword } from '../actions/user'
-import '../styles/Auth.css'
-
-type PropsFromState = {
-	// loginError is string containing error message for login form
+type Props = {
+	// loginError is string containing login form error
 	loginError?: string,
+	// submit is function invoking parent function handleSubmit
+	submit: (string, string) => void,
+	// reset is function invoking parent function handleResetPassword
+	reset: string => void,
 }
 
-type PropsFromDispatch = {
-	// login is action to log user in, by using entered email and password
-	login: (string, string) => void,
-	// resetPassword is action to reset user's password by using stored email
-	resetPassword: string => void,
-}
+const Login = ({ loginError, submit, reset }: Props) => {
+	// email: ?HTMLInputElement
+	// pw: ?HTMLInputElement
+	let email
+	let pw
 
-type Props = PropsFromState & PropsFromDispatch
-
-class Login extends Component<Props, null> {
-	email: ?HTMLInputElement
-	pw: ?HTMLInputElement
-
-	handleSubmit = e => {
+	const onSubmit = e => {
 		e.preventDefault()
-		const { login } = this.props
 
-		if (this.email && this.pw) login(this.email.value, this.pw.value)
+		if (email && pw) submit(email.value, pw.value)
 	}
 
-	handleResetPassword = e => {
+	const onReset = e => {
 		e.preventDefault()
-		const { resetPassword } = this.props
 
-		if (this.email) resetPassword(this.email.value)
+		if (email) reset(email.value)
 	}
 
-	render() {
-		const { loginError } = this.props
+	return (
+		<div className="Auth">
+			{loginError && <p className="App-alert App-error">{loginError}</p>}
 
-		return (
-			<div className="Auth">
-				{loginError && <p className="App-alert App-error">{loginError}</p>}
+			<h3>Login</h3>
 
-				<h3>Login</h3>
+			<form onSubmit={onSubmit}>
+				<div className="Auth-email_container">
+					<input ref={el => (email = el)} placeholder="Email" />
+				</div>
 
-				<form onSubmit={this.handleSubmit}>
-					<div className="Auth-email_container">
-						<input ref={email => (this.email = email)} placeholder="Email" />
-					</div>
+				<div className="Auth-password_container">
+					<input type="password" placeholder="Password" ref={el => (pw = el)} />
+				</div>
 
-					<div className="Auth-password_container">
-						<input
-							type="password"
-							placeholder="Password"
-							ref={pw => (this.pw = pw)}
-						/>
-					</div>
+				<p>
+					<a className="resetPassword" onClick={onReset}>
+						Forgot Password?
+					</a>
+				</p>
 
-					<p>
-						<a className="resetPassword" onClick={this.handleResetPassword}>
-							Forgot Password?
-						</a>
-					</p>
-
-					<button type="submit">Login</button>
-				</form>
-			</div>
-		)
-	}
+				<button type="submit">Login</button>
+			</form>
+		</div>
+	)
 }
 
-const mapStateToProps = state => {
-	return {
-		loginError: state.user.loginError,
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		login: (email, pw) => dispatch(login(email, pw)),
-		resetPassword: email => dispatch(resetPassword(email)),
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login

@@ -43,5 +43,6 @@ _Keep in mind that Prettier, ESLint and Flow are interconnected._
 
 ##### TODO list:
 
-1. Add proper typechecking/test/storybook coverage **[in progress]**
-2. Finish CircleCI implementation properly _(optional)_
+1. Finish separation of concerns (Navigator) and unify Search component
+2. Add proper typechecking/test/storybook coverage **[in progress]**
+3. Finish CircleCI implementation properly _(optional)_

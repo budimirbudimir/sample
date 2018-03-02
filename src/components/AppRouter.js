@@ -7,10 +7,10 @@ import { firebaseAuth } from '../config'
 import { PrivateRoute, PublicRoute } from '../routes'
 
 import FavoritesContainer from '../containers/FavoritesContainer'
-import Header from './Header'
-import Login from './Login'
-import Register from './Register'
-import Home from './Home'
+import LoginContainer from '../containers/LoginContainer'
+import RegisterContainer from '../containers/RegisterContainer'
+import HeaderContainer from '../containers/HeaderContainer'
+import HomeContainer from '../containers/HomeContainer'
 import Navigator from './Navigator'
 import PageNotFound from './404'
 
@@ -47,18 +47,22 @@ class AppRouter extends Component<null, OwnState> {
 		) : (
 			<BrowserRouter>
 				<div className="App">
-					<Header authed={authed} />
+					<HeaderContainer authed={authed} />
 
 					<div className="App-route_container">
 						<Switch>
-							<Route path="/" exact component={Home} />
+							<Route path="/" exact component={HomeContainer} />
 
-							<PublicRoute authed={authed} path="/login" component={Login} />
+							<PublicRoute
+								authed={authed}
+								path="/login"
+								component={LoginContainer}
+							/>
 
 							<PublicRoute
 								authed={authed}
 								path="/register"
-								component={Register}
+								component={RegisterContainer}
 							/>
 
 							<PrivateRoute

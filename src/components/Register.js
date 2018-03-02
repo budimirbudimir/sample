@@ -1,77 +1,45 @@
 // @flow
 
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 
-import { auth } from '../actions/user'
-import '../styles/Auth.css'
-
-type PropsFromState = {
-	// registrationError is string containing error message for registration form
-	registrationError?: string,
+type Props = {
+	// loginError is string containing login form error
+	regError?: string,
+	// register is function invoking parent function handleSubmit
+	register: (string, string) => void,
 }
 
-type PropsFromDispatch = {
-	// auth is action to register new user via firebaseAuth, using email/password
-	auth: (string, string) => void,
-}
+const Register = ({ regError, register }: Props) => {
+	// email: ?HTMLInputElement
+	// pw: ?HTMLInputElement
+	let email
+	let pw
 
-type Props = PropsFromState & PropsFromDispatch
-
-class Register extends Component<Props, null> {
-	email: ?HTMLInputElement
-	pw: ?HTMLInputElement
-
-	handleSubmit = e => {
+	const onRegister = e => {
 		e.preventDefault()
-		const { auth } = this.props
 
-		if (this.email && this.pw) auth(this.email.value, this.pw.value)
+		if (email && pw) register(email.value, pw.value)
 	}
 
-	render() {
-		const { registrationError } = this.props
+	return (
+		<div className="Auth">
+			{regError && <p className="App-alert App-error">{regError}</p>}
 
-		return (
-			<div className="Auth">
-				{registrationError && (
-					<p className="App-alert App-error">{registrationError}</p>
-				)}
+			<h3>Register</h3>
 
-				<h3>Register</h3>
+			<form onSubmit={onRegister}>
+				<div className="Auth-email_container">
+					<input ref={el => (email = el)} placeholder="Email" />
+				</div>
 
-				<form onSubmit={this.handleSubmit}>
-					<div className="Auth-email_container">
-						<input ref={email => (this.email = email)} placeholder="Email" />
-					</div>
+				<div className="Auth-password_container">
+					<input type="password" placeholder="Password" ref={el => (pw = el)} />
+				</div>
 
-					<div className="Auth-password_container">
-						<input
-							type="password"
-							placeholder="Password"
-							ref={pw => (this.pw = pw)}
-						/>
-					</div>
-
-					{/* {this.state.registerError && <p>{this.state.registerError}</p>} */}
-
-					<button type="submit">Register</button>
-				</form>
-			</div>
-		)
-	}
+				<button type="submit">Register</button>
+			</form>
+		</div>
+	)
 }
 
-const mapStateToProps = state => {
-	return {
-		registrationError: state.user.registrationError,
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		auth: (email, pw) => dispatch(auth(email, pw)),
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default Register

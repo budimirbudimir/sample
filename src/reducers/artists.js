@@ -1,6 +1,7 @@
 // @flow
 
 import type { Action } from 'redux'
+import type { TopTrack, Artist, TopArtist, SimilarArtist, Tag } from '../models'
 
 type StatsData = {
 	// listeners is string representing number of target artist's unique listeners
@@ -23,24 +24,24 @@ type InitialTargetData = {
 	// image is string representing targeted artist's image URL
 	image: string,
 	// similar is array containing data of artists similar to current artist
-	similar: Array<any>,
+	similar: SimilarArtist[],
 	// tags is array containing tags similar to current artist
-	tags: Array<any>,
+	tags: Tag[],
 }
 
 type InitialStateData = {
 	// topTracks is array containing all tracks from Trending chart
 	// with their relevant data
-	topTracks: Array<any>,
+	topTracks: TopTrack[],
 	// topArtists is array containing all artists from Trending chart
 	// with their relevant data
-	topArtists: Array<any>,
+	topArtists: TopArtist[],
 	// target is object containing currently viewed artist's data
 	target: InitialTargetData,
 	// expanded points to current target artists bio state (show more/less)
 	expanded: boolean,
 	// results is array containing results returned from artists search query
-	results: Array<any>,
+	results: Artist[],
 }
 
 const initialTarget: InitialTargetData = {

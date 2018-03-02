@@ -1,12 +1,16 @@
 // @flow
 
 import type { Action } from 'redux'
+import type { FavoriteArtist } from '../models'
 
 type InitialStateData = {
 	// authedUserFavs is array of user's favorite artists, pulled from DB
-	authedUserFavs: Array<any>,
+	authedUserFavs: FavoriteArtist[],
+	// loginError is string containing login form error message
 	loginError: string | null,
+	// registrationError is string containing registration form error message
 	registrationError: string | null,
+	// favoriteError is string containing favorite action error message
 	favoriteError: string | null,
 }
 

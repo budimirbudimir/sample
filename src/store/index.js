@@ -8,6 +8,14 @@ import reducers from '../reducers'
 // Show logs collapsed (by default) in console
 const logger = createLogger({ collapsed: true })
 
-const middleware = applyMiddleware(promise(), thunk, logger)
+const middleware =
+	process.env.NODE_ENV !== 'production'
+		? [
+			require('redux-immutable-state-invariant').default(),
+			promise(),
+			thunk,
+			logger,
+		]
+		: [promise(), thunk]
 
-export const store = createStore(reducers, middleware)
+export const store = createStore(reducers, applyMiddleware(...middleware))
