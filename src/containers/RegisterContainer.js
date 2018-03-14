@@ -3,7 +3,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { auth } from '../actions/user'
+import { auth, setRegisterError } from '../actions/user'
+import { validate } from '../utils'
 import '../styles/Auth.css'
 
 import Register from '../components/Register'
@@ -16,15 +17,22 @@ type PropsFromState = {
 type PropsFromDispatch = {
 	// auth is action to register new user via firebaseAuth, using email/password
 	auth: (string, string) => void,
+	// setRegisterError is action to return current input errors on register form to user
+	setRegisterError: string => void,
 }
 
 type Props = PropsFromState & PropsFromDispatch
 
 class RegisterContainer extends Component<Props, null> {
 	handleSubmit = (email, pw) => {
-		const { auth } = this.props
+		const { auth, setRegisterError } = this.props
+		const validated = validate(email, pw)
 
-		if (email && pw) auth(email, pw)
+		if (validated.valid) {
+			auth(email, pw)
+		} else {
+			setRegisterError(validated.error)
+		}
 	}
 
 	render() {
@@ -45,6 +53,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		auth: (email, pw) => dispatch(auth(email, pw)),
+		setRegisterError: error => dispatch(setRegisterError(error)),
 	}
 }
 

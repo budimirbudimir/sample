@@ -1,33 +1,189 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders without crashing 1`] = `
-<div
-  className="PageNotFound"
+exports[`404 matches snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <PageNotFound />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h1
+          style={
+                    Object {
+                              "color": "#f4425c",
+                            }
+          }
 >
-  <h1
-    style={
+          Error 404
+</h1>,
+        <h3>
+          Requested page could not be found!
+</h3>,
+        <Link
+          replace={false}
+          style={
+                    Object {
+                              "color": "#f4425c",
+                              "fontWeight": "700",
+                              "textDecoration": "none",
+                            }
+          }
+          to="/"
+>
+          Go back to Home page
+</Link>,
+      ],
+      "className": "PageNotFound",
+    },
+    "ref": null,
+    "rendered": Array [
       Object {
-        "color": "#f4425c",
-      }
-    }
-  >
-    Error 404
-  </h1>
-  <h3>
-    Requested page could not be found!
-  </h3>
-  <a
-    href="/"
-    onClick={[Function]}
-    style={
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Error 404",
+          "style": Object {
+            "color": "#f4425c",
+          },
+        },
+        "ref": null,
+        "rendered": "Error 404",
+        "type": "h1",
+      },
       Object {
-        "color": "#f4425c",
-        "fontWeight": "700",
-        "textDecoration": "none",
-      }
-    }
-  >
-    Go back to Home page
-  </a>
-</div>
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Requested page could not be found!",
+        },
+        "ref": null,
+        "rendered": "Requested page could not be found!",
+        "type": "h3",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Go back to Home page",
+          "replace": false,
+          "style": Object {
+            "color": "#f4425c",
+            "fontWeight": "700",
+            "textDecoration": "none",
+          },
+          "to": "/",
+        },
+        "ref": null,
+        "rendered": "Go back to Home page",
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h1
+            style={
+                        Object {
+                                    "color": "#f4425c",
+                                  }
+            }
+>
+            Error 404
+</h1>,
+          <h3>
+            Requested page could not be found!
+</h3>,
+          <Link
+            replace={false}
+            style={
+                        Object {
+                                    "color": "#f4425c",
+                                    "fontWeight": "700",
+                                    "textDecoration": "none",
+                                  }
+            }
+            to="/"
+>
+            Go back to Home page
+</Link>,
+        ],
+        "className": "PageNotFound",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Error 404",
+            "style": Object {
+              "color": "#f4425c",
+            },
+          },
+          "ref": null,
+          "rendered": "Error 404",
+          "type": "h1",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Requested page could not be found!",
+          },
+          "ref": null,
+          "rendered": "Requested page could not be found!",
+          "type": "h3",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Go back to Home page",
+            "replace": false,
+            "style": Object {
+              "color": "#f4425c",
+              "fontWeight": "700",
+              "textDecoration": "none",
+            },
+            "to": "/",
+          },
+          "ref": null,
+          "rendered": "Go back to Home page",
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
 `;

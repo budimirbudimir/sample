@@ -38,6 +38,9 @@
 .Auth button:hover {
 	opacity: 0.5;
 }
+.Auth button:disabled {
+	background: #ccc;
+}
 .Auth a.resetPassword {
 	color: #f4425c;
 	cursor: pointer;

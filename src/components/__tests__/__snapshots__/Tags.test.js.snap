@@ -1,41 +1,304 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders without crashing 1`] = `
-<p>
-  <span
-    className="Tags-title"
-  >
-    Tags:
-  </span>
-  <a
-    className="App-similar_act"
-    href="https://www.last.fm/tag/rock"
-  >
-    rock
-  </a>
-  <a
-    className="App-similar_act"
-    href="https://www.last.fm/tag/pop"
-  >
-    pop
-  </a>
-  <a
-    className="App-similar_act"
-    href="https://www.last.fm/tag/metal"
-  >
-    metal
-  </a>
-  <a
-    className="App-similar_act"
-    href="https://www.last.fm/tag/disco"
-  >
-    disco
-  </a>
-  <a
-    className="App-similar_act"
-    href="https://www.last.fm/tag/reggae"
-  >
-    reggae
-  </a>
-</p>
+exports[`Tags matches snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Tags
+    tags={
+        Array [
+            Object {
+              "name": "rock",
+              "url": "https://www.last.fm/tag/rock",
+            },
+            Object {
+              "name": "pop",
+              "url": "https://www.last.fm/tag/pop",
+            },
+            Object {
+              "name": "metal",
+              "url": "https://www.last.fm/tag/metal",
+            },
+            Object {
+              "name": "disco",
+              "url": "https://www.last.fm/tag/disco",
+            },
+            Object {
+              "name": "reggae",
+              "url": "https://www.last.fm/tag/reggae",
+            },
+          ]
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <span
+          className="Tags-title"
+>
+          Tags:
+</span>,
+        Array [
+          <a
+            className="App-similar_act"
+            href="https://www.last.fm/tag/rock"
+>
+            rock
+</a>,
+          <a
+            className="App-similar_act"
+            href="https://www.last.fm/tag/pop"
+>
+            pop
+</a>,
+          <a
+            className="App-similar_act"
+            href="https://www.last.fm/tag/metal"
+>
+            metal
+</a>,
+          <a
+            className="App-similar_act"
+            href="https://www.last.fm/tag/disco"
+>
+            disco
+</a>,
+          <a
+            className="App-similar_act"
+            href="https://www.last.fm/tag/reggae"
+>
+            reggae
+</a>,
+        ],
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Tags:",
+          "className": "Tags-title",
+        },
+        "ref": null,
+        "rendered": "Tags:",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "0",
+        "nodeType": "host",
+        "props": Object {
+          "children": "rock",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/tag/rock",
+        },
+        "ref": null,
+        "rendered": "rock",
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "host",
+        "props": Object {
+          "children": "pop",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/tag/pop",
+        },
+        "ref": null,
+        "rendered": "pop",
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": "2",
+        "nodeType": "host",
+        "props": Object {
+          "children": "metal",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/tag/metal",
+        },
+        "ref": null,
+        "rendered": "metal",
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": "3",
+        "nodeType": "host",
+        "props": Object {
+          "children": "disco",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/tag/disco",
+        },
+        "ref": null,
+        "rendered": "disco",
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": "4",
+        "nodeType": "host",
+        "props": Object {
+          "children": "reggae",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/tag/reggae",
+        },
+        "ref": null,
+        "rendered": "reggae",
+        "type": "a",
+      },
+    ],
+    "type": "p",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <span
+            className="Tags-title"
+>
+            Tags:
+</span>,
+          Array [
+            <a
+              className="App-similar_act"
+              href="https://www.last.fm/tag/rock"
+>
+              rock
+</a>,
+            <a
+              className="App-similar_act"
+              href="https://www.last.fm/tag/pop"
+>
+              pop
+</a>,
+            <a
+              className="App-similar_act"
+              href="https://www.last.fm/tag/metal"
+>
+              metal
+</a>,
+            <a
+              className="App-similar_act"
+              href="https://www.last.fm/tag/disco"
+>
+              disco
+</a>,
+            <a
+              className="App-similar_act"
+              href="https://www.last.fm/tag/reggae"
+>
+              reggae
+</a>,
+          ],
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Tags:",
+            "className": "Tags-title",
+          },
+          "ref": null,
+          "rendered": "Tags:",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "host",
+          "props": Object {
+            "children": "rock",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/tag/rock",
+          },
+          "ref": null,
+          "rendered": "rock",
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "host",
+          "props": Object {
+            "children": "pop",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/tag/pop",
+          },
+          "ref": null,
+          "rendered": "pop",
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": "2",
+          "nodeType": "host",
+          "props": Object {
+            "children": "metal",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/tag/metal",
+          },
+          "ref": null,
+          "rendered": "metal",
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": "3",
+          "nodeType": "host",
+          "props": Object {
+            "children": "disco",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/tag/disco",
+          },
+          "ref": null,
+          "rendered": "disco",
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": "4",
+          "nodeType": "host",
+          "props": Object {
+            "children": "reggae",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/tag/reggae",
+          },
+          "ref": null,
+          "rendered": "reggae",
+          "type": "a",
+        },
+      ],
+      "type": "p",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
 `;

@@ -14,12 +14,22 @@ export const auth = (email: string, pw: string) => ({
 		.then(saveUser),
 })
 
+export const setRegisterError = (message: string) => ({
+	type: 'AUTH_REJECTED',
+	payload: { message },
+})
+
 // Log user in order to see session-locked pages
 export const login = (email: string, pw: string) => ({
 	type: 'LOGIN',
 	payload: firebaseAuth()
 		.signInWithEmailAndPassword(email, pw)
 		.then(saveLocal),
+})
+
+export const setLoginError = (message: string) => ({
+	type: 'LOGIN_REJECTED',
+	payload: { message },
 })
 
 // Log out currently logged in user

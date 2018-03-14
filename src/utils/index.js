@@ -1,29 +1,20 @@
-import { ref, firebaseAuth } from '../config'
+// email regex
+// eslint-disable-next-line
+export const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-export function auth(email, pw) {
-	return firebaseAuth()
-		.createUserWithEmailAndPassword(email, pw)
-		.then(saveUser)
-}
+// validation function
+export const validate = (email, pw) => {
+	if (email.length < 6) {
+		return { valid: false, error: 'Email too short' }
+	}
 
-export function logout() {
-	return firebaseAuth().signOut()
-}
+	if (!emailRegex.test(email)) {
+		return { valid: false, error: 'Please use valid email format' }
+	}
 
-export function login(email, pw) {
-	return firebaseAuth().signInWithEmailAndPassword(email, pw)
-}
+	if (pw.length < 6) {
+		return { valid: false, error: 'Password too short' }
+	}
 
-export function resetPassword(email) {
-	return firebaseAuth().sendPasswordResetEmail(email)
-}
-
-export function saveUser(user) {
-	return ref
-		.child(`users/${user.uid}/info`)
-		.set({
-			email: user.email,
-			uid: user.uid,
-		})
-		.then(() => user)
+	return { valid: true, message: '' }
 }

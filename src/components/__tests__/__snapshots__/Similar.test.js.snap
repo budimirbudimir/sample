@@ -1,46 +1,325 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders without crashing 1`] = `
-<p>
-  <span
-    className="Similar-title"
-  >
-    Similar acts:
-  </span>
-  <span
-    className="App-similar_act"
-    href="https://www.last.fm/music/Lou+Reed"
-    onClick={[Function]}
-  >
-    Lou Reed
-  </span>
-  <span
-    className="App-similar_act"
-    href="https://www.last.fm/music/Iggy+Pop"
-    onClick={[Function]}
-  >
-    Iggy Pop
-  </span>
-  <span
-    className="App-similar_act"
-    href="https://www.last.fm/music/Tin+Machine"
-    onClick={[Function]}
-  >
-    Tin Machine
-  </span>
-  <span
-    className="App-similar_act"
-    href="https://www.last.fm/music/T.+Rex"
-    onClick={[Function]}
-  >
-    T. Rex
-  </span>
-  <span
-    className="App-similar_act"
-    href="https://www.last.fm/music/Roxy+Music"
-    onClick={[Function]}
-  >
-    Roxy Music
-  </span>
-</p>
+exports[`Similar matches snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Similar
+    fetchArtist={[Function]}
+    similar={
+        Array [
+            Object {
+              "name": "Lou Reed",
+              "url": "https://www.last.fm/music/Lou+Reed",
+            },
+            Object {
+              "name": "Iggy Pop",
+              "url": "https://www.last.fm/music/Iggy+Pop",
+            },
+            Object {
+              "name": "Tin Machine",
+              "url": "https://www.last.fm/music/Tin+Machine",
+            },
+            Object {
+              "name": "T. Rex",
+              "url": "https://www.last.fm/music/T.+Rex",
+            },
+            Object {
+              "name": "Roxy Music",
+              "url": "https://www.last.fm/music/Roxy+Music",
+            },
+          ]
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <span
+          className="Similar-title"
+>
+          Similar acts:
+</span>,
+        Array [
+          <span
+            className="App-similar_act"
+            href="https://www.last.fm/music/Lou+Reed"
+            onClick={[Function]}
+>
+            Lou Reed
+</span>,
+          <span
+            className="App-similar_act"
+            href="https://www.last.fm/music/Iggy+Pop"
+            onClick={[Function]}
+>
+            Iggy Pop
+</span>,
+          <span
+            className="App-similar_act"
+            href="https://www.last.fm/music/Tin+Machine"
+            onClick={[Function]}
+>
+            Tin Machine
+</span>,
+          <span
+            className="App-similar_act"
+            href="https://www.last.fm/music/T.+Rex"
+            onClick={[Function]}
+>
+            T. Rex
+</span>,
+          <span
+            className="App-similar_act"
+            href="https://www.last.fm/music/Roxy+Music"
+            onClick={[Function]}
+>
+            Roxy Music
+</span>,
+        ],
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Similar acts:",
+          "className": "Similar-title",
+        },
+        "ref": null,
+        "rendered": "Similar acts:",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "0",
+        "nodeType": "host",
+        "props": Object {
+          "children": "Lou Reed",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/music/Lou+Reed",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "Lou Reed",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "host",
+        "props": Object {
+          "children": "Iggy Pop",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/music/Iggy+Pop",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "Iggy Pop",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "2",
+        "nodeType": "host",
+        "props": Object {
+          "children": "Tin Machine",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/music/Tin+Machine",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "Tin Machine",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "3",
+        "nodeType": "host",
+        "props": Object {
+          "children": "T. Rex",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/music/T.+Rex",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "T. Rex",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "4",
+        "nodeType": "host",
+        "props": Object {
+          "children": "Roxy Music",
+          "className": "App-similar_act",
+          "href": "https://www.last.fm/music/Roxy+Music",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "Roxy Music",
+        "type": "span",
+      },
+    ],
+    "type": "p",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <span
+            className="Similar-title"
+>
+            Similar acts:
+</span>,
+          Array [
+            <span
+              className="App-similar_act"
+              href="https://www.last.fm/music/Lou+Reed"
+              onClick={[Function]}
+>
+              Lou Reed
+</span>,
+            <span
+              className="App-similar_act"
+              href="https://www.last.fm/music/Iggy+Pop"
+              onClick={[Function]}
+>
+              Iggy Pop
+</span>,
+            <span
+              className="App-similar_act"
+              href="https://www.last.fm/music/Tin+Machine"
+              onClick={[Function]}
+>
+              Tin Machine
+</span>,
+            <span
+              className="App-similar_act"
+              href="https://www.last.fm/music/T.+Rex"
+              onClick={[Function]}
+>
+              T. Rex
+</span>,
+            <span
+              className="App-similar_act"
+              href="https://www.last.fm/music/Roxy+Music"
+              onClick={[Function]}
+>
+              Roxy Music
+</span>,
+          ],
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Similar acts:",
+            "className": "Similar-title",
+          },
+          "ref": null,
+          "rendered": "Similar acts:",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "host",
+          "props": Object {
+            "children": "Lou Reed",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/music/Lou+Reed",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Lou Reed",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "host",
+          "props": Object {
+            "children": "Iggy Pop",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/music/Iggy+Pop",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Iggy Pop",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "2",
+          "nodeType": "host",
+          "props": Object {
+            "children": "Tin Machine",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/music/Tin+Machine",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Tin Machine",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "3",
+          "nodeType": "host",
+          "props": Object {
+            "children": "T. Rex",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/music/T.+Rex",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "T. Rex",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "4",
+          "nodeType": "host",
+          "props": Object {
+            "children": "Roxy Music",
+            "className": "App-similar_act",
+            "href": "https://www.last.fm/music/Roxy+Music",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Roxy Music",
+          "type": "span",
+        },
+      ],
+      "type": "p",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
 `;

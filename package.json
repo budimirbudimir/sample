@@ -5,6 +5,7 @@
 	"dependencies": {
 		"axios": "^0.17.1",
 		"babel-eslint": "^8.2.1",
+		"enzyme-adapter-react-16": "^1.1.1",
 		"firebase": "^4.9.1",
 		"history": "^4.7.2",
 		"prop-types": "^15.6.0",
@@ -29,9 +30,9 @@
 		"eject": "react-scripts eject",
 		"storybook": "start-storybook -p 9009 -s public",
 		"build-storybook": "build-storybook -s public",
-		"deploy": "firebase deploy",
-		"deploy:func": "firebase deploy --only functions",
-		"deploy:host": "firebase deploy --only hosting"
+		"deploy": "react-scripts build firebase deploy",
+		"deploy:func": "react-scripts build firebase deploy --only functions",
+		"deploy:host": "react-scripts build && firebase deploy --only hosting"
 	},
 	"devDependencies": {
 		"@storybook/addon-actions": "^3.3.14",
