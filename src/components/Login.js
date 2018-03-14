@@ -37,7 +37,7 @@ const Login = ({ loginError, submit, reset }: Props) => {
 
 			<form onSubmit={onSubmit}>
 				<div className="Auth-email_container">
-					<input ref={el => (email = el)} placeholder="Email" />
+					<input type="text" ref={el => (email = el)} placeholder="Email" />
 				</div>
 
 				<div className="Auth-password_container">

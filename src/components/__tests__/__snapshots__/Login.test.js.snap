@@ -32,6 +32,7 @@ ShallowWrapper {
           >
                     <input
                               placeholder="Email"
+                              type="text"
                     />
           </div>
           <div
@@ -84,6 +85,7 @@ ShallowWrapper {
 >
               <input
                             placeholder="Email"
+                            type="text"
               />
 </div>,
             <div
@@ -119,6 +121,7 @@ ShallowWrapper {
             "props": Object {
               "children": <input
                 placeholder="Email"
+                type="text"
 />,
               "className": "Auth-email_container",
             },
@@ -129,6 +132,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "placeholder": "Email",
+                "type": "text",
               },
               "ref": [Function],
               "rendered": null,
@@ -227,6 +231,7 @@ ShallowWrapper {
             >
                         <input
                                     placeholder="Email"
+                                    type="text"
                         />
             </div>
             <div
@@ -279,6 +284,7 @@ ShallowWrapper {
 >
                 <input
                                 placeholder="Email"
+                                type="text"
                 />
 </div>,
               <div
@@ -314,6 +320,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <input
                   placeholder="Email"
+                  type="text"
 />,
                 "className": "Auth-email_container",
               },
@@ -324,6 +331,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "placeholder": "Email",
+                  "type": "text",
                 },
                 "ref": [Function],
                 "rendered": null,

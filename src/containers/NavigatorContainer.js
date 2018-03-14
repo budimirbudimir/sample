@@ -13,7 +13,8 @@ import '../styles/App.css'
 import '../styles/Search.css'
 
 import ArtistContainer from '../containers/ArtistContainer'
-import Trending from './Trending'
+import Trending from '../components/Trending'
+import Search from '../components/Search'
 
 import type { Artist, TopArtist } from '../models'
 
@@ -56,7 +57,7 @@ type Props = PropsFromState & PropsFromDispatch
 
 const DROPDOWN_TIMEOUT = 300
 
-class Navigator extends Component<Props, OwnState> {
+class NavigatorContainer extends Component<Props, OwnState> {
 	state = {
 		query: '',
 		showDropdown: false,
@@ -91,6 +92,30 @@ class Navigator extends Component<Props, OwnState> {
 		this.fetchArtist(query)
 	}
 
+	handleChange = e => {
+		// Sync the current query locally
+		this.setState({ query: e.target.value })
+	}
+
+	handleKeypress = e => {
+		// If key pressed is Enter, run find/fetch artist action
+		if (e.key === 'Enter') {
+			this.findArtist()
+		} else {
+			this.searchArtist()
+		}
+	}
+
+	handleFocus = () => {
+		this.setState({ showDropdown: true })
+	}
+
+	handleBlur = () => {
+		setTimeout(() => {
+			this.setState({ showDropdown: false })
+		}, DROPDOWN_TIMEOUT)
+	}
+
 	render() {
 		const {
 			target,
@@ -105,36 +130,13 @@ class Navigator extends Component<Props, OwnState> {
 		return (
 			<div className="App-content_container">
 				<div className="App-content">
-					<div className="App-search_container">
-						<input
-							className="App-search"
-							type="text"
-							placeholder="Enter search query"
-							onChange={ev => {
-								// Sync the current query locally
-								this.setState({ query: ev.target.value })
-							}}
-							onKeyPress={e => {
-								// If key pressed is Enter, run find/fetch artist action
-								if (e.key === 'Enter') {
-									this.findArtist()
-								} else {
-									this.searchArtist()
-								}
-							}}
-							onFocus={() => {
-								this.setState({ showDropdown: true })
-							}}
-							onBlur={() => {
-								setTimeout(() => {
-									this.setState({ showDropdown: false })
-								}, DROPDOWN_TIMEOUT)
-							}}
-						/>
-						<button className="App-search-button" onClick={this.findArtist}>
-							Search
-						</button>
-					</div>
+					<Search
+						change={this.handleChange}
+						keypress={this.handleKeypress}
+						focus={this.handleFocus}
+						blur={this.handleBlur}
+						findArtist={this.findArtist}
+					/>
 
 					<ArtistContainer
 						target={target}
@@ -173,4 +175,4 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigator)
+export default connect(mapStateToProps, mapDispatchToProps)(NavigatorContainer)

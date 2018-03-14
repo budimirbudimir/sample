@@ -15,4 +15,26 @@ describe('Register', () => {
 	it('matches snapshot', () => {
 		expect(wrapper).toMatchSnapshot()
 	})
+
+	it('should have email input', () => {
+		expect(
+			wrapper.containsMatchingElement(
+				<input type="text" placeholder="Email" />,
+			),
+		).toBe(true)
+	})
+
+	it('should have password input', () => {
+		expect(
+			wrapper.containsMatchingElement(
+				<input type="password" placeholder="Password" />,
+			),
+		).toBe(true)
+	})
+
+	it('should have submit button', () => {
+		expect(
+			wrapper.containsMatchingElement(<button type="submit">Register</button>),
+		).toBe(true)
+	})
 })

@@ -11,7 +11,7 @@ import LoginContainer from '../containers/LoginContainer'
 import RegisterContainer from '../containers/RegisterContainer'
 import HeaderContainer from '../containers/HeaderContainer'
 import HomeContainer from '../containers/HomeContainer'
-import Navigator from './Navigator'
+import NavigatorContainer from '../containers/NavigatorContainer'
 import PageNotFound from './404'
 
 type OwnState = {
@@ -68,7 +68,7 @@ class AppRouter extends Component<null, OwnState> {
 							<PrivateRoute
 								authed={authed}
 								path="/navigator"
-								component={Navigator}
+								component={NavigatorContainer}
 							/>
 
 							<PrivateRoute

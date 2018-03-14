@@ -29,7 +29,7 @@ const Register = ({ regError, register }: Props) => {
 
 			<form onSubmit={onRegister}>
 				<div className="Auth-email_container">
-					<input ref={el => (email = el)} placeholder="Email" />
+					<input type="text" ref={el => (email = el)} placeholder="Email" />
 				</div>
 
 				<div className="Auth-password_container">
