@@ -17,11 +17,13 @@
 		"module": false,
 		"process": false
 	},
-	"plugins": ["react"],
+	"plugins": ["react", "flowtype"],
 	"rules": {
 		"indent": ["error", "tab"],
 		"linebreak-style": ["error", "unix"],
 		"quotes": ["error", "single"],
-		"semi": ["error", "never"]
+		"semi": ["error", "never"],
+		"flowtype/define-flow-type": 1,
+		"flowtype/use-flow-type": 1
 	}
 }

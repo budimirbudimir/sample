@@ -5,17 +5,13 @@ import { connect } from 'react-redux'
 
 import { toggleBio } from '../actions/artists'
 import { addFavorite, removeFavorite, getFavorites } from '../actions/user'
-import type { Artist, TopArtist, FavoriteArtist } from '../models'
+import type { Artist, FavoriteArtist } from '../models'
 
 import ArtistPage from '../components/Artist'
 
 type OwnProps = {
 	// fetchArtist is function to get current artist data
 	fetchArtist: string => void,
-	// query is current search query string entered in the input field
-	query: string,
-	// showDropdown is boolean indicating if search dropdown is visible
-	showDropdown: boolean,
 }
 
 type PropsFromState = {
@@ -25,8 +21,6 @@ type PropsFromState = {
 	targetImage: string,
 	// expanded points to current target artists bio state (show more/less)
 	expanded: boolean,
-	// results is array containing current search query results
-	results: TopArtist[],
 	// favoriteError is string containing error message for favorite action
 	favoriteError?: string,
 	// authedUserFavs is array indicating which artists current user favorited
@@ -116,7 +110,6 @@ const mapStateToProps = state => {
 		expanded: state.artists.expanded,
 		favoriteError: state.user.favoriteError,
 		authedUserFavs: state.user.authedUserFavs,
-		results: state.artists.results,
 	}
 }
 

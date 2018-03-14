@@ -5,7 +5,7 @@ import React from 'react'
 import starEmpty from '../../src/images/star_0.png'
 import starFilled from '../images/star_1.png'
 
-import type { Artist, TopArtist } from '../models'
+import type { Artist } from '../models'
 import Similar from './Similar'
 import Tags from './Tags'
 
@@ -16,12 +16,6 @@ type Props = {
 	targetImage: string,
 	// expanded points to current target artists bio state (show more/less)
 	expanded: boolean,
-	// query is current search query string entered in the input field
-	query: string,
-	// showDropdown is boolean indicating if search dropdown is visible
-	showDropdown: boolean,
-	// results is array containing current search query results
-	results: TopArtist[],
 	// favoriteError is string containing error message for favorite action
 	favoriteError?: string,
 	// isCurrentFavorite is boolean indicating if current artist have been added
@@ -43,9 +37,6 @@ const ArtistPage = ({
 	target,
 	targetImage,
 	expanded,
-	query,
-	showDropdown,
-	results,
 	favoriteError,
 	isCurrentFavorite,
 	toggleBio,
@@ -54,24 +45,6 @@ const ArtistPage = ({
 	handleRemoveFavorite,
 }: Props) => (
 	<div className="ArtistPage">
-		{showDropdown &&
-			query !== '' &&
-			query.length > 2 && (
-				<ul className="Search-results">
-					{results &&
-						results.map((value, index) => (
-							<li
-								key={index}
-								className="Search-result"
-								onClick={() => fetchArtist(value.name)}
-							>
-								<img src={value.image['0']['#text']} alt="" />
-								{value.name}
-							</li>
-						))}
-				</ul>
-			)}
-
 		{target.name !== '' && (
 			<div className="App-info">
 				<div className="App-info_details">

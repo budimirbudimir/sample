@@ -92,12 +92,14 @@ class NavigatorContainer extends Component<Props, OwnState> {
 		this.fetchArtist(query)
 	}
 
-	handleChange = e => {
+	handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+		// (e.currentTarget: HTMLInputElement)
 		// Sync the current query locally
-		this.setState({ query: e.target.value })
+		this.setState({ query: e.currentTarget.value })
 	}
 
-	handleKeypress = e => {
+	handleKeypress = (e: SyntheticEvent<HTMLInputElement>) => {
+		// (e.currentTarget: HTMLInputElement)
 		// If key pressed is Enter, run find/fetch artist action
 		if (e.key === 'Enter') {
 			this.findArtist()
@@ -136,17 +138,18 @@ class NavigatorContainer extends Component<Props, OwnState> {
 						focus={this.handleFocus}
 						blur={this.handleBlur}
 						findArtist={this.findArtist}
+						fetchArtist={this.fetchArtist}
+						results={results}
+						showDropdown={showDropdown}
+						query={query}
 					/>
 
 					<ArtistContainer
 						target={target}
 						targetImage={targetImage}
 						toggleBio={toggleBio}
-						fetchArtist={this.fetchArtist}
 						expanded={expanded}
-						results={results}
-						showDropdown={showDropdown}
-						query={query}
+						fetchArtist={this.fetchArtist}
 					/>
 				</div>
 
