@@ -79,7 +79,7 @@ const artists = (
 	case 'FETCH_TRENDING_REJECTED':
 		return {
 			...state,
-			...{ ferror: action.payload },
+			...{ error: action.payload },
 		}
 	case 'FETCH_TRENDING_FULFILLED':
 		return {
