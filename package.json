@@ -30,7 +30,6 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "deploy": "react-scripts build firebase deploy",
-    "deploy:func": "react-scripts build firebase deploy --only functions",
     "deploy:host": "react-scripts build && firebase deploy --only hosting"
   },
   "devDependencies": {
