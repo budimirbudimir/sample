@@ -20,7 +20,7 @@ describe('404', () => {
 
 	it('should have a link', () => {
 		expect(
-			wrapper.containsMatchingElement(<Link to="/">Go back to Home page</Link>),
+			wrapper.containsMatchingElement(<Link to="/">Go back to Home</Link>),
 		).toBe(true)
 	})
 

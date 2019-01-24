@@ -2,38 +2,38 @@
 
 exports[`Tags matches snapshot 1`] = `
 ShallowWrapper {
-  "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Tags
     tags={
-        Array [
-            Object {
-              "name": "rock",
-              "url": "https://www.last.fm/tag/rock",
-            },
-            Object {
-              "name": "pop",
-              "url": "https://www.last.fm/tag/pop",
-            },
-            Object {
-              "name": "metal",
-              "url": "https://www.last.fm/tag/metal",
-            },
-            Object {
-              "name": "disco",
-              "url": "https://www.last.fm/tag/disco",
-            },
-            Object {
-              "name": "reggae",
-              "url": "https://www.last.fm/tag/reggae",
-            },
-          ]
+      Array [
+        Object {
+          "name": "rock",
+          "url": "https://www.last.fm/tag/rock",
+        },
+        Object {
+          "name": "pop",
+          "url": "https://www.last.fm/tag/pop",
+        },
+        Object {
+          "name": "metal",
+          "url": "https://www.last.fm/tag/metal",
+        },
+        Object {
+          "name": "disco",
+          "url": "https://www.last.fm/tag/disco",
+        },
+        Object {
+          "name": "reggae",
+          "url": "https://www.last.fm/tag/reggae",
+        },
+      ]
     }
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -45,40 +45,40 @@ ShallowWrapper {
       "children": Array [
         <span
           className="Tags-title"
->
+        >
           Tags:
-</span>,
+        </span>,
         Array [
           <a
             className="App-similar_act"
             href="https://www.last.fm/tag/rock"
->
+          >
             rock
-</a>,
+          </a>,
           <a
             className="App-similar_act"
             href="https://www.last.fm/tag/pop"
->
+          >
             pop
-</a>,
+          </a>,
           <a
             className="App-similar_act"
             href="https://www.last.fm/tag/metal"
->
+          >
             metal
-</a>,
+          </a>,
           <a
             className="App-similar_act"
             href="https://www.last.fm/tag/disco"
->
+          >
             disco
-</a>,
+          </a>,
           <a
             className="App-similar_act"
             href="https://www.last.fm/tag/reggae"
->
+          >
             reggae
-</a>,
+          </a>,
         ],
       ],
     },
@@ -173,40 +173,40 @@ ShallowWrapper {
         "children": Array [
           <span
             className="Tags-title"
->
+          >
             Tags:
-</span>,
+          </span>,
           Array [
             <a
               className="App-similar_act"
               href="https://www.last.fm/tag/rock"
->
+            >
               rock
-</a>,
+            </a>,
             <a
               className="App-similar_act"
               href="https://www.last.fm/tag/pop"
->
+            >
               pop
-</a>,
+            </a>,
             <a
               className="App-similar_act"
               href="https://www.last.fm/tag/metal"
->
+            >
               metal
-</a>,
+            </a>,
             <a
               className="App-similar_act"
               href="https://www.last.fm/tag/disco"
->
+            >
               disco
-</a>,
+            </a>,
             <a
               className="App-similar_act"
               href="https://www.last.fm/tag/reggae"
->
+            >
               reggae
-</a>,
+            </a>,
           ],
         ],
       },
@@ -297,6 +297,16 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
       },
     },
   },

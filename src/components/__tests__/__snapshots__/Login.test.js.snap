@@ -2,15 +2,15 @@
 
 exports[`Login matches snapshot 1`] = `
 ShallowWrapper {
-  "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Login
     loginError=""
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -23,40 +23,40 @@ ShallowWrapper {
         "",
         <h3>
           Login
-</h3>,
+        </h3>,
         <form
           onSubmit={[Function]}
->
+        >
           <div
-                    className="Auth-email_container"
+            className="Auth-email_container"
           >
-                    <input
-                              placeholder="Email"
-                              type="text"
-                    />
+            <input
+              placeholder="Email"
+              type="text"
+            />
           </div>
           <div
-                    className="Auth-password_container"
+            className="Auth-password_container"
           >
-                    <input
-                              placeholder="Password"
-                              type="password"
-                    />
+            <input
+              placeholder="Password"
+              type="password"
+            />
           </div>
           <p>
-                    <a
-                              className="resetPassword"
-                              onClick={[Function]}
-                    >
-                              Forgot Password?
-                    </a>
+            <a
+              className="resetPassword"
+              onClick={[Function]}
+            >
+              Forgot Password?
+            </a>
           </p>
           <button
-                    type="submit"
+            type="submit"
           >
-                    Login
+            Login
           </button>
-</form>,
+        </form>,
       ],
       "className": "Auth",
     },
@@ -82,33 +82,33 @@ ShallowWrapper {
           "children": Array [
             <div
               className="Auth-email_container"
->
+            >
               <input
-                            placeholder="Email"
-                            type="text"
+                placeholder="Email"
+                type="text"
               />
-</div>,
+            </div>,
             <div
               className="Auth-password_container"
->
+            >
               <input
-                            placeholder="Password"
-                            type="password"
+                placeholder="Password"
+                type="password"
               />
-</div>,
+            </div>,
             <p>
               <a
-                            className="resetPassword"
-                            onClick={[Function]}
+                className="resetPassword"
+                onClick={[Function]}
               >
-                            Forgot Password?
+                Forgot Password?
               </a>
-</p>,
+            </p>,
             <button
               type="submit"
->
+            >
               Login
-</button>,
+            </button>,
           ],
           "onSubmit": [Function],
         },
@@ -122,7 +122,7 @@ ShallowWrapper {
               "children": <input
                 placeholder="Email"
                 type="text"
-/>,
+              />,
               "className": "Auth-email_container",
             },
             "ref": null,
@@ -148,7 +148,7 @@ ShallowWrapper {
               "children": <input
                 placeholder="Password"
                 type="password"
-/>,
+              />,
               "className": "Auth-password_container",
             },
             "ref": null,
@@ -174,9 +174,9 @@ ShallowWrapper {
               "children": <a
                 className="resetPassword"
                 onClick={[Function]}
->
+              >
                 Forgot Password?
-</a>,
+              </a>,
             },
             "ref": null,
             "rendered": Object {
@@ -222,40 +222,40 @@ ShallowWrapper {
           "",
           <h3>
             Login
-</h3>,
+          </h3>,
           <form
             onSubmit={[Function]}
->
+          >
             <div
-                        className="Auth-email_container"
+              className="Auth-email_container"
             >
-                        <input
-                                    placeholder="Email"
-                                    type="text"
-                        />
+              <input
+                placeholder="Email"
+                type="text"
+              />
             </div>
             <div
-                        className="Auth-password_container"
+              className="Auth-password_container"
             >
-                        <input
-                                    placeholder="Password"
-                                    type="password"
-                        />
+              <input
+                placeholder="Password"
+                type="password"
+              />
             </div>
             <p>
-                        <a
-                                    className="resetPassword"
-                                    onClick={[Function]}
-                        >
-                                    Forgot Password?
-                        </a>
+              <a
+                className="resetPassword"
+                onClick={[Function]}
+              >
+                Forgot Password?
+              </a>
             </p>
             <button
-                        type="submit"
+              type="submit"
             >
-                        Login
+              Login
             </button>
-</form>,
+          </form>,
         ],
         "className": "Auth",
       },
@@ -281,33 +281,33 @@ ShallowWrapper {
             "children": Array [
               <div
                 className="Auth-email_container"
->
+              >
                 <input
-                                placeholder="Email"
-                                type="text"
+                  placeholder="Email"
+                  type="text"
                 />
-</div>,
+              </div>,
               <div
                 className="Auth-password_container"
->
+              >
                 <input
-                                placeholder="Password"
-                                type="password"
+                  placeholder="Password"
+                  type="password"
                 />
-</div>,
+              </div>,
               <p>
                 <a
-                                className="resetPassword"
-                                onClick={[Function]}
+                  className="resetPassword"
+                  onClick={[Function]}
                 >
-                                Forgot Password?
+                  Forgot Password?
                 </a>
-</p>,
+              </p>,
               <button
                 type="submit"
->
+              >
                 Login
-</button>,
+              </button>,
             ],
             "onSubmit": [Function],
           },
@@ -321,7 +321,7 @@ ShallowWrapper {
                 "children": <input
                   placeholder="Email"
                   type="text"
-/>,
+                />,
                 "className": "Auth-email_container",
               },
               "ref": null,
@@ -347,7 +347,7 @@ ShallowWrapper {
                 "children": <input
                   placeholder="Password"
                   type="password"
-/>,
+                />,
                 "className": "Auth-password_container",
               },
               "ref": null,
@@ -373,9 +373,9 @@ ShallowWrapper {
                 "children": <a
                   className="resetPassword"
                   onClick={[Function]}
->
+                >
                   Forgot Password?
-</a>,
+                </a>,
               },
               "ref": null,
               "rendered": Object {
@@ -416,6 +416,16 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
       },
     },
   },

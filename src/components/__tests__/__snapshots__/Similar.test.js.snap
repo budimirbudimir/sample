@@ -2,39 +2,39 @@
 
 exports[`Similar matches snapshot 1`] = `
 ShallowWrapper {
-  "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Similar
     fetchArtist={[Function]}
     similar={
-        Array [
-            Object {
-              "name": "Lou Reed",
-              "url": "https://www.last.fm/music/Lou+Reed",
-            },
-            Object {
-              "name": "Iggy Pop",
-              "url": "https://www.last.fm/music/Iggy+Pop",
-            },
-            Object {
-              "name": "Tin Machine",
-              "url": "https://www.last.fm/music/Tin+Machine",
-            },
-            Object {
-              "name": "T. Rex",
-              "url": "https://www.last.fm/music/T.+Rex",
-            },
-            Object {
-              "name": "Roxy Music",
-              "url": "https://www.last.fm/music/Roxy+Music",
-            },
-          ]
+      Array [
+        Object {
+          "name": "Lou Reed",
+          "url": "https://www.last.fm/music/Lou+Reed",
+        },
+        Object {
+          "name": "Iggy Pop",
+          "url": "https://www.last.fm/music/Iggy+Pop",
+        },
+        Object {
+          "name": "Tin Machine",
+          "url": "https://www.last.fm/music/Tin+Machine",
+        },
+        Object {
+          "name": "T. Rex",
+          "url": "https://www.last.fm/music/T.+Rex",
+        },
+        Object {
+          "name": "Roxy Music",
+          "url": "https://www.last.fm/music/Roxy+Music",
+        },
+      ]
     }
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -46,45 +46,45 @@ ShallowWrapper {
       "children": Array [
         <span
           className="Similar-title"
->
+        >
           Similar acts:
-</span>,
+        </span>,
         Array [
           <span
             className="App-similar_act"
             href="https://www.last.fm/music/Lou+Reed"
             onClick={[Function]}
->
+          >
             Lou Reed
-</span>,
+          </span>,
           <span
             className="App-similar_act"
             href="https://www.last.fm/music/Iggy+Pop"
             onClick={[Function]}
->
+          >
             Iggy Pop
-</span>,
+          </span>,
           <span
             className="App-similar_act"
             href="https://www.last.fm/music/Tin+Machine"
             onClick={[Function]}
->
+          >
             Tin Machine
-</span>,
+          </span>,
           <span
             className="App-similar_act"
             href="https://www.last.fm/music/T.+Rex"
             onClick={[Function]}
->
+          >
             T. Rex
-</span>,
+          </span>,
           <span
             className="App-similar_act"
             href="https://www.last.fm/music/Roxy+Music"
             onClick={[Function]}
->
+          >
             Roxy Music
-</span>,
+          </span>,
         ],
       ],
     },
@@ -184,45 +184,45 @@ ShallowWrapper {
         "children": Array [
           <span
             className="Similar-title"
->
+          >
             Similar acts:
-</span>,
+          </span>,
           Array [
             <span
               className="App-similar_act"
               href="https://www.last.fm/music/Lou+Reed"
               onClick={[Function]}
->
+            >
               Lou Reed
-</span>,
+            </span>,
             <span
               className="App-similar_act"
               href="https://www.last.fm/music/Iggy+Pop"
               onClick={[Function]}
->
+            >
               Iggy Pop
-</span>,
+            </span>,
             <span
               className="App-similar_act"
               href="https://www.last.fm/music/Tin+Machine"
               onClick={[Function]}
->
+            >
               Tin Machine
-</span>,
+            </span>,
             <span
               className="App-similar_act"
               href="https://www.last.fm/music/T.+Rex"
               onClick={[Function]}
->
+            >
               T. Rex
-</span>,
+            </span>,
             <span
               className="App-similar_act"
               href="https://www.last.fm/music/Roxy+Music"
               onClick={[Function]}
->
+            >
               Roxy Music
-</span>,
+            </span>,
           ],
         ],
       },
@@ -318,6 +318,16 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
       },
     },
   },
