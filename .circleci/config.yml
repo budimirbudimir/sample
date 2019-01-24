@@ -38,8 +38,5 @@ jobs:
       #     name: Run ESLint checks
       #     command: yarn lint
       - run:
-          name: Run Flow type checking
-          command: yarn flow
-      - run:
           name: Run Jest tests
           command: yarn test
