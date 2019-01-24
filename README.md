@@ -30,8 +30,6 @@ It's been bootstrapped using `create-react-app`.
 
 For GraphQL implementation using Firebase Functions **[still WIP]**, see docs/GraphiQL: https://us-central1-budimir-sample.cloudfunctions.net/api/graphiql
 
-_Keep in mind that Prettier, ESLint and Flow are interconnected._
-
 ---
 
 ##### Notes:
@@ -43,6 +41,10 @@ _Keep in mind that Prettier, ESLint and Flow are interconnected._
 
 ##### TODO list:
 
+1. Fix favorite action
 1. Organize `findArtist()`, `fetchArtist()` and `setArtist()` functions better
-2. Add proper typechecking/test/storybook coverage **[in progress]**
-3. Finish CircleCI implementation properly _(optional)_
+2. Drop classes for functional components & recompose/hooks
+2. Reorganize folder structure
+2. Add `redux-saga` and finish missing logic
+3. Add proper typechecking/test/storybook coverage **[in progress]**
+4. Figure how to deploy to custom host and integrate CI/CD _optional_

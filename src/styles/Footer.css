@@ -20,8 +20,8 @@
 	transition: all 0.3s;
 }
 .App-result:hover {
-	color: #333;
+	color: #fff;
 	cursor: pointer;
-	background: #f4425c;
-	border: 1px solid #f4425c;
+	background: #222;
+	border: 1px solid #222;
 }

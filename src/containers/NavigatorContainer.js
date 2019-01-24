@@ -1,181 +1,90 @@
-// @flow
-
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { compose, withState, withHandlers, lifecycle, mapProps } from 'recompose'
+import { omit } from 'ramda'
 
-import {
-	fetchTrending,
-	setArtist,
-	searchArtist,
-	toggleBio,
-} from '../actions/artists'
+import { fetchTrending, setArtist, searchArtist, toggleBio } from '../actions'
+import Navigator from '../components/Navigator'
 import '../styles/App.css'
 import '../styles/Search.css'
 
-import ArtistContainer from '../containers/ArtistContainer'
-import Trending from '../components/Trending'
-import Search from '../components/Search'
-
-import type { Artist, TopArtist } from '../models'
-
-type PropsFromState = {
-	// expanded points to current target artists bio state (show more/less)
-	expanded: boolean,
-	// topArtists is array containing all artists from Trending chart
-	// with their relevant data
-	topArtists: TopArtist[],
-	// target is object containing all relevant target artist' data
-	target: Artist,
-	// targetImage is string representing target artist image URL
-	targetImage: string,
-	// results is array containing current search query results
-	results: TopArtist[],
-}
-
-type PropsFromDispatch = {
-	// fetchTrending is action for fetching all Trending chart artists
-	// together with their relevant data
-	fetchTrending: () => void,
-	// setArtist is action for fetching artist by current search query
-	searchArtist: string => void,
-	// toggleBio is action for toggling current/target artist bio (show more/less)
-	toggleBio: () => void,
-	// setArtist is action to set current target artist data into details view
-	setArtist: string => void,
-	// getFavorites is action to fetch current user's favorites from DB
-	getFavorites: string => void,
-}
-
-type OwnState = {
-	// query is current search query string entered in the input field
-	query: string,
-	// showDropdown is boolean indicating if search dropdown is visible
-	showDropdown: boolean,
-}
-
-type Props = PropsFromState & PropsFromDispatch
-
 const DROPDOWN_TIMEOUT = 300
 
-class NavigatorContainer extends Component<Props, OwnState> {
-	state = {
-		query: '',
-		showDropdown: false,
-	}
 
-	componentDidMount() {
-		const { fetchTrending } = this.props
+//#region NAVIGATION STATE
+const withNavigatioState = compose(
+	withState('query', 'setQuery', ''),
+	withState('showDropdown', 'setDropdown', false)
+)
+//#endregion
 
-		// Get trending artists
-		fetchTrending()
-	}
 
-	fetchArtist = (name: string) => {
-		const { setArtist } = this.props
-
-		// Find and set target artist
-		setArtist(name)
-	}
-
-	searchArtist = () => {
-		const { searchArtist } = this.props
-		const { query } = this.state
-
-		// Find and set target artist (if 3+ chars entered)
-		if (query.length >= 2) searchArtist(query)
-	}
-
-	findArtist = () => {
-		const { query } = this.state
-
-		// Fetch artist data
-		this.fetchArtist(query)
-	}
-
-	handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
-		// (e.currentTarget: HTMLInputElement)
-		// Sync the current query locally
-		this.setState({ query: e.currentTarget.value })
-	}
-
-	handleKeypress = (e: SyntheticEvent<HTMLInputElement>) => {
-		// (e.currentTarget: HTMLInputElement)
-		// If key pressed is Enter, run find/fetch artist action
+//#region NAVIGATION HANDLERS
+const withNavigationHandlers = withHandlers({
+	handleFetchArtist: ({ setArtist }) => (name) => {
+		setArtist(name) // Find and set target artist
+	},
+	findArtist: ({ query, fetchArtist }) => {
+		fetchArtist(query) // Fetch artist data
+	},
+	handleChange: ({ setQuery }) => (e) => {
+		setQuery(e.currentTarget.value) // Sync the current query locally
+	},
+	handleFocus: ({ setDropdown }) => () => {
+		setDropdown(true)
+	},
+	handleBlur: ({ setDropdown }) => () => {
+		setTimeout(() => { setDropdown(false) }, DROPDOWN_TIMEOUT)
+	},
+	handleKeypress: ({ findArtist, query, searchArtist }) => (e) => {
 		if (e.key === 'Enter') {
-			this.findArtist()
+			findArtist()
 		} else {
-			this.searchArtist()
+			if (query.length >= 2) searchArtist(query)
 		}
+	},
+})
+//#endregion
+
+
+//#region LIFECYCLE METHODS
+const withLifecycleMethods = lifecycle({
+	componentDidMount() {
+		this.props.fetchTrending() // Get trending artists
 	}
+})
+//#endregion
 
-	handleFocus = () => {
-		this.setState({ showDropdown: true })
-	}
 
-	handleBlur = () => {
-		setTimeout(() => {
-			this.setState({ showDropdown: false })
-		}, DROPDOWN_TIMEOUT)
-	}
+//#region REDUX CONNECTION
+const mapStateToProps = state => ({
+	target: state.artists.target,
+	targetImage: state.artists.targetImage,
+	expanded: state.artists.expanded,
+	topArtists: state.artists.topArtists,
+	results: state.artists.results,
+})
+const mapDispatchToProps = dispatch => ({
+	fetchTrending: () => dispatch(fetchTrending()),
+	toggleBio: () => dispatch(toggleBio()),
+	setArtist: name => dispatch(setArtist(name)),
+	searchArtist: name => dispatch(searchArtist(name)),
+})
+const withReduxConnection = connect(mapStateToProps, mapDispatchToProps)
+//#endregion
 
-	render() {
-		const {
-			target,
-			targetImage,
-			topArtists,
-			expanded,
-			toggleBio,
-			results,
-		} = this.props
-		const { query, showDropdown } = this.state
 
-		return (
-			<div className="App-content_container">
-				<div className="App-content">
-					<Search
-						change={this.handleChange}
-						keypress={this.handleKeypress}
-						focus={this.handleFocus}
-						blur={this.handleBlur}
-						findArtist={this.findArtist}
-						fetchArtist={this.fetchArtist}
-						results={results}
-						showDropdown={showDropdown}
-						query={query}
-					/>
+//#region PROPS MAPPER
+const withPropsMapper = mapProps(props => ({
+	...omit(['fetchArtist', 'searchArtist'], props),
+  fetchArtist: props.handleFetchArtist
+}))
+//#endregion
 
-					<ArtistContainer
-						target={target}
-						targetImage={targetImage}
-						toggleBio={toggleBio}
-						expanded={expanded}
-						fetchArtist={this.fetchArtist}
-					/>
-				</div>
 
-				<Trending artists={topArtists} fetchArtist={this.fetchArtist} />
-			</div>
-		)
-	}
-}
-
-const mapStateToProps = state => {
-	return {
-		target: state.artists.target,
-		targetImage: state.artists.targetImage,
-		expanded: state.artists.expanded,
-		topArtists: state.artists.topArtists,
-		results: state.artists.results,
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		fetchTrending: () => dispatch(fetchTrending()),
-		toggleBio: () => dispatch(toggleBio()),
-		setArtist: name => dispatch(setArtist(name)),
-		searchArtist: name => dispatch(searchArtist(name)),
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigatorContainer)
+export default compose(
+	withReduxConnection,
+	withNavigatioState,
+	withNavigationHandlers,
+	withLifecycleMethods,
+	withPropsMapper
+)(Navigator)

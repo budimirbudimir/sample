@@ -1,17 +1,6 @@
-// @flow
-
 import React from 'react'
 
-import type { SimilarArtist } from '../models'
-
-type SimilarTypes = {
-	// similar is array of objects containing similar artist data
-	similar: SimilarArtist[],
-	// fetchArtist is function to get artist data by artist name
-	fetchArtist: string => void,
-}
-
-const Similar = ({ similar, fetchArtist }: SimilarTypes) => (
+const Similar = ({ similar, fetchArtist }) => (
 	<p>
 		<span className="Similar-title">Similar acts:</span>
 		{similar.map((act, index) => (

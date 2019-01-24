@@ -1,6 +1,7 @@
+const prod = './store.prod'
+const dev = './store.dev'
+
 // Determine which store to use, development or production one
-if (process.env.NODE_ENV === 'production') {
-	module.exports = require('./store.prod')
-} else {
-	module.exports = require('./store.dev')
-}
+const store = process.env.NODE_ENV === 'production' ? prod : dev
+
+module.exports = require(`${store}`)

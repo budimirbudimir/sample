@@ -1,18 +1,4 @@
-// @flow
-
-import type { Action } from 'redux'
-import type { FavoriteArtist } from '../models'
-
-type InitialStateData = {
-	// authedUserFavs is array of user's favorite artists, pulled from DB
-	authedUserFavs: FavoriteArtist[],
-	// loginError is string containing login form error message
-	loginError: string | null,
-	// registrationError is string containing registration form error message
-	registrationError: string | null,
-	// favoriteError is string containing favorite action error message
-	favoriteError: string | null,
-}
+import * as types from '../actionTypes'
 
 export const initialState = {
 	authedUserFavs: [],
@@ -22,56 +8,56 @@ export const initialState = {
 }
 
 const user = (
-	state: InitialStateData = initialState,
-	action: Action,
-): InitialStateData => {
+	state = initialState,
+	action,
+) => {
 	switch (action.type) {
 	// USER actions
-	case 'AUTH_FULFILLED':
+	case `${types.AUTH}_FULFILLED`:
 		return {
 			...state,
 			...{ registrationError: null },
 		}
-	case 'AUTH_REJECTED':
+	case `${types.AUTH}_REJECTED`:
 		return {
 			...state,
 			...{ registrationError: action.payload.message },
 		}
 
-	case 'LOGIN_FULFILLED':
+	case `${types.LOGIN}_FULFILLED`:
 		return {
 			...state,
 			...{ loginError: null },
 		}
-	case 'LOGIN_REJECTED':
+	case `${types.LOGIN}_REJECTED`:
 		return {
 			...state,
 			...{ loginError: action.payload.message },
 		}
 
-	case 'LOGOUT_FULFILLED':
+	case `${types.LOGOUT}_FULFILLED`:
 		// Remove current user from the state
 		return {
 			...state,
 			...{ authedUserFavs: [] },
 		}
 
-	case 'RESET_PASSWORD_FULFILLED':
+	case `${types.RESET_PASSWORD}_FULFILLED`:
 		return {
 			...state,
 			...{ loginError: null },
 		}
-	case 'RESET_PASSWORD_REJECTED':
+	case `${types.RESET_PASSWORD}_REJECTED`:
 		return {
 			...state,
 			...{ loginError: action.payload.message },
 		}
 
-	case 'SAVE_USER':
+	case types.SAVE_USER:
 		// TODO: Handle logic.
 		return state
 
-	case 'ADD_FAVORITE_FULFILLED':
+	case `${types.ADD_FAVORITE}_FULFILLED`:
 		return {
 			...state,
 			...{
@@ -85,13 +71,13 @@ const user = (
 						}),
 			},
 		}
-	case 'ADD_FAVORITE_REJECTED':
+	case `${types.ADD_FAVORITE}_REJECTED`:
 		return {
 			...state,
 			...{ favoriteError: action.payload.message },
 		}
 
-	case 'REMOVE_FAVORITE_FULFILLED':
+	case `${types.REMOVE_FAVORITE}_FULFILLED`:
 		return {
 			...state,
 			...{
@@ -101,19 +87,19 @@ const user = (
 				),
 			},
 		}
-	case 'REMOVE_FAVORITE_REJECTED':
+	case `${types.REMOVE_FAVORITE}_REJECTED`:
 		return {
 			...state,
 			...{ favoriteError: action.payload.message },
 		}
 
-	case 'GET_FAVORITES_FULFILLED':
+	case `${types.GET_FAVORITES}_FULFILLED`:
 		return {
 			...state,
 			...{ authedUserFavs: action.payload && Object.values(action.payload) },
 		}
 
-		// Fallback functionality
+	// Fallback functionality
 	default:
 		return state
 	}

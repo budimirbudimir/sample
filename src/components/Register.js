@@ -1,17 +1,6 @@
-// @flow
-
 import React from 'react'
 
-type Props = {
-	// loginError is string containing login form error
-	regError?: string,
-	// register is function invoking parent function handleSubmit
-	register: (string, string) => void,
-}
-
-const Register = ({ regError, register }: Props) => {
-	// email: ?HTMLInputElement
-	// pw: ?HTMLInputElement
+const Register = ({ regError, register }) => {
 	let email
 	let pw
 

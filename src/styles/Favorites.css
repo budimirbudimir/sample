@@ -42,7 +42,7 @@
 .Favorites-item:hover p {
 	display: flex;
 }
-.Favorites-item a {
+.Favorites-item .Favorites-link {
 	position: absolute;
 	z-index: 2;
 	top: 0;

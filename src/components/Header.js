@@ -1,19 +1,9 @@
-// @flow
-
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 import logo from '../images/lastfm_logo.png'
 
-type Props = {
-	// authed is boolean defining if user is authenticated and if user has
-	// access to session-locked content/pages
-	authed: boolean,
-	// logout is action which logs out currently active user
-	logout: () => void,
-}
-
-const Header = ({ authed, logout }: Props) => (
+const Header = ({ authed, logout }) => (
 	<header className="App-header">
 		<nav className="Menu-bar">
 			<div className="Menu-bar_container">

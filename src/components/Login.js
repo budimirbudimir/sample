@@ -1,19 +1,6 @@
-// @flow
-
 import React from 'react'
 
-type Props = {
-	// loginError is string containing login form error
-	loginError?: string,
-	// submit is function invoking parent function handleSubmit
-	submit: (string, string) => void,
-	// reset is function invoking parent function handleResetPassword
-	reset: string => void,
-}
-
-const Login = ({ loginError, submit, reset }: Props) => {
-	// email: ?HTMLInputElement
-	// pw: ?HTMLInputElement
+const Login = ({ loginError, submit, reset }) => {
 	let email
 	let pw
 

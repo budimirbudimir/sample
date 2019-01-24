@@ -1,18 +1,8 @@
-// @flow
-
 import React from 'react'
 
-import type { TopArtist } from '../models'
 import '../styles/Footer.css'
 
-type TrendingTypes = {
-	// artists is array of objects containing artist data
-	artists: TopArtist[],
-	// fetchArtist is function to get artist data by artist name
-	fetchArtist?: null | (string => void),
-}
-
-const Trending = ({ artists, fetchArtist }: TrendingTypes) => (
+const Trending = ({ artists, fetchArtist }) => (
 	<div>
 		{artists.length > 0 && (
 			<div className="App-trending">

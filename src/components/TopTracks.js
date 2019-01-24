@@ -1,8 +1,5 @@
-// @flow
-
 import React from 'react'
 
-import { TopTrack } from '../models'
 import '../styles/TopTracks.css'
 
 // Mapping table headings
@@ -13,9 +10,9 @@ const titleLine = {
 	artist: { name: 'Artist Name' },
 }
 
-const TopTracks = ({ tracks }: TopTrack) => {
+const TopTracks = ({ tracks }) => {
 	// Add table headings line to the front of array
-	const withHeadings: TopTrack[] = [titleLine].concat(tracks)
+	const withHeadings = [titleLine].concat(tracks)
 
 	return (
 		<ul className="TopTracks">

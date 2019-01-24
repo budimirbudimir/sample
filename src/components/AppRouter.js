@@ -1,9 +1,6 @@
-// @flow
-
-import React, { Component } from 'react'
+import React from 'react'
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 
-import { firebaseAuth } from '../config'
 import { PrivateRoute, PublicRoute } from '../routes'
 
 import FavoritesContainer from '../containers/FavoritesContainer'
@@ -14,77 +11,50 @@ import HomeContainer from '../containers/HomeContainer'
 import NavigatorContainer from '../containers/NavigatorContainer'
 import PageNotFound from './404'
 
-type OwnState = {
-	// authed is boolean indicating if user is logged in
-	authed: boolean,
-	// loading is boolean indicating if logging process is currently ongoing
-	loading: boolean,
-}
+const AppRouter = ({ loading, authed }) => {
 
-class AppRouter extends Component<null, OwnState> {
-	removeListener: () => void
+	// If loading, indicate it to user
+	if (loading === true) return <h1>Loading</h1>
 
-	state = {
-		authed: false,
-		loading: true,
-	}
+	return (
+		<BrowserRouter>
+			<div className="App">
+				<HeaderContainer authed={authed} />
 
-	componentDidMount() {
-		this.removeListener = firebaseAuth().onAuthStateChanged(user => {
-			this.setState({ authed: !!user, loading: false })
-		})
-	}
+				<div className="App-route_container">
+					<Switch>
+						<Route path="/" exact component={HomeContainer} />
 
-	componentWillUnmount() {
-		this.removeListener()
-	}
+						<PublicRoute
+							authed={authed}
+							path="/login"
+							component={LoginContainer}
+						/>
 
-	render() {
-		const { loading, authed } = this.state
+						<PublicRoute
+							authed={authed}
+							path="/register"
+							component={RegisterContainer}
+						/>
 
-		return loading === true ? (
-			<h1>Loading</h1>
-		) : (
-			<BrowserRouter>
-				<div className="App">
-					<HeaderContainer authed={authed} />
+						<PrivateRoute
+							authed={authed}
+							path="/navigator"
+							component={NavigatorContainer}
+						/>
 
-					<div className="App-route_container">
-						<Switch>
-							<Route path="/" exact component={HomeContainer} />
+						<PrivateRoute
+							authed={authed}
+							path="/favorites"
+							component={FavoritesContainer}
+						/>
 
-							<PublicRoute
-								authed={authed}
-								path="/login"
-								component={LoginContainer}
-							/>
-
-							<PublicRoute
-								authed={authed}
-								path="/register"
-								component={RegisterContainer}
-							/>
-
-							<PrivateRoute
-								authed={authed}
-								path="/navigator"
-								component={NavigatorContainer}
-							/>
-
-							<PrivateRoute
-								authed={authed}
-								path="/favorites"
-								component={FavoritesContainer}
-							/>
-
-							{/* If no mathching route found: */}
-							<Route render={() => <PageNotFound />} />
-						</Switch>
-					</div>
+						<Route render={() => <PageNotFound />} />
+					</Switch>
 				</div>
-			</BrowserRouter>
-		)
-	}
+			</div>
+		</BrowserRouter>
+	)
 }
 
 export default AppRouter

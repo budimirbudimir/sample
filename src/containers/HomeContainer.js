@@ -1,69 +1,44 @@
-// @flow
-
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { compose, withHandlers, lifecycle } from 'recompose'
 
-import { fetchTrending, fetchTopTracks, setArtist } from '../actions/artists'
-import type { TopArtist, TopTrack } from '../models'
-
+import { fetchTrending, fetchTopTracks, setArtist } from '../actions'
 import Home from '../components/Home'
-
 import '../styles/Home.css'
 
-type PropsFromState = {
-	// topArtists is array containing all artists from Trending chart
-	// with their relevant data
-	topArtists: TopArtist[],
-	// topTracks is array containing all tracks from Trending chart
-	// with their relevant data
-	topTracks: TopTrack[],
-}
 
-type PropsFromDispatch = {
-	// fetchTrending is action for fetching all Trending chart artists
-	// together with their relevant data
-	fetchTrending: () => void,
-	// fetchTopTracks is action for fetching all trending chart tracks
-	// together with their relevant data
-	fetchTopTracks: () => void,
-	// setArtist is action for fetching artist by current search query
-	setArtist: string => void,
-}
+//#region COMPONENT ACTIONS
+const withComponentActions = withHandlers({
+	fetchArtist: name => setArtist(name)
+})
+//#endregion
 
-type Props = PropsFromState & PropsFromDispatch
 
-class HomeContainer extends Component<Props, null> {
+//#region LIFECYCLE METHODS
+const withLifecycleMethods = lifecycle({
 	componentDidMount() {
-		const { fetchTrending, fetchTopTracks } = this.props
-
-		fetchTrending() // Get trending artists
-		fetchTopTracks() // Get trending tracks
+		this.props.fetchTrending() // Get trending artists
+		this.props.fetchTopTracks() // Get trending tracks
 	}
+})
+//#endregion
 
-	fetchArtist = (name: string) => {
-		const { setArtist } = this.props
 
-		setArtist(name) // Find and set target artist
-	}
+//#region REDUX CONNECTION
+const mapStateToProps = state => ({
+	topArtists: state.artists.topArtists,
+	topTracks: state.artists.topTracks,
+})
+const mapDispatchToProps = dispatch => ({
+	fetchTrending: () => dispatch(fetchTrending()),
+	fetchTopTracks: () => dispatch(fetchTopTracks()),
+	setArtist: name => dispatch(setArtist(name)),
+})
+const withReduxConnection = connect(mapStateToProps, mapDispatchToProps)
+//#endregion
 
-	render() {
-		return <Home {...this.props} />
-	}
-}
 
-const mapStateToProps = state => {
-	return {
-		topArtists: state.artists.topArtists,
-		topTracks: state.artists.topTracks,
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		fetchTrending: () => dispatch(fetchTrending()),
-		fetchTopTracks: () => dispatch(fetchTopTracks()),
-		setArtist: name => dispatch(setArtist(name)),
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)
+export default compose(
+	withReduxConnection,
+	withComponentActions,
+	withLifecycleMethods,
+)(Home)

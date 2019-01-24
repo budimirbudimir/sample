@@ -1,126 +1,73 @@
-// @flow
-
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { compose, lifecycle, withState, withHandlers } from 'recompose'
 
-import { toggleBio } from '../actions/artists'
-import { addFavorite, removeFavorite, getFavorites } from '../actions/user'
-import type { Artist, FavoriteArtist } from '../models'
-
+import { toggleBio, addFavorite, removeFavorite, getFavorites } from '../actions'
 import ArtistPage from '../components/Artist'
 
-type OwnProps = {
-	// fetchArtist is function to get current artist data
-	fetchArtist: string => void,
-}
+//#region REDUX CONNECTION
+const mapStateToProps = state => ({
+	target: state.artists.target,
+	targetImage: state.artists.targetImage,
+	expanded: state.artists.expanded,
+	favoriteError: state.user.favoriteError,
+	authedUserFavs: state.user.authedUserFavs,
+})
+const mapDispatchToProps = dispatch => ({
+	addFavorite: (userID, artist) => dispatch(addFavorite(userID, artist)),
+	removeFavorite: (userID, artistID) =>
+		dispatch(removeFavorite(userID, artistID)),
+	getFavorites: userID => dispatch(getFavorites(userID)),
+	toggleBio: () => dispatch(toggleBio())
+})
+const withReduxConnection = connect(mapStateToProps, mapDispatchToProps)
+//#endregion
 
-type PropsFromState = {
-	// target is object containing all relevant target artist' data
-	target: Artist,
-	// targetImage is string representing target artist image URL
-	targetImage: string,
-	// expanded points to current target artists bio state (show more/less)
-	expanded: boolean,
-	// favoriteError is string containing error message for favorite action
-	favoriteError?: string,
-	// authedUserFavs is array indicating which artists current user favorited
-	authedUserFavs: FavoriteArtist[],
-}
 
-type PropsFromDispatch = {
-	// toggleBio is action for toggling current/target artist bio (show more/less)
-	toggleBio: () => void,
-	// addFavorite is action to add current target artist (in detail view)
-	// in current user's favorites in DB
-	addFavorite: (string, Artist) => void,
-	// removeFavorite is action to remove current target artist (in detail view)
-	// from current user's favorites in DB
-	removeFavorite: (string, Artist) => void,
-	// getFavorites is action to fetch current user's favorites from DB
-	getFavorites: string => void,
-}
+//#region STATE CONNECTION
+const withStateConnection = withState('isCurrentFavorite', 'setCurrentFavorite', false)
+//#endregion
 
-type Props = OwnProps & PropsFromState & PropsFromDispatch
 
-type OwnState = {
-	// isCurrentFavorite is boolean indicating if current artist have been added
-	// to current user's favorites in DB
-	isCurrentFavorite: boolean,
-}
-
-class ArtistContainer extends Component<Props, OwnState> {
-	state = {
-		isCurrentFavorite: false,
-	}
-
-	componentDidMount() {
-		const { getFavorites } = this.props
-		const userID = localStorage.getItem('currentUser')
-
-		// Get favorite artists by user
-		if (userID) getFavorites(userID)
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if (!nextProps.authedUserFavs) return false
-		const currentFavs = nextProps.authedUserFavs.map(fav => fav.id)
-		const isCurrentFavorite = currentFavs.indexOf(nextProps.target.mbid) !== -1
-
-		this.setState({ isCurrentFavorite })
-	}
-
-	handleAddFavorite = () => {
-		const { target, addFavorite, authedUserFavs, getFavorites } = this.props
+//#region FAVORITE ACTIONS
+const withFavoriteActions = withHandlers({
+	handleAddFavorite: ({ target, addFavorite, authedUserFavs, getFavorites }) => () => {
 		const userID = localStorage.getItem('currentUser')
 
 		if (userID)
-			// $FlowFixMe
 			addFavorite(userID, target).then(() => {
-				// If user had no favorites prior to adding this,
-				// pull new list when done with adding
+				// If user had no favorites prior to adding this, pull new list when done with adding
 				if (!authedUserFavs) getFavorites(userID)
 			})
-	}
-
-	handleRemoveFavorite = (artistID: string) => {
-		const { removeFavorite } = this.props
+	},
+	handleRemoveFavorite: ({ removeFavorite }) => (artistID) => {
 		const userID = localStorage.getItem('currentUser')
 
 		if (userID) removeFavorite(userID, artistID)
 	}
+})
+//#endregion
 
-	render() {
-		const { isCurrentFavorite } = this.state
 
-		return (
-			<ArtistPage
-				{...this.props}
-				isCurrentFavorite={isCurrentFavorite}
-				handleAddFavorite={this.handleAddFavorite}
-				handleRemoveFavorite={this.handleRemoveFavorite}
-			/>
-		)
-	}
-}
+//#region LIFECYCLE METHODS
+const withLifecycleMethods = lifecycle({
+	componentDidMount() {
+		const { getFavorites, authedUserFavs, target, setCurrentFavorite } = this.props
+		const userID = localStorage.getItem('currentUser')
 
-const mapStateToProps = state => {
-	return {
-		target: state.artists.target,
-		targetImage: state.artists.targetImage,
-		expanded: state.artists.expanded,
-		favoriteError: state.user.favoriteError,
-		authedUserFavs: state.user.authedUserFavs,
-	}
-}
+		const currentFavs = authedUserFavs.map(fav => fav.id === target.mbid)
+		const isCurrentFavorite = currentFavs.length > 0
+		setCurrentFavorite(isCurrentFavorite)
 
-const mapDispatchToProps = dispatch => {
-	return {
-		addFavorite: (userID, artist) => dispatch(addFavorite(userID, artist)),
-		removeFavorite: (userID, artistID) =>
-			dispatch(removeFavorite(userID, artistID)),
-		getFavorites: userID => dispatch(getFavorites(userID)),
-		toggleBio: () => dispatch(toggleBio()),
-	}
-}
+		// Get favorite artists by user
+		if (userID) getFavorites(userID)
+	},
+})
+//#endregion
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArtistContainer)
+
+export default compose(
+	withReduxConnection,
+	withStateConnection,
+	withFavoriteActions,
+	withLifecycleMethods,
+)(ArtistPage)

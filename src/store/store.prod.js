@@ -6,4 +6,7 @@ import reducers from '../reducers'
 
 const middleware = [promise(), thunk]
 
-export const store = createStore(reducers, applyMiddleware(...middleware))
+export const store = createStore(
+  reducers,
+  applyMiddleware(...middleware)
+)
