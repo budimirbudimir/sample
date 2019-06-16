@@ -6,5 +6,6 @@
     "linebreak",
     "nsmed",
     "playcount"
-  ]
+  ],
+  "eslint.enable": true
 }
