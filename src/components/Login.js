@@ -1,46 +1,46 @@
 import React from 'react'
 
 const Login = ({ loginError, submit, reset }) => {
-	let email
-	let pw
+  let email
+  let pw
 
-	const onSubmit = e => {
-		e.preventDefault()
+  const onSubmit = e => {
+    e.preventDefault()
 
-		if (email && pw) submit(email.value, pw.value)
-	}
+    if (email && pw) submit(email.value, pw.value)
+  }
 
-	const onReset = e => {
-		e.preventDefault()
+  const onReset = e => {
+    e.preventDefault()
 
-		if (email) reset(email.value)
-	}
+    if (email) reset(email.value)
+  }
 
-	return (
-		<div className="Auth">
-			{loginError && <p className="App-alert App-error">{loginError}</p>}
+  return (
+    <div className="Auth">
+      {loginError && <p className="App-alert App-error">{loginError}</p>}
 
-			<h3>Login</h3>
+      <h3>Login</h3>
 
-			<form onSubmit={onSubmit}>
-				<div className="Auth-email_container">
-					<input type="text" ref={el => (email = el)} placeholder="Email" />
-				</div>
+      <form onSubmit={onSubmit}>
+        <div className="Auth-email_container">
+          <input type="text" ref={el => (email = el)} placeholder="Email" />
+        </div>
 
-				<div className="Auth-password_container">
-					<input type="password" placeholder="Password" ref={el => (pw = el)} />
-				</div>
+        <div className="Auth-password_container">
+          <input type="password" placeholder="Password" ref={el => (pw = el)} />
+        </div>
 
-				<p>
-					<a className="resetPassword" onClick={onReset}>
-						Forgot Password?
-					</a>
-				</p>
+        <p>
+          <button className="resetPassword" onClick={onReset}>
+            Forgot Password?
+          </button>
+        </p>
 
-				<button type="submit">Login</button>
-			</form>
-		</div>
-	)
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  )
 }
 
 export default Login

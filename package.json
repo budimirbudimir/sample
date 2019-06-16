@@ -7,6 +7,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "firebase": "^5.8.0",
     "history": "^4.7.2",
+    "lint-staged": "^8.2.1",
     "prop-types": "^15.6.0",
     "ramda": "^0.26.1",
     "react": "^16.7.0",
@@ -24,6 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "pre-commit": "lint-staged",
     "test": "react-scripts test --env=jsdom",
     "test:coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject",
@@ -33,12 +35,12 @@
     "deploy:host": "react-scripts build && firebase deploy --only hosting"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
     "@storybook/addon-actions": "^4.1.11",
     "@storybook/addon-links": "^4.1.11",
     "@storybook/addons": "^4.1.11",
     "@storybook/react": "^4.1.11",
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
     "enzyme": "^3.3.0",
     "redux-devtools": "^3.4.1",
     "redux-devtools-dock-monitor": "^1.1.3",

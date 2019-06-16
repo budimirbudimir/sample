@@ -1,0 +1,55 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "no-var": "error",
+    "linebreak-style": "off",
+    "react/prop-types": "off",
+    "import/no-named-as-default-member": "off",
+    "import/prefer-default-export": "off",
+    "import/nsmed": "off",
+    "comma-dangle": "off",
+    "spaced-comment": "off",
+    "semi": "off",
+    "no-magic-numbers": ["error", { "ignore": [-1, 0, 1] }],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelComponents": ["CustomInputLabel"],
+        "labelAttributes": ["label"],
+        "controlComponents": ["CustomInput"],
+        "depth": 3
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": 0,
+    "react/destructuring-assignment": [
+      "enabled",
+      "always",
+      { "ignoreClassFields": true }
+    ]
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "document": true,
+    "describe": true,
+    "it": true,
+    "expect": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src"]
+      }
+    }
+  }
+}

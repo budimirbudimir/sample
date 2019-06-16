@@ -5,40 +5,40 @@ import { fetchTrending, fetchTopTracks, setArtist } from '../actions'
 import Home from '../components/Home'
 import '../styles/Home.css'
 
-
 //#region COMPONENT ACTIONS
 const withComponentActions = withHandlers({
-	fetchArtist: name => setArtist(name)
+  fetchArtist: name => setArtist(name)
 })
 //#endregion
-
 
 //#region LIFECYCLE METHODS
 const withLifecycleMethods = lifecycle({
-	componentDidMount() {
-		this.props.fetchTrending() // Get trending artists
-		this.props.fetchTopTracks() // Get trending tracks
-	}
+  async componentDidMount() {
+    const trendingArtists = await this.props.fetchTrending() // Get trending artists
+    const topTracks = await this.props.fetchTopTracks() // Get trending tracks
+    console.log({ trendingArtists, topTracks })
+  }
 })
 //#endregion
-
 
 //#region REDUX CONNECTION
 const mapStateToProps = state => ({
-	topArtists: state.artists.topArtists,
-	topTracks: state.artists.topTracks,
+  topArtists: state.artists.topArtists,
+  topTracks: state.artists.topTracks
 })
 const mapDispatchToProps = dispatch => ({
-	fetchTrending: () => dispatch(fetchTrending()),
-	fetchTopTracks: () => dispatch(fetchTopTracks()),
-	setArtist: name => dispatch(setArtist(name)),
+  fetchTrending: () => dispatch(fetchTrending()),
+  fetchTopTracks: () => dispatch(fetchTopTracks()),
+  setArtist: name => dispatch(setArtist(name))
 })
-const withReduxConnection = connect(mapStateToProps, mapDispatchToProps)
+const withReduxConnection = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
 //#endregion
 
-
 export default compose(
-	withReduxConnection,
-	withComponentActions,
-	withLifecycleMethods,
+  withReduxConnection,
+  withComponentActions,
+  withLifecycleMethods
 )(Home)
