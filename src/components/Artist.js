@@ -159,7 +159,7 @@ const withLifecycleMethods = lifecycle({
     } = this.props
     const userID = localStorage.getItem('currentUser')
 
-    console.log({ userID, authedUserFavs, target })
+    // console.log({ userID, authedUserFavs, target })
 
     const currentFavs =
       authedUserFavs && authedUserFavs.length > 0

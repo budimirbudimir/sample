@@ -38,6 +38,7 @@ It's been bootstrapped using `create-react-app`.
 - [ ] Fix favorite action
 - [ ] Organize `findArtist()`, `fetchArtist()` and `setArtist()` functions better
 - [ ] Drop classes for functional components & recompose/hooks **[in progress]**
+- [ ] Integrate styled-components v5
 - [ ] Reorganize folder structure
 - [ ] Add `redux-saga` and finish missing logic
 - [ ] Add memoization when applicable (selectors, effects)

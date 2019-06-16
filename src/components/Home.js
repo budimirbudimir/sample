@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { compose } from 'redux'
-// import { withHandlers } from 'recompose'
 
 import { fetchTrending, fetchTopTracks, setArtist } from '../actions'
 
@@ -35,23 +33,6 @@ const Home = ({ topArtists, topTracks, fetchTrending, fetchTopTracks }) => {
 }
 // #endregion
 
-// #region COMPONENT ACTIONS
-// const withComponentActions = withHandlers({
-//   // TODO Check the purpose of this one!
-//   fetchArtist: name => setArtist(name)
-// })
-// #endregion
-
-// #region LIFECYCLE METHODS
-// const withLifecycleMethods = lifecycle({
-//   async componentDidMount() {
-//     const trendingArtists = await this.props.fetchTrending() // Get trending artists
-//     const topTracks = await this.props.fetchTopTracks() // Get trending tracks
-//     console.log({ trendingArtists, topTracks })
-//   }
-// })
-// #endregion
-
 // #region REDUX CONNECTION
 // NOTE Use connect() whenever possible as it offers
 // out of the box optimization/memoization
@@ -64,14 +45,8 @@ const mapDispatchToProps = dispatch => ({
   fetchTopTracks: () => dispatch(fetchTopTracks()),
   setArtist: name => dispatch(setArtist(name))
 })
-const withReduxConnection = connect(
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)
-// #endregion
-
-export default compose(
-  withReduxConnection
-  // withComponentActions
-  // withLifecycleMethods
 )(Home)

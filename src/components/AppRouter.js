@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
-import { compose, withState, lifecycle } from 'recompose'
 
+// Project specific dependencies
 import { firebaseAuth } from '../config'
 import { PrivateRoute, PublicRoute } from '../routes'
 
+// Components/Pages // TODO Decouple later
 import Favorites from './Favorites'
 import Login from './Login'
 import Register from './Register'
@@ -13,7 +14,22 @@ import Home from './Home'
 import Navigator from './Navigator'
 import PageNotFound from './404'
 
-const AppRouter = ({ loading, authed }) => {
+const AppRouter = () => {
+  const [authed, setAuthed] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  const handleOnChange = user => {
+    setAuthed(!!user)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    // Listen for auth state changes
+    const removeListener = firebaseAuth().onAuthStateChanged(handleOnChange)
+    // Unsubscribe when unmounting
+    return () => removeListener()
+  }, [])
+
   // If loading, indicate it to user
   if (loading === true) return <h1>Loading</h1>
 
@@ -54,24 +70,4 @@ const AppRouter = ({ loading, authed }) => {
   )
 }
 
-const withRouterState = compose(
-  withState('authed', 'setAuthed', false),
-  withState('loading', 'setLoading', true)
-)
-
-const withLifecycleMethods = lifecycle({
-  componentDidMount() {
-    this.removeListener = firebaseAuth().onAuthStateChanged(user => {
-      this.props.setAuthed(!!user)
-      this.props.setLoading(false)
-    })
-  },
-  componentWillUnmount() {
-    this.removeListener()
-  }
-})
-
-export default compose(
-  withRouterState,
-  withLifecycleMethods
-)(AppRouter)
+export default AppRouter

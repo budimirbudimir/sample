@@ -1,13 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import {
-  compose,
-  withState,
-  withHandlers,
-  lifecycle,
-  mapProps
-} from 'recompose'
-import { omit } from 'ramda'
 
 import { fetchTrending, setArtist, searchArtist, toggleBio } from '../actions'
 
@@ -19,26 +11,63 @@ import '../styles/App.css'
 
 const DROPDOWN_TIMEOUT = 300
 
-// TODO: Organize these components better (param splitting)!
-
+// #region COMPONENT
 const Navigator = ({
-  handleChange,
-  handleKeypress,
-  handleFocus,
-  handleBlur,
-  findArtist,
   fetchArtist,
   results,
-  showDropdown,
-  query,
-
+  setArtist,
+  searchArtist,
   target,
   targetImage,
   toggleBio,
   expanded,
-
-  topArtists
+  topArtists,
+  fetchTrending
 }) => {
+  // Define state/handlers
+  const [query, setQuery] = useState('')
+  const [showDropdown, setDropdown] = useState(false)
+
+  // Emulate lifecycle
+  useEffect(() => {
+    // Get trending artists
+    fetchTrending()
+  }, [])
+
+  // Handlers
+  const handleFetchArtist = name => {
+    // Find and set target artist
+    setArtist(name)
+  }
+
+  const findArtist = () => {
+    // Fetch artist data
+    fetchArtist(query)
+  }
+
+  const handleChange = e => {
+    // Sync the current query locally
+    setQuery(e.currentTarget.value)
+  }
+
+  const handleFocus = () => {
+    setDropdown(true)
+  }
+
+  const handleBlur = () => {
+    setTimeout(() => {
+      setDropdown(false)
+    }, DROPDOWN_TIMEOUT)
+  }
+
+  const handleKeypress = e => {
+    if (e.key === 'Enter') {
+      findArtist()
+    } else {
+      if (query.length >= 2) searchArtist(query)
+    }
+  }
+
   return (
     <div className="App-content_container">
       <div className="App-content">
@@ -48,7 +77,7 @@ const Navigator = ({
           focus={handleFocus}
           blur={handleBlur}
           findArtist={findArtist}
-          fetchArtist={fetchArtist}
+          fetchArtist={handleFetchArtist}
           results={results}
           showDropdown={showDropdown}
           query={query}
@@ -59,59 +88,15 @@ const Navigator = ({
           targetImage={targetImage}
           toggleBio={toggleBio}
           expanded={expanded}
-          fetchArtist={fetchArtist}
+          fetchArtist={handleFetchArtist}
         />
       </div>
 
-      <Trending artists={topArtists} fetchArtist={fetchArtist} />
+      <Trending artists={topArtists} fetchArtist={handleFetchArtist} />
     </div>
   )
 }
-
-//#region NAVIGATION STATE
-const withNavigatioState = compose(
-  withState('query', 'setQuery', ''),
-  withState('showDropdown', 'setDropdown', false)
-)
-//#endregion
-
-//#region NAVIGATION HANDLERS
-const withNavigationHandlers = withHandlers({
-  handleFetchArtist: ({ setArtist }) => name => {
-    setArtist(name) // Find and set target artist
-  },
-  findArtist: ({ query, fetchArtist }) => {
-    fetchArtist(query) // Fetch artist data
-  },
-  handleChange: ({ setQuery }) => e => {
-    setQuery(e.currentTarget.value) // Sync the current query locally
-  },
-  handleFocus: ({ setDropdown }) => () => {
-    setDropdown(true)
-  },
-  handleBlur: ({ setDropdown }) => () => {
-    setTimeout(() => {
-      setDropdown(false)
-    }, DROPDOWN_TIMEOUT)
-  },
-  handleKeypress: ({ findArtist, query, searchArtist }) => e => {
-    if (e.key === 'Enter') {
-      findArtist()
-    } else {
-      if (query.length >= 2) searchArtist(query)
-    }
-  }
-})
-//#endregion
-
-//#region LIFECYCLE METHODS
-const withLifecycleMethods = lifecycle({
-  async componentDidMount() {
-    const trendingFetched = await this.props.fetchTrending() // Get trending artists
-    return trendingFetched.action.payload
-  }
-})
-//#endregion
+// #endregion
 
 //#region REDUX CONNECTION
 const mapStateToProps = state => ({
@@ -127,23 +112,9 @@ const mapDispatchToProps = dispatch => ({
   setArtist: name => dispatch(setArtist(name)),
   searchArtist: name => dispatch(searchArtist(name))
 })
-const withReduxConnection = connect(
+//#endregion
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)
-//#endregion
-
-//#region PROPS MAPPER
-const withPropsMapper = mapProps(props => ({
-  ...omit(['fetchArtist', 'searchArtist'], props),
-  fetchArtist: props.handleFetchArtist
-}))
-//#endregion
-
-export default compose(
-  withReduxConnection,
-  withNavigatioState,
-  withNavigationHandlers,
-  withLifecycleMethods,
-  withPropsMapper
 )(Navigator)
