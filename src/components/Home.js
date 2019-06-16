@@ -11,9 +11,8 @@ import '../styles/Home.css'
 // #region COMPONENT
 const Home = ({ topArtists, topTracks, fetchTrending, fetchTopTracks }) => {
   useEffect(() => {
-    const trendingArtists = fetchTrending() // Get trending artists
-    const topTracks = fetchTopTracks() // Get trending tracks
-    console.log({ trendingArtists, topTracks })
+    fetchTrending() // Get trending artists
+    fetchTopTracks() // Get trending tracks
   }, [])
 
   return (

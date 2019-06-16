@@ -1,55 +1,50 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { compose, withHandlers, lifecycle } from 'recompose'
 
 import { getFavorites, removeFavorite } from '../actions'
 import '../styles/Favorites.css'
 
-const Favorites = ({ authedUserFavs, handleRemoveFavorite }) => (
-  <div className="Favorites">
-    <div className="Favorites-inner">
-      <h3>Your favorite artists</h3>
+// #region COMPONENT
+const Favorites = ({ authedUserFavs, removeFavorite, getFavorites }) => {
+  useEffect(() => {
+    const userID = localStorage.getItem('currentUser')
 
-      {authedUserFavs && (
-        <div className="Favorites-list">
-          {authedUserFavs.map((item, index) => (
-            <div className="Favorites-item" key={index}>
-              <img src={item.image} alt={item.name} />
-              <p>{item.name}</p>
-              <button
-                className="Favorites-link"
-                onClick={() => handleRemoveFavorite(item.id)}
-              >
-                x
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  </div>
-)
+    // Get favorite artists by user
+    if (userID) getFavorites(userID)
+  }, [])
 
-//#region COMPONENT METHODS
-const withComponentHandlers = withHandlers({
-  handleRemoveFavorite: ({ removeFavorite }) => artistID => {
+  const handleRemoveFavorite = artistID => {
     const userID = localStorage.getItem('currentUser')
 
     // Get favorite artists by user
     if (userID) removeFavorite(userID, artistID)
   }
-})
-//#endregion
 
-//#region LIFECYCLE METHODS
-const withLifecycleMethods = lifecycle({
-  componentDidMount() {
-    const userID = localStorage.getItem('currentUser')
+  return (
+    <div className="Favorites">
+      <div className="Favorites-inner">
+        <h3>Your favorite artists</h3>
 
-    // Get favorite artists by user
-    if (userID) this.props.getFavorites(userID)
-  }
-})
+        {authedUserFavs && (
+          <div className="Favorites-list">
+            {authedUserFavs.map((item, index) => (
+              <div className="Favorites-item" key={index}>
+                <img src={item.image} alt={item.name} />
+                <p>{item.name}</p>
+                <button
+                  className="Favorites-link"
+                  onClick={() => handleRemoveFavorite(item.id)}
+                >
+                  x
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
 //#endregion
 
 //#region REDUX CONNECTION
@@ -61,14 +56,9 @@ const mapDispatchToProps = dispatch => ({
   removeFavorite: (userID, artistID) =>
     dispatch(removeFavorite(userID, artistID))
 })
-const withReduxConnection = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)
 //#endregion
 
-export default compose(
-  withReduxConnection,
-  withComponentHandlers,
-  withLifecycleMethods
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(Favorites)
