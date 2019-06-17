@@ -2,14 +2,16 @@ import * as types from './actionTypes'
 
 export const initialState = {
   authedUserFavs: [],
+  // TODO How about single error/boundary?
   loginError: null,
   registrationError: null,
   favoriteError: null
 }
 
+// TODO Probably should split 'auth' and 'db' models!
 const user = (state = initialState, action) => {
   switch (action.type) {
-    // USER actions
+    // AUTH
     case `${types.AUTH}_FULFILLED`:
       return {
         ...state,
@@ -20,7 +22,6 @@ const user = (state = initialState, action) => {
         ...state,
         ...{ registrationError: action.payload.message }
       }
-
     case `${types.LOGIN}_FULFILLED`:
       return {
         ...state,
@@ -31,14 +32,12 @@ const user = (state = initialState, action) => {
         ...state,
         ...{ loginError: action.payload.message }
       }
-
     case `${types.LOGOUT}_FULFILLED`:
       // Remove current user from the state
       return {
         ...state,
         ...{ authedUserFavs: [] }
       }
-
     case `${types.RESET_PASSWORD}_FULFILLED`:
       return {
         ...state,
@@ -50,8 +49,9 @@ const user = (state = initialState, action) => {
         ...{ loginError: action.payload.message }
       }
 
+    // DB
     case types.SAVE_USER:
-      // TODO: Handle logic.
+      // TODO Handle logic, if needed?
       return state
 
     case `${types.ADD_FAVORITE}_FULFILLED`:

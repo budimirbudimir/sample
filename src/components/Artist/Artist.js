@@ -16,6 +16,16 @@ import Tags from '../Tags/Tags'
 
 // FIXME This is absolute mess, sort it out (decouple)
 
+const Bio = ({ content, toggleBio, txt }) => (
+  <p className="App-bio_text">
+    <span dangerouslySetInnerHTML={{ __html: content }} />
+    <br />
+    <button className="App-bio_link" onClick={toggleBio}>
+      {txt}
+    </button>
+  </p>
+)
+
 const ArtistPage = ({
   target,
   targetImage,
@@ -33,31 +43,30 @@ const ArtistPage = ({
   useEffect(() => {
     const userID = localStorage.getItem('currentUser')
 
+    // TODO This one is dirty and not working, fix it!
     const currentFavs =
       authedUserFavs && authedUserFavs.length > 0
         ? authedUserFavs.map(fav => fav.id === target.mbid)
         : []
-    const isCurrentFavorite = currentFavs.length > 0
+    const isCurrentFavorite = currentFavs.filter(c => c === true).length > 0
+    console.log({ currentFavs, isCurrentFavorite })
 
     setCurrentFavorite(isCurrentFavorite)
 
     // Get favorite artists by user
     if (userID) getFavorites(userID)
-  }, [])
+  }, [target])
 
   const handleAddFavorite = () => {
     const userID = localStorage.getItem('currentUser')
-
-    if (userID)
-      addFavorite(userID, target).then(() => {
-        // If user had no favorites prior to adding this, pull new list when done with adding
-        if (!authedUserFavs) getFavorites(userID)
-      })
+    if (userID) addFavorite(userID, target)
+    setCurrentFavorite(true)
   }
 
   const handleRemoveFavorite = artistID => {
     const userID = localStorage.getItem('currentUser')
     if (userID) removeFavorite(userID, artistID)
+    setCurrentFavorite(false)
   }
 
   return (
@@ -107,25 +116,17 @@ const ArtistPage = ({
             </p>
 
             {expanded ? (
-              <p className="App-bio_text">
-                <span
-                  dangerouslySetInnerHTML={{ __html: target.bio.content }}
-                />
-                <br />
-                <button className="App-bio_link" onClick={toggleBio}>
-                  View Less
-                </button>
-              </p>
+              <Bio
+                content={target.bio.content}
+                toggleBio={toggleBio}
+                txt="View Less"
+              />
             ) : (
-              <p className="App-bio_text">
-                <span
-                  dangerouslySetInnerHTML={{ __html: target.bio.summary }}
-                />
-                <br />
-                <button className="App-bio_link" onClick={toggleBio}>
-                  View More
-                </button>
-              </p>
+              <Bio
+                content={target.bio.summary}
+                toggleBio={toggleBio}
+                txt="View More"
+              />
             )}
 
             <Similar

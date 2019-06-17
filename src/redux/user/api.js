@@ -1,31 +1,30 @@
-import { ref, firebaseAuth } from '../../config'
+import { db, firebaseAuth as auth } from '../../config'
 // import * as types from './actionTypes'
 
 /**
  * AUTH SERVICE INTERACTIONS
+ * NOTE Split from DB interactions.
  */
 export const apiAuth = ({ email, pw }) =>
-  firebaseAuth().createUserWithEmailAndPassword(email, pw)
-// .then(saveUser) // TODO: Fix this inside of saga
+  auth().createUserWithEmailAndPassword(email, pw)
 
 // Log user in order to see session-locked pages
 export const apiLogin = ({ email, pw }) =>
-  firebaseAuth().signInWithEmailAndPassword(email, pw)
-// .then(saveLocal) // TODO: Fix this inside of saga
+  auth().signInWithEmailAndPassword(email, pw)
 
 // Log out currently logged in user
-export const apiLogout = () => firebaseAuth().signOut()
+export const apiLogout = () => auth().signOut()
 
 // Reset password for existing user by e-mail
-export const apiResetPassword = email =>
-  firebaseAuth().sendPasswordResetEmail(email)
+export const apiResetPassword = email => auth().sendPasswordResetEmail(email)
 
 /**
  * DATABASE SERVICE INTERACTIONS
+ * NOTE Split from Auth interactions.
  */
 // Saves newly registered user's data in DB
 export const apiSaveUser = user =>
-  ref
+  db
     .child(`users/${user.uid}/info`)
     .set({
       email: user.email,
@@ -35,14 +34,14 @@ export const apiSaveUser = user =>
 
 // Gets current user's favorite artists list
 export const apiGetFavorites = userID =>
-  ref
+  db
     .child(`users/${userID}/favs`)
     .once('value')
     .then(snap => snap.val())
 
 // Saves current artist into current user's favorites
-export const apiAddFavorite = (userID, artist) =>
-  ref
+export const apiAddFavorite = ({ userID, artist }) =>
+  db
     .child(`users/${userID}/favs/${artist.mbid}`)
     .set({
       id: artist.mbid,
@@ -52,14 +51,15 @@ export const apiAddFavorite = (userID, artist) =>
     .then(() => artist)
 
 // Saves current artist into current user's favorites
-export const apiRemoveFavorite = (userID, artistID) =>
-  ref
+export const apiRemoveFavorite = ({ userID, artistID }) =>
+  db
     .child(`users/${userID}/favs/${artistID}`)
     .remove()
     .then(() => artistID)
 
 /**
  * HELPERS
+ * NOTE Abstract away to separate localStorage util file
  */
 
 // Saves current user ID in localStorage for persistent use

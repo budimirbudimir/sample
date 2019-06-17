@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
 
+// cSpell:disable
 const lastfmKey = '6a1df7cb8c230be8d4ac930b554279aa'
 
 const config = {
@@ -17,6 +18,7 @@ const config = {
 firebase.initializeApp(config)
 
 export const API_URL = `https://ws.audioscrobbler.com/2.0/?format=json&api_key=${lastfmKey}`
+// cSpell:enable
 
-export const ref = firebase.database().ref()
+export const db = firebase.database().ref()
 export const firebaseAuth = firebase.auth

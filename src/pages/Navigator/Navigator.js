@@ -51,6 +51,7 @@ const Navigator = ({
 
   const handleChange = e => {
     // Sync the current query locally
+    console.log('change', e)
     setQuery(e.currentTarget.value)
   }
 
@@ -63,8 +64,9 @@ const Navigator = ({
       setDropdown(false)
     }, DROPDOWN_TIMEOUT)
   }
-
+  // TODO First run setQuery(), then findArtist()/searchArtist()
   const handleKeypress = e => {
+    console.log('keypress', { key: e.key, query })
     if (e.key === 'Enter') {
       findArtist()
     } else {

@@ -35,12 +35,12 @@ It's been bootstrapped using `create-react-app`.
 
 ##### TODO list:
 
-- [ ] Fix favorite action
+- [x] Fix favorite action
 - [ ] Organize `findArtist()`, `fetchArtist()` and `setArtist()` functions better
 - [x] Drop classes for functional components & recompose/hooks
 - [ ] Integrate styled-components v5
 - [x] Reorganize folder structure
-- [ ] Add `redux-saga` and finish missing logic
+- [x] Add `redux-saga` and finish missing logic
 - [ ] Add memoization when applicable (selectors, effects)
 - [ ] Add proper typechecking/test/storybook coverage **[in progress]**
 - [ ] Deploy to custom host and integrate CI/CD _optional_

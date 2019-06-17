@@ -13,7 +13,6 @@ import {
 function* fetchTrending() {
   // Get Trending from API
   const trending = yield call(apiFetchTrending)
-  console.log('Fetching trending artists from SAGA!', trending)
 
   // Store obtained Trending to Redux
   yield put({
@@ -27,7 +26,6 @@ function* fetchTrending() {
 function* fetchTopTracks() {
   // Get Top Tracks from API
   const topTracks = yield call(apiTopTracks)
-  console.log('Fetching top tracks from SAGA!', topTracks)
 
   // Store obtained Top Tracks to Redux
   yield put({
@@ -43,7 +41,6 @@ function* setArtist(action) {
 
   // Get Picked Artist from API
   const pickedArtist = yield call(apiSetArtist, payload)
-  console.log('Setting artist from SAGA!', { payload, pickedArtist })
 
   // Store obtained Picked Artist to Redux
   yield put({
@@ -59,7 +56,6 @@ function* searchArtist(action) {
 
   // Get Found Artist from API
   const foundArtist = yield call(apiSearchArtist, payload)
-  console.log('Searching for artist from SAGA!', { payload, foundArtist })
 
   // Store obtained Found Artist to Redux
   yield put({
