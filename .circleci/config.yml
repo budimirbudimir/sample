@@ -37,6 +37,9 @@ jobs:
       # - run:
       #     name: Run ESLint checks
       #     command: yarn lint
+      # - run:
+      #     name: Run Jest tests
+      #     command: yarn test
       - run:
-          name: Run Jest tests
-          command: yarn test
+          name: Run Pre Commit
+          command: yarn pre-commit
