@@ -17,6 +17,7 @@ const DROPDOWN_TIMEOUT = 300
 
 // #region COMPONENT
 const Navigator = ({
+  match,
   fetchArtist,
   results,
   setArtist,
@@ -36,6 +37,8 @@ const Navigator = ({
   useEffect(() => {
     // Get trending artists
     fetchTrending()
+
+    if (match.params.artistName) handleFetchArtist(match.params.artistName)
   }, [])
 
   // Handlers

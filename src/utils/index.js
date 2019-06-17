@@ -4,17 +4,20 @@ export const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)
 
 // validation function
 export const validate = (email, pw) => {
-	if (email.length < 6) {
-		return { valid: false, error: 'Email too short' }
-	}
+  if (email.length < 6) {
+    return { valid: false, error: 'Email too short' }
+  }
 
-	if (!emailRegex.test(email)) {
-		return { valid: false, error: 'Please use valid email format' }
-	}
+  if (!emailRegex.test(email)) {
+    return { valid: false, error: 'Please use valid email format' }
+  }
 
-	if (pw.length < 6) {
-		return { valid: false, error: 'Password too short' }
-	}
+  if (pw.length < 6) {
+    return { valid: false, error: 'Password too short' }
+  }
 
-	return { valid: true, message: '' }
+  return { valid: true, message: '' }
 }
+
+export const numberWithCommas = x =>
+  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')

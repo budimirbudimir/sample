@@ -46,7 +46,7 @@ export const apiAddFavorite = ({ userID, artist }) =>
     .set({
       id: artist.mbid,
       name: artist.name,
-      image: artist.image['2']['#text']
+      image: artist.image[2]['#text']
     })
     .then(() => artist)
 

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { numberWithCommas } from '../../utils'
+import Avatar from '../Avatar'
 import './TopTracks.css'
 
 // Mapping table headings
@@ -10,9 +12,15 @@ const titleLine = {
   artist: { name: 'Artist Name' }
 }
 
-const TopTracks = ({ tracks }) => {
+const TopTracks = ({ tracks, goTo }) => {
   // Add table headings line to the front of array
   const withHeadings = [titleLine].concat(tracks)
+
+  const renderButton = name => (
+    <button className="TopTracks-link" onClick={() => goTo(name)}>
+      {name}
+    </button>
+  )
 
   return (
     <ul className="TopTracks">
@@ -21,15 +29,23 @@ const TopTracks = ({ tracks }) => {
           <div className="TopTracks-track">
             <div style={{ flex: 1 }}>{index !== 0 && index}</div>
             <div style={{ flex: 1, textAlign: 'left' }}>
-              <img src={track.image && track.image['0']['#text']} alt="" />
+              {index === 0 ? (
+                'Image'
+              ) : (
+                <Avatar name={track.artist.name} size="small" />
+              )}
             </div>
             <div style={{ flex: 4 }}>{track.name}</div>
-            <div style={{ flex: 4 }}>{track.artist.name}</div>
-            <div style={{ flex: 2 }} className="TopTracks-hidden_mobile">
-              {track.listeners}
+            <div style={{ flex: 4 }}>
+              {index === 0
+                ? track.artist.name
+                : renderButton(track.artist.name)}
             </div>
             <div style={{ flex: 2 }} className="TopTracks-hidden_mobile">
-              {track.playcount}
+              {numberWithCommas(track.listeners)}
+            </div>
+            <div style={{ flex: 2 }} className="TopTracks-hidden_mobile">
+              {numberWithCommas(track.playcount)}
             </div>
           </div>
         </li>

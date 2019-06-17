@@ -52,7 +52,7 @@ const AppRouter = () => {
 
             <PrivateRoute
               authed={authed}
-              path="/navigator"
+              path="/navigator/:artistName?"
               component={Navigator}
             />
 

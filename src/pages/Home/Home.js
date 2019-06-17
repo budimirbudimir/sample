@@ -13,11 +13,21 @@ import Trending from '../../components/Trending/Trending'
 import './Home.css'
 
 // #region COMPONENT
-const Home = ({ topArtists, topTracks, fetchTrending, fetchTopTracks }) => {
+const Home = ({
+  history,
+  topArtists,
+  topTracks,
+  fetchTrending,
+  fetchTopTracks
+}) => {
   useEffect(() => {
     fetchTrending() // Get trending artists
     fetchTopTracks() // Get trending tracks
   }, [])
+
+  const handleGoToArtistInfo = artistID => {
+    return history.push(`/navigator/${artistID}`)
+  }
 
   return (
     <div className="Home">
@@ -27,10 +37,10 @@ const Home = ({ topArtists, topTracks, fetchTrending, fetchTopTracks }) => {
           These are currently trending tracks:
         </h3>
 
-        <TopTracks tracks={topTracks} />
+        <TopTracks goTo={handleGoToArtistInfo} tracks={topTracks} />
       </div>
 
-      <Trending artists={topArtists} fetchArtist={null} />
+      <Trending goTo={handleGoToArtistInfo} artists={topArtists} />
     </div>
   )
 }

@@ -19,13 +19,9 @@
   display: inline-block;
   position: relative;
   cursor: pointer;
-  max-height: 160px;
   margin: 0 4px;
 }
-.Favorites-item img {
-  max-width: 160px;
-}
-.Favorites-item p {
+.Favorites-item .paragraph {
   display: none;
   position: absolute;
   margin: auto;
@@ -39,17 +35,24 @@
   color: #fff;
   z-index: 1;
 }
-.Favorites-item:hover p {
+.Favorites-item:hover .paragraph {
   display: flex;
+  flex-direction: column;
+}
+.Favorite-buttons {
+  display: flex;
+  flex-direction: row;
 }
 .Favorites-item .Favorites-link {
-  position: absolute;
+  background: none;
+  border: none;
   z-index: 2;
-  top: 0;
-  right: 6px;
-  color: red !important;
+  color: #000 !important;
   cursor: pointer;
   display: none;
+  padding: 4px 8px;
+  background: #555;
+  margin: 15px 5px;
 }
 .Favorites-item:hover .Favorites-link {
   display: inline-block;
@@ -63,7 +66,7 @@
     text-align: center;
     background: rgba(0, 0, 0, 0.65);
   }
-  .Favorites-item p {
+  .Favorites-item .paragraph {
     position: relative;
     background: none;
     color: #000;

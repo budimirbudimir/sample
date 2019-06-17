@@ -1,152 +1,184 @@
 body {
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.5;
-	color: #212529;
-	text-align: left;
-	background-color: #fff;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
 }
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .App {
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 .App-route_container {
-	flex: 6;
+  flex: 6;
 }
 .App-content_container {
-	height: 100%;
-	display: flex;
-	flex-direction: column;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .App-content {
-	flex: 6;
-	font-size: 14px;
-	max-width: 1140px;
-	margin: 0 auto;
+  flex: 6;
+  font-size: 14px;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 .App-info {
-	display: flex;
-	padding-top: 50px;
-	padding-bottom: 50px;
-	flex-direction: row;
+  display: flex;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  flex-direction: row;
 }
 .App-info_details {
-	flex: 1;
-	padding: 0 15px;
+  flex: 1;
+  padding: 0 15px;
 }
-.App-info_details img {
-	border-radius: 10px;
+.App-info_avatar {
+  background: #212529;
+  border: 2px solid #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f4425c;
+}
+.App-info_avatar.big {
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  font-size: 100px;
+  font-weight: 700;
+}
+.App-info_avatar.medium {
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  font-size: 60px;
+  font-weight: 700;
+}
+.App-info_avatar.small {
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 400;
+  border-width: 1px;
 }
 .App-info_bio {
-	flex: 5;
-	text-align: left;
-	padding-right: 15px;
+  flex: 2;
+  text-align: left;
+  padding-right: 15px;
 }
 .App-info_bio h2 {
-	margin: 0;
+  margin: 0;
 }
 .App-bio_title {
-	color: #f4425c;
-	cursor: pointer;
-	transition: all 0.3s;
-	text-decoration: none;
-	vertical-align: middle;
+  color: #f4425c;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  vertical-align: middle;
 }
 .App-bio_title:hover {
-	opacity: 0.5;
-	color: #f4425c;
-	text-decoration: none;
+  opacity: 0.5;
+  color: #f4425c;
+  text-decoration: none;
 }
 .App-fav_star {
-	max-width: 24px;
-	cursor: pointer;
-	padding: 0 0 3px 5px;
-	vertical-align: middle;
+  max-width: 24px;
+  cursor: pointer;
+  padding: 0 0 3px 5px;
+  vertical-align: middle;
 }
 .App-info .App-bio_text a {
-	color: #212529;
-	cursor: pointer;
-	text-decoration: none;
+  color: #212529;
+  cursor: pointer;
+  text-decoration: none;
 }
-.App-info .App-bio_text a.App-bio_link {
-	margin-top: 5px;
-	color: #f4425c;
-	display: block;
+.App-info .App-bio_text button.App-bio_link {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin-top: 5px;
+  color: #f4425c;
+  display: block;
+  cursor: pointer;
 }
 .App-similar_act {
-	text-decoration: none;
-	color: #f4425c;
-	display: inline-block;
-	margin: 3px 0 3px 6px;
-	padding: 2px 4px;
-	border: 1px solid #f4425c;
-	font-size: 12px;
-	cursor: pointer;
-	transition: all 0.3s;
+  text-decoration: none;
+  color: #f4425c;
+  display: inline-block;
+  margin: 3px 0 3px 6px;
+  padding: 2px 4px;
+  border: 1px solid #f4425c;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 .App-similar_act:hover {
-	color: #fff;
-	background: #f4425c;
-	border: 1px solid #f4425c;
-	text-decoration: none;
+  color: #fff;
+  background: #f4425c;
+  border: 1px solid #f4425c;
+  text-decoration: none;
 }
 
 .Login,
 .Register,
 .Home {
-	text-align: center;
+  text-align: center;
 }
 
 .App-alert {
-	max-width: 90%;
-	width: 960px;
-	border-radius: 4px;
-	margin: 0 auto;
-	padding: 10px;
+  max-width: 90%;
+  width: 960px;
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: 10px;
 }
 .App-error {
-	color: #d8000c;
-	background: #ffd2d2;
-	border: 1px solid #d8000c;
+  color: #d8000c;
+  background: #ffd2d2;
+  border: 1px solid #d8000c;
 }
 .App-success {
-	color: #4f8a10;
-	background-color: #dff2bf;
-	color: #4f8a10;
+  color: #4f8a10;
+  background-color: #dff2bf;
+  color: #4f8a10;
 }
 
 @media (max-width: 1023px) {
-	.App-content {
-		max-width: 100%;
-		overflow: hidden;
-	}
-	.App-info {
-		flex-direction: column;
-	}
-	.App-info_bio {
-		text-align: center;
-		padding: 0 25px;
-	}
-	.App-info_bio h2 {
-		margin: 15px auto 15px;
-	}
-	.ArtistPage {
-		margin-bottom: 15px;
-	}
+  .App-content {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .App-info {
+    flex-direction: column;
+  }
+  .App-info_bio {
+    text-align: center;
+    padding: 0 25px;
+  }
+  .App-info_bio h2 {
+    margin: 15px auto 15px;
+  }
+  .ArtistPage {
+    margin-bottom: 15px;
+  }
 }
 
 @media (max-width: 479px) {
-	.Similar-title,
-	.Tags-title {
-		display: block;
-	}
+  .Similar-title,
+  .Tags-title {
+    display: block;
+  }
 }

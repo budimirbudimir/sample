@@ -1,39 +1,48 @@
 .TopTracks {
-	list-style: none;
-	padding: 0 15px;
+  list-style: none;
+  padding: 0 15px;
 }
 
 .TopTracks-track {
-	display: flex;
-	width: 100%;
-	flex-direction: row;
-	padding: 5px;
-	align-items: center;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding: 5px;
+  align-items: center;
 }
 
 .TopTracks li:first-child {
-	color: #999;
+  color: #999;
 }
 
 .TopTracks li:nth-child(even) {
-	background: #eee;
+  background: #eee;
 }
 
 .TopTracks-track img {
-	vertical-align: middle;
+  vertical-align: middle;
+}
+
+.TopTracks-link {
+  background: none;
+  color: red;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  outline: none;
 }
 
 @media (max-width: 767px) {
-	.TopTracks {
-		font-size: 14px;
-	}
+  .TopTracks {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 479px) {
-	.TopTracks li:first-child {
-		display: none;
-	}
-	.TopTracks-hidden_mobile {
-		display: none;
-	}
+  .TopTracks li:first-child {
+    display: none;
+  }
+  .TopTracks-hidden_mobile {
+    display: none;
+  }
 }

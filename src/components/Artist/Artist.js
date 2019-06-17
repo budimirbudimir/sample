@@ -7,12 +7,14 @@ import {
   removeFavorite,
   getFavorites
 } from '../../redux/actionsContainer'
+import { numberWithCommas } from '../../utils'
 
 import starEmpty from '../../images/star_0.png'
 import starFilled from '../../images/star_1.png'
 
-import Similar from '../Similar/Similar'
-import Tags from '../Tags/Tags'
+import Similar from '../Similar'
+import Tags from '../Tags'
+import Avatar from '../Avatar'
 
 // FIXME This is absolute mess, sort it out (decouple)
 
@@ -28,7 +30,6 @@ const Bio = ({ content, toggleBio, txt }) => (
 
 const ArtistPage = ({
   target,
-  targetImage,
   expanded,
   favoriteError,
   toggleBio,
@@ -74,7 +75,7 @@ const ArtistPage = ({
       {target.name !== '' && (
         <div className="App-info">
           <div className="App-info_details">
-            <img src={targetImage} alt="" />
+            <Avatar name={target.name} size="big" />
           </div>
 
           <div className="App-info_bio">
@@ -110,9 +111,11 @@ const ArtistPage = ({
             )}
 
             <p>
-              Listeners: <strong>{target.stats.listeners}</strong>
+              Listeners:{' '}
+              <strong>{numberWithCommas(target.stats.listeners)}</strong>
               <br />
-              Total plays: <strong>{target.stats.playcount}</strong>
+              Total plays:{' '}
+              <strong>{numberWithCommas(target.stats.playcount)}</strong>
             </p>
 
             {expanded ? (
