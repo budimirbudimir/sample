@@ -41,5 +41,8 @@ jobs:
       #     name: Run Jest tests
       #     command: yarn test
       - run:
-          name: Run Pre Commit
-          command: yarn pre-commit
+          name: Run Build
+          command: yarn build
+      - run:
+          name: Run Deploy to Firebase Hosting
+          command: yarn deploy:host
