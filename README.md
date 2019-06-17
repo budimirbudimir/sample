@@ -9,8 +9,6 @@ It's been bootstrapped using `create-react-app`.
 
 **Optionally**, local server (NodeJS) & DB (MongoDB) might be added later.
 
----
-
 #### Usage
 
 <BR />_Commands:_
