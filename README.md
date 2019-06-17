@@ -20,6 +20,7 @@ It's been bootstrapped using `create-react-app`.
 - `yarn test` or `npm run test` to run Jest unit tests
 - `yarn test:coverage` or `npm run test:coverage` to check for test coverage on project
 - `yarn storybook` or `npm run storybook` to run Storybook dev environment
+- `yarn pre-commit` or `npm run pre-commit` to run pre-commit hook
 - `yarn build` or `npm run build` to build production version
 - `yarn deploy` or `npm run deploy` to deploy project fully on Firebase hosting
 - `yarn deploy:host` or `npm run deploy:host` to deploy build folder to Firebase hosting
@@ -29,7 +30,6 @@ It's been bootstrapped using `create-react-app`.
 ##### Notes:
 
 - Project can be modified to use external module, such as `react-redux-firebase` if codebase will grow.
-- ESLint rules are quite basic, there's plenty of space to improve them if there's time left.
 
 ---
 
@@ -37,10 +37,10 @@ It's been bootstrapped using `create-react-app`.
 
 - [ ] Fix favorite action
 - [ ] Organize `findArtist()`, `fetchArtist()` and `setArtist()` functions better
-- [ ] Drop classes for functional components & recompose/hooks **[in progress]**
+- [x] Drop classes for functional components & recompose/hooks
 - [ ] Integrate styled-components v5
-- [ ] Reorganize folder structure
+- [x] Reorganize folder structure
 - [ ] Add `redux-saga` and finish missing logic
 - [ ] Add memoization when applicable (selectors, effects)
 - [ ] Add proper typechecking/test/storybook coverage **[in progress]**
-- [ ] Figure how to deploy to custom host and integrate CI/CD _optional_
+- [ ] Deploy to custom host and integrate CI/CD _optional_

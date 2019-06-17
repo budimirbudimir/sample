@@ -1,11 +1,9 @@
-import { ref, firebaseAuth } from '../../config'
+import { ref } from '../../config'
 import * as types from './actionTypes'
 
 export const auth = (email, pw) => ({
   type: types.AUTH,
-  payload: firebaseAuth()
-    .createUserWithEmailAndPassword(email, pw)
-    .then(saveUser)
+  payload: { email, pw }
 })
 
 export const setRegisterError = message => ({
@@ -16,9 +14,7 @@ export const setRegisterError = message => ({
 // Log user in order to see session-locked pages
 export const login = (email, pw) => ({
   type: types.LOGIN,
-  payload: firebaseAuth()
-    .signInWithEmailAndPassword(email, pw)
-    .then(saveLocal)
+  payload: { email, pw }
 })
 
 export const setLoginError = message => ({
@@ -28,14 +24,13 @@ export const setLoginError = message => ({
 
 // Log out currently logged in user
 export const logout = () => ({
-  type: types.LOGOUT,
-  payload: firebaseAuth().signOut()
+  type: types.LOGOUT
 })
 
 // Reset password for existing user by e-mail
 export const resetPassword = email => ({
   type: types.RESET_PASSWORD,
-  payload: firebaseAuth().sendPasswordResetEmail(email)
+  payload: email
 })
 
 // Saves newly registered user's data in DB
@@ -82,6 +77,6 @@ export const removeFavorite = (userID, artistID) => ({
 })
 
 // Saves current user ID in localStorage for persistent use
-const saveLocal = user => {
-  localStorage.setItem('currentUser', user.uid)
-}
+// const saveLocal = user => {
+//   localStorage.setItem('currentUser', user.uid)
+// }

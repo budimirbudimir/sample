@@ -5,7 +5,7 @@ import '../../Footer.css'
 // TODO Drop inline fetchArtist(), also nested levels of JSX
 const Trending = ({ artists, fetchArtist }) => (
   <div>
-    {artists.length > 0 && (
+    {artists && artists.length > 0 && (
       <div className="App-trending">
         <p>Trending Artists:</p>
 

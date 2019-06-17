@@ -1,34 +1,21 @@
-import axios from 'axios'
-
-import { API_URL } from '../../config'
 import * as types from './actionTypes'
 
 export const fetchTrending = () => ({
-  type: types.FETCH_TRENDING,
-  payload: axios
-    .get(`${API_URL}&method=chart.getTopArtists`)
-    .then(result => result.data && result.data.artists.artist)
+  type: types.FETCH_TRENDING
 })
 
 export const fetchTopTracks = () => ({
-  type: types.FETCH_TOP_TRACKS,
-  payload: axios
-    .get(`${API_URL}&method=chart.getTopTracks`)
-    .then(result => result.data && result.data.tracks.track)
+  type: types.FETCH_TOP_TRACKS
 })
 
-export const setArtist = name => ({
+export const setArtist = payload => ({
   type: types.SET_ARTIST,
-  payload: axios
-    .get(`${API_URL}&method=artist.getInfo&artist=${name}`)
-    .then(result => result.data && result.data.artist)
+  payload
 })
 
-export const searchArtist = name => ({
+export const searchArtist = payload => ({
   type: types.SEARCH_ARTIST,
-  payload: axios
-    .get(`${API_URL}&method=artist.search&artist=${name}&limit=10`)
-    .then(result => result.data && result.data.results.artistmatches.artist)
+  payload
 })
 
 export const toggleBio = () => ({
